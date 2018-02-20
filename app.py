@@ -8,45 +8,15 @@ from time import time, strftime
 
 import arrow
 import requests
-from changelog.gerrit import GerritServer, GerritJSONEncoder
-from changelog import get_changes
 from config import Config
 from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 from flask import Flask, jsonify, request, render_template, Response
 from flask_caching import Cache
-from prometheus_client import multiprocess, generate_latest, CollectorRegistry, CONTENT_TYPE_LATEST, Counter, Histogram
-
-
 
 app = Flask(__name__)
 app.config.from_object("config.Config")
-app.json_encoder = GerritJSONEncoder
 
 cache = Cache(app)
-gerrit = GerritServer(app.config['GERRIT_URL'])
-
-##########################
-# Metrics!
-##########################
-REQUEST_LATENCY = Histogram("flask_request_latency_seconds", "Request Latency", ['method', 'endpoint'])
-REQUEST_COUNT = Counter("flask_request_count", "Request Count", ["method", "endpoint", "status"])
-
-@app.before_request
-def start_timer():
-    request.stats_start = time()
-
-@app.after_request
-def stop_timer(response):
-    delta = time() - request.stats_start
-    REQUEST_LATENCY.labels(request.method, request.endpoint).observe(delta) #pylint: disable=no-member
-    REQUEST_COUNT.labels(request.method, request.endpoint, response.status_code).inc() #pylint: disable=no-member
-    return response
-
-@app.route('/metrics')
-def metrics():
-    registry = CollectorRegistry()
-    multiprocess.MultiProcessCollector(registry)
-    return Response(generate_latest(registry), mimetype=CONTENT_TYPE_LATEST)
 
 ##########################
 # Exception Handling
@@ -86,22 +56,6 @@ def get_device(device):
     if device not in builds:
         raise DeviceNotFoundException("This device has no available builds. Please select another device.")
     return builds[device]
-
-@cache.memoize(timeout=3600)
-def get_oem_device_mapping():
-    oem_to_device = {}
-    device_to_oem = {}
-    devices = get_device_list()
-    with open('devices.json') as f:
-        data = json.loads(f.read())
-    if os.path.isfile('devices_local.json'):
-        with open('devices_local.json') as f:
-            data += json.loads(f.read())
-    for device in data:
-        if device['model'] in devices:
-            oem_to_device.setdefault(device['oem'], []).append(device)
-            device_to_oem[device['model']] = device['oem']
-    return oem_to_device, device_to_oem
 
 @cache.memoize(timeout=3600)
 def get_build_types(device, romtype, after, version):
@@ -156,21 +110,6 @@ def get_types(device):
         types.add(build['type'])
     return jsonify({'response': list(types)})
 
-@app.route('/api/v1/changes/<device>/')
-@app.route('/api/v1/changes/<device>/<int:before>/')
-@app.route('/api/v1/changes/<device>/-1/')
-@cache.cached(timeout=3600)
-def changes(device='all', before=-1):
-    return jsonify(get_changes(gerrit, device, before, get_device_version(device), app.config.get('STATUS_URL', '#')))
-
-@app.route('/<device>/changes/<int:before>/')
-@app.route('/<device>/changes/')
-@app.route('/')
-@cache.cached(timeout=3600)
-def show_changelog(device='all', before=-1):
-    oem_to_devices, device_to_oem = get_oem_device_mapping()
-    return render_template('changes.html', oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, device=device, before=before, changelog=True)
-
 @app.route('/api/v1/devices')
 @cache.cached(timeout=3600)
 def api_v1_devices():
@@ -183,31 +122,3 @@ def api_v1_devices():
     for version in versions.keys():
         versions[version] = list(versions[version])
     return jsonify(versions)
-
-##########################
-# Web Views
-##########################
-
-@app.context_processor
-def inject_year():
-    return dict(year=strftime("%Y"))
-
-@app.route("/<string:device>")
-@cache.cached(timeout=3600)
-def web_device(device):
-    oem_to_devices, device_to_oem = get_oem_device_mapping()
-    roms = reversed(get_device(device))
-
-    return render_template("device.html", device=device, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, roms=roms,
-                           wiki_info=app.config['WIKI_INFO_URL'], wiki_install=app.config['WIKI_INSTALL_URL'], download_base_url=app.config['DOWNLOAD_BASE_URL'])
-
-@app.route('/favicon.ico')
-def favicon():
-    return ''
-
-@app.route("/extras")
-@cache.cached(timeout=3600)
-def web_extras():
-    oem_to_devices, device_to_oem = get_oem_device_mapping()
-
-    return render_template("extras.html", oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, extras=True)
