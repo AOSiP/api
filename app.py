@@ -92,9 +92,9 @@ def get_device_version(device):
 # API
 ##########################
 
-@app.route('/api/v1/<string:device>/<string:romtype>/<string:incrementalversion>')
+@app.route('/api/v1/<string:device>/<string:romtype>')
 #cached via memoize on get_build_types
-def index(device, romtype, incrementalversion):
+def index(device, romtype):
     #pylint: disable=unused-argument
     after = request.args.get("after")
     version = request.args.get("version")
@@ -105,7 +105,7 @@ def index(device, romtype, incrementalversion):
 @cache.cached(timeout=3600)
 def get_types(device):
     data = get_device(device)
-    types = set(['nightly'])
+    types = set(['official'])
     for build in data:
         types.add(build['type'])
     return jsonify({'response': list(types)})
