@@ -15,7 +15,7 @@ builds = {}
 for f in [os.path.join(dp, f) for dp, dn, fn in os.walk(FILE_BASE) for f in fn]:
     data = open(f).read()
     filename = f.split('/')[-1]
-    if filename.split('.')[-1] == 'zip':
+    if filename.split('.')[-1] == 'zip' and filename.split('-')[0] == 'AOSiP':
         # lineage-14.1-20171129-nightly-hiaeul-signed.zip
         _, version, buildtype, device, builddate = os.path.splitext(filename)[0].split('-')
         print('hashing sha256 for {}'.format(filename), file=sys.stderr)
