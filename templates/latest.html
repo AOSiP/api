@@ -1,0 +1,14 @@
+<head>
+<title>Latest Builds</title>
+</head>
+<body>
+<ul>
+{% for stuff in data %}
+<li>
+<a href=https://aosiprom.com/beta/{{ stuff }}>{{ stuff.split('/')[1] }}</a> |
+<a href=https://get.aosiprom.com/{{ stuff }}>SourceForge</a> |
+<a href=https://osdn.net/projects/aosip/storage/{{ stuff }}>OSDN</a>
+</li>
+{% endfor %}
+</ul>
+</body>
