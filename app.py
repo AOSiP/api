@@ -1,13 +1,16 @@
-import os
+from glob import iglob
 
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
+DIR = '/var/www/aosiprom.com/beta'
+
 @app.route('/')
 def show_files():
     zips = []
-    for f in [os.path.join(dp, f) for dp, dn, fn in os.walk('/var/www/aosiprom.com/beta') for f in fn]:
+    for d in iglob(DIR):
+        f = iglob(d).sort()[-1]
         if f.split('.')[-1] == 'zip':
             zip = f.split('/')[-1]
             zips.append(zip)
