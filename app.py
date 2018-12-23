@@ -10,10 +10,10 @@ DIR = '/var/www/aosiprom.com/beta/*'
 def show_files():
     zips = []
     for d in iglob(DIR):
-
-        f = glob(d + '/*.zip').sort()
+        f = glob(d + '/*.zip')
         if f:
-            zip = f[-1]
+            f.sort()
+            zip = f[-1].split('/')[-1]
             zips.append(zip)
     zips.sort()
     return render_template('latest.html', zips=zips)
