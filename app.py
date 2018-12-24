@@ -53,7 +53,7 @@ def latest_device(device):
     """
     if os.path.isdir(os.path.join(DIR, device)):
         return render_template('device.html',
-                               zip=get_zips(os.path.join(DIR, device)),
+                               zip=get_zips(os.path.join(DIR, device))[0],
                                device=device)
     return "There isn't any build for {} available!".format(device)
 
