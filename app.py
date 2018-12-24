@@ -6,7 +6,7 @@ import os
 
 from flask import Flask, render_template
 
-APP = Flask(__name__)
+app = Flask(__name__) #pylint: disable=invalid-name
 
 DIR = os.getenv('DIR', '/var/www/aosiprom.com/beta')
 
@@ -34,14 +34,14 @@ def get_zips(directory):
         zips[device] = zip_name
     return zips[device]
 
-@APP.route('/')
+@app.route('/')
 def show_files():
     """
       Render the template with ZIP info
     """
     return render_template('latest.html', zips=get_zips(DIR))
 
-@APP.route('/<device>')
+@app.route('/<device>')
 def latest_device(device):
     """
       Show the latest release for the current device
@@ -54,4 +54,4 @@ def latest_device(device):
 
 
 if __name__ == '__main__':
-    APP.run()
+    app.run()
