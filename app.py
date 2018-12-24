@@ -2,11 +2,15 @@
   Flask app that walks through a given directory to index
   ROM ZIPs and renders web pages using templates.
 """
+import json
 import os
+import requests
 
 from flask import Flask, render_template
 
 app = Flask(__name__) # pylint: disable=invalid-name
+
+DEVICE_JSON = 'https://raw.githubusercontent.com/AOSiP/api/master/devices.json'
 
 DIR = os.getenv('DIR', '/var/www/aosiprom.com/beta')
 
@@ -51,10 +55,24 @@ def latest_device(device):
     """
       Show the latest release for the current device
     """
+    data = requests.get(DEVICE_JSON)
+    if data.status_code != 200:
+        return "Unable to get information for {}".format(device)
+    json_data = json.loads(data.text)
+    for j in json_data:
+        try:
+            if j['codename'] == device:
+                xda_url = j['xda']
+                phone = j['device']
+                maintainers = j['maintainer']
+                break
+        except KeyError:
+            return "Unable to get information for {}".format(device)
+
     if os.path.isdir(os.path.join(DIR, device)):
         return render_template('device.html',
                                zip=get_zips(os.path.join(DIR, device))[0],
-                               device=device)
+                               device=device, phone=phone, xda=xda_url, maintainer=maintainers)
     return "There isn't any build for {} available!".format(device)
 
 

@@ -1,13 +1,18 @@
 <head>
-<title>Latest Build for {{ device }}</title>
+<title>AOSiP for {{ phone }}</title>
 </head>
 <body>
-{% set sf, osdn = "https://sourceforge.net/projects/illusionproject/files", "https://osdn.net/projects/aosip/storage" %}
-<ul>
-<li>
-    <a href=https://aosiprom.com/beta/{{ device }}/{{ zip }}>{{ zip }}</a> |
-    <a href={{ sf }}/{{ device }}/{{ zip }}>SourceForge</a> |
-    <a href={{ osdn }}/{{ device }}/{{ zip }}>OSDN</a>
-</li>
+{% set aosip = "http://aosiprom.com/beta" %}
+{% set osdn = "https://osdn.net/projects/aosip/storage" %}
+{% set sf =  "https://sourceforge.net/projects/illusionproject/files" %}
+<p>Maintainer: {{ maintainer }}</p>
+<p>Latest Build: {{ zip }}</p>
+<p>
+<li><a href={{ aosip }}/{{ device }}/{{ zip }}>Download</a></li>
+<li><a href={{ xda }}>XDA Thread</a></li>
+<p>Mirrors</p>
+<li><a href={{ sf }}/{{ device }}/{{ zip }}>SourceForge</a></li>
+<li><a href={{ osdn }}/{{ device }}/{{ zip }}>OSDN</a></li>
 </ul>
+</p>
 </body>
