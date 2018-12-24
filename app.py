@@ -19,7 +19,7 @@ def show_files():
             continue
         zip = f.split('/')[-1]
         device = zip.split('-')[3]
-        if zips[device]:
+        if device in zips:
             if get_date_from_zip(zips[device]) > get_date_from_zip(zip):
                 continue
         zips[device] = zip
