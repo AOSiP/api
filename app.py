@@ -31,7 +31,7 @@ def show_files():
 
 @app.route('/<device>')
 def latest_device(device):
-    if os.path.isdir(os.path.join(DIR), device):
+    if os.path.isdir(os.path.join(DIR, device)):
         return render_template('device.html', zips=get_zips(os.path.join(DIR), device))
     else:
         return "There isn't any build for {} available!".format(device)
