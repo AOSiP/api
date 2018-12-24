@@ -21,9 +21,7 @@ def get_zips(dir):
             if get_date_from_zip(zips[device]) > get_date_from_zip(zip):
                 continue
         zips[device] = zip
-    data = list(zips.values())
-    data.sort()
-    return data
+    return zips[device]
 
 @app.route('/')
 def show_files():
