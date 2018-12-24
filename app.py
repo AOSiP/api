@@ -15,6 +15,8 @@ def get_date_from_zip(zip):
 def show_files():
     zips = {}
     for f in [os.path.join(dp, f) for dp, dn, fn in os.walk(DIR) for f in fn]:
+        if f.split('.')[-1] != 'zip':
+            continue
         zip = f[-1].split('/')[-1]
         device = zip.split('-')[3]
         if zips[device]:
