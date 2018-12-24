@@ -33,7 +33,9 @@ def get_zips(directory):
             if get_date_from_zip(zips[device]) > get_date_from_zip(zip_name):
                 continue
         zips[device] = zip_name
-    return zips[device]
+    data = list(zips.values())
+    data.sort()
+    return data
 
 
 @app.route('/')
