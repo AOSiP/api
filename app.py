@@ -6,7 +6,7 @@ import os
 
 from flask import Flask, render_template
 
-app = Flask(__name__) #pylint: disable=invalid-name
+app = Flask(__name__) # pylint: disable=invalid-name
 
 DIR = os.getenv('DIR', '/var/www/aosiprom.com/beta')
 
@@ -16,6 +16,7 @@ def get_date_from_zip(zip_name):
       Helper function to parse a date from a ROM ZIP's name
     """
     return zip_name.split('-')[-1].split('.')[0]
+
 
 def get_zips(directory):
     """
@@ -34,12 +35,14 @@ def get_zips(directory):
         zips[device] = zip_name
     return zips[device]
 
+
 @app.route('/')
 def show_files():
     """
       Render the template with ZIP info
     """
     return render_template('latest.html', zips=get_zips(DIR))
+
 
 @app.route('/<device>')
 def latest_device(device):
