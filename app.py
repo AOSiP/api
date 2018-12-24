@@ -10,11 +10,9 @@ DIR = os.getenv('DIR', '/var/www/aosiprom.com/beta')
 def get_date_from_zip(zip):
     return zip.split('-')[-1].split('.')[0]
 
-
-@app.route('/')
-def show_files():
+def get_zips(dir):
     zips = {}
-    for f in [os.path.join(dp, f) for dp, dn, fn in os.walk(DIR) for f in fn]:
+    for f in [os.path.join(dp, f) for dp, dn, fn in os.walk(dir) for f in fn]:
         if f.split('.')[-1] != 'zip':
             continue
         zip = f.split('/')[-1]
@@ -25,7 +23,18 @@ def show_files():
         zips[device] = zip
     data = list(zips.values())
     data.sort()
-    return render_template('latest.html', zips=data)
+    return data
+
+@app.route('/')
+def show_files():
+    return render_template('latest.html', zips=get_zips(DIR))
+
+@app.route('/<device>')
+def latest_device(device):
+    if os.path.isdir(os.path.join(DIR), device):
+        return render_template('device.html', zips=get_zips(os.path.join(DIR), device))
+    else:
+        return "There isn't any build for {} available!".format(device)
 
 
 if __name__ == '__main__':
