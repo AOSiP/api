@@ -1,0 +1,14 @@
+[
+    {
+        "codename": "mata",
+        "device": "Essential PH-1",
+        "maintainer": "Josh Fox",
+        "xda": "https://forum.xda-developers.com/essential-phone/development/aosip-8-1-official-t3735143"
+    },
+    {
+        "codename": "whyred",
+        "device": "Redmi Note 5/AI/Pro",
+        "xda": "https://forum.xda-developers.com/redmi-note-5-pro/development/rom-aosp-pie-t3829052",
+        "maintainer": "Akhil Narang"
+    }
+]
