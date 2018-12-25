@@ -1,5 +1,11 @@
 [
     {
+        "codename": "enchilada",
+        "device": "OnePlus 6",
+        "maintainer": "Anirudh Gupta",
+        "xda": "https://forum.xda-developers.com/oneplus-6/development/rom-android-source-illusion-project-t3855343"
+    },
+    {
         "codename": "mata",
         "device": "Essential PH-1",
         "maintainer": "Josh Fox",
