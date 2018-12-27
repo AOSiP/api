@@ -23,5 +23,11 @@
         "device": "Redmi Note 5/AI/Pro",
         "xda": "https://forum.xda-developers.com/redmi-note-5-pro/development/rom-aosp-pie-t3829052",
         "maintainer": "Akhil Narang"
+    },
+    {
+        "codename": "z2_plus",
+        "device": "Lenovo ZUK Z2 (Plus)",
+        "xda": "https://forum.xda-developers.com/lenovo-zuk-z2/development/aosip-pie-beta-t3870101",
+        "maintainer": "Subhajeet Muhuri"
     }
 ]
