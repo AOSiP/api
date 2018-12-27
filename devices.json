@@ -1,4 +1,11 @@
 [
+
+    {
+        "codename": "beryllium",
+        "device": "Poco F1",
+        "xda": "https://forum.xda-developers.com/poco-f1/development/rom-aosip-pie-beta-t3877255",
+        "maintainer": "Akhil Narang"
+    },
     {
         "codename": "enchilada",
         "device": "OnePlus 6",
