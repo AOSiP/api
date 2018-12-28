@@ -35,5 +35,11 @@
         "device": "LeEco Le Max 2",
         "xda": "https://forum.xda-developers.com/le-max-2/development/rom-aosip-t3876870",
         "maintainer": "Juan Ramírez"
+    },
+    {
+        "codename": "z2_plus",
+        "device": "Lenovo ZUK Z2 (Plus)",
+        "xda": "https://forum.xda-developers.com/lenovo-zuk-z2/development/aosip-pie-beta-t3870101",
+        "maintainer": "Subhajeet Muhuri"
     }
 ]
