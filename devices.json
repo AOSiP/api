@@ -13,6 +13,12 @@
         "xda": "https://forum.xda-developers.com/oneplus-6/development/rom-android-source-illusion-project-t3855343"
     },
     {
+        "codename": "fajita",
+        "device": "OnePlus 6T",
+        "maintainer": "Ujwal P",
+        "xda": "https://forum.xda-developers.com/oneplus-6t/development/rom-android-source-illusion-project-t3878204"
+    },
+    {
         "codename": "mata",
         "device": "Essential PH-1",
         "maintainer": "Josh Fox",
