@@ -1,10 +1,15 @@
 [
-
     {
         "codename": "beryllium",
         "device": "Poco F1",
         "xda": "https://forum.xda-developers.com/poco-f1/development/rom-aosip-pie-beta-t3877255",
         "maintainer": "Akhil Narang"
+    },
+    {
+        "codename": "dipper",
+        "device": "MI 8",
+        "maintainer": "Arseniy Graur",
+        "xda": "https://forum.xda-developers.com/mi-8/development/rom-android-source-illusion-project-t3858987"
     },
     {
         "codename": "enchilada",
