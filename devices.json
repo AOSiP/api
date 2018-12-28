@@ -13,6 +13,12 @@
         "xda": "https://forum.xda-developers.com/oneplus-6/development/rom-android-source-illusion-project-t3855343"
     },
     {
+        "codename": "fajita",
+        "device": "OnePlus 6T",
+        "maintainer": "Ujwal P",
+        "xda": "https://forum.xda-developers.com/oneplus-6t/development/rom-android-source-illusion-project-t3878204"
+    },
+    {
         "codename": "mata",
         "device": "Essential PH-1",
         "maintainer": "Josh Fox",
@@ -23,6 +29,12 @@
         "device": "Redmi Note 5/AI/Pro",
         "xda": "https://forum.xda-developers.com/redmi-note-5-pro/development/rom-aosp-pie-t3829052",
         "maintainer": "Akhil Narang"
+    },
+    {
+        "codename": "x2",
+        "device": "LeEco Le Max 2",
+        "xda": "https://forum.xda-developers.com/le-max-2/development/rom-aosip-t3876870",
+        "maintainer": "Juan Ramírez"
     },
     {
         "codename": "z2_plus",
