@@ -12,7 +12,7 @@ app = Flask(__name__) # pylint: disable=invalid-name
 
 DEVICE_JSON = 'https://raw.githubusercontent.com/AOSiP/api/master/devices.json'
 
-DIR = os.getenv('DIR', '/var/www/aosiprom.com/beta')
+DIR = os.getenv('DIR', '/var/www/get.aosiprom.com')
 
 
 def get_date_from_zip(zip_name):
