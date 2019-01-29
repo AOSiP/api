@@ -6,6 +6,18 @@
         "maintainer": "Akhil Narang"
     },
     {
+        "codename": "blueline",
+        "device": "Google Pixel 3",
+        "maintainer": "Josh Fox",
+        "xda": "https://forum.xda-developers.com/pixel-3-xl/development/official-aosip-9-0-t3894660"
+    },
+    {
+        "codename": "crosshatch",
+        "device": "Google Pixel 3 Xl",
+        "maintainer": "Josh Fox",
+        "xda": "https://forum.xda-developers.com/pixel-3-xl/development/official-aosip-9-0-t3894660"
+    },
+    {
         "codename": "dipper",
         "device": "MI 8",
         "maintainer": "Arseniy Graur",
