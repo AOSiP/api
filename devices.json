@@ -53,6 +53,12 @@
         "maintainer": "Ujwal P",
         "xda": "https://forum.xda-developers.com/oneplus-3/oneplus-3--3t-cross-device-development/rom-aosip-pie-t3850374"
     },
+        {
+        "codename": "potter",
+        "device": "Moto G5 Plus",
+        "maintainer": "Nick van Bokhorst (GtrCraft)",
+        "xda": "https://forum.xda-developers.com/g5-plus/development/rom-android-source-illusion-project-t3873179"
+    },
     {
         "codename": "whyred",
         "device": "Redmi Note 5/AI/Pro",
