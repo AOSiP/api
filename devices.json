@@ -42,6 +42,12 @@
         "xda": "https://forum.xda-developers.com/oneplus-6t/development/rom-android-source-illusion-project-t3878204"
     },
     {
+        "codename": "kiwi",
+        "device": "Honor 5x",
+        "maintainer": "Joel Hans",
+        "xda": "https://forum.xda-developers.com/honor-5x/development/rom-aosip-9-0-pie-official-honor-5x-kiwi-t3898887"
+    },
+    {
         "codename": "mata",
         "device": "Essential PH-1",
         "maintainer": "Josh Fox",
