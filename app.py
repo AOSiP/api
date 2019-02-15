@@ -76,10 +76,9 @@ def latest_device(device):
             return render_template('device.html',
                                    zip=get_zips(os.path.join(DIR, device))[0],
                                    device=device, phone=phone, xda=xda_url, maintainer=maintainers)
-        else:
-            return render_template('device_serveronly.html',
-                                   zip=get_zips(os.path.join(DIR, device))[0],
-                                   device=device)
+        return render_template('device_serveronly.html',
+                               zip=get_zips(os.path.join(DIR, device))[0],
+                               device=device)
 
     return "There isn't any build for {} available here!".format(device)
 
