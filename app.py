@@ -59,21 +59,23 @@ def latest_device(device):
     if data.status_code != 200:
         return "Unable to get information for {}".format(device)
     json_data = json.loads(data.text)
+    device_in_json = False
     for j in json_data:
         try:
             if j['codename'] == device:
                 xda_url = j['xda']
                 phone = j['device']
                 maintainers = j['maintainer']
+                device_in_json = True
                 break
         except KeyError:
             return "Unable to get information for {}".format(device)
 
-    if os.path.isdir(os.path.join(DIR, device)):
+    if os.path.isdir(os.path.join(DIR, device)) and device_in_json:
         return render_template('device.html',
                                zip=get_zips(os.path.join(DIR, device))[0],
                                device=device, phone=phone, xda=xda_url, maintainer=maintainers)
-    return "There isn't any build for {} available!".format(device)
+    return "There isn't any build for {} available here!".format(device)
 
 
 if __name__ == '__main__':
