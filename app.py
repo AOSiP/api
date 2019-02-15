@@ -71,10 +71,16 @@ def latest_device(device):
         except KeyError:
             return "Unable to get information for {}".format(device)
 
-    if os.path.isdir(os.path.join(DIR, device)) and device_in_json:
-        return render_template('device.html',
-                               zip=get_zips(os.path.join(DIR, device))[0],
-                               device=device, phone=phone, xda=xda_url, maintainer=maintainers)
+    if os.path.isdir(os.path.join(DIR, device)):
+        if device_in_json:
+            return render_template('device.html',
+                                   zip=get_zips(os.path.join(DIR, device))[0],
+                                   device=device, phone=phone, xda=xda_url, maintainer=maintainers)
+        else:
+            return render_template('device_serveronly.html',
+                                   zip=get_zips(os.path.join(DIR, device))[0],
+                                   device=device)
+
     return "There isn't any build for {} available here!".format(device)
 
 

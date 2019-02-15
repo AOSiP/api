@@ -1,0 +1,20 @@
+<head>
+<title>AOSiP for {{ device }}</title>
+</head>
+<body>
+{% set aosip = "http://get.aosiprom.com" %}
+{% set osdn = "https://osdn.net/projects/aosip/storage" %}
+{% set sf =  "https://sourceforge.net/projects/illusionproject/files" %}
+{% set changelog = "https://raw.githubusercontent.com/AOSiP-Devices/Updater-Stuff/master" %}
+{% set paypal = "https://paypal.me/AOSiP" %}
+<p>Latest Build: {{ zip }}</p>
+<p>
+<li><a href={{ aosip }}/{{ device }}/{{ zip }}>Download</a></li>
+<li><a href={{ changelog }}/{{ device }}/changelog>Changelog</a></li>
+<li><a href={{ paypal }}>Donate</a></li>
+<p>Mirrors</p>
+<li><a href={{ sf }}/{{ device }}/{{ zip }}>SourceForge</a></li>
+<li><a href={{ osdn }}/{{ device }}/{{ zip }}>OSDN</a></li>
+</ul>
+</p>
+</body>
