@@ -1,13 +1,25 @@
 <head>
-<title>Latest AOSiP Builds</title>
+    <link href="{{ url_for(endpoint='static', filename='tables.scss') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <title>Latest AOSiP Builds</title>
 </head>
 <body>
-<ul>
-    {% for zip in zips %}
+<div class="container">
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-1">Device</div>
+            <div class="col col-2">Link</div>
+            <div class="col col-3">Build date</div>
+        </li>
+        {% for zip in zips %}
         {% set device = zip.split('-')[3] %}
-<li>
-    <a href={{ device }}>{{ zip }}</a>
-</li>
-{% endfor %}
-</ul>
+        {% set build_date = zip.split('-')[4] %}
+        <li class="table-row">
+            <div class="col col-1" data-label="Device">{{ device }}</div>
+            <div class="col col-2" data-label="Link"><a href="{{ device }}">{{ zip }}</a></div>
+            <div class="col col-3" data-label="Build date">{{ build_date }}</div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 </body>
