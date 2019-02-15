@@ -2,14 +2,11 @@
 <title>Latest Builds</title>
 </head>
 <body>
-{% set sf, osdn = "https://sourceforge.net/projects/illusionproject/files", "https://osdn.net/projects/aosip/storage" %}
 <ul>
     {% for zip in zips %}
         {% set device = zip.split('-')[3] %}
 <li>
-    <a href=https://get.aosiprom.com/{{ device }}/{{ zip }}>{{ zip }}</a> |
-    <a href={{ sf }}/{{ device }}/{{ zip }}>SourceForge</a> |
-    <a href={{ osdn }}/{{ device }}/{{ zip }}>OSDN</a>
+    <a href={{ device }}>{{ zip }}</a> |
 </li>
 {% endfor %}
 </ul>
