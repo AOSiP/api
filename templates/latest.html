@@ -12,12 +12,13 @@
             <div class="col col-3">Build date</div>
         </li>
         {% for zip in zips %}
+        {% set zip = zip[:-4] %}
         {% set device = zip.split('-')[3] %}
         {% set build_date = zip.split('-')[4] %}
         <li class="table-row">
             <div class="col col-1" data-label="Device">{{ device }}</div>
             <div class="col col-2" data-label="Link"><a href="{{ device }}">{{ zip }}</a></div>
-            <div class="col col-3" data-label="Build date">{{ build_date }}</div>
+            <div class="col col-3" data-label="Build date">{{ build_date[:4] }}-{{ build_date[4:6] }}-{{ build_date[6:] }}</div>
         </li>
         {% endfor %}
     </ul>
