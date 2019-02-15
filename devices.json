@@ -2,8 +2,8 @@
     {
         "codename": "beryllium",
         "device": "Poco F1",
-        "xda": "https://forum.xda-developers.com/poco-f1/development/rom-aosip-pie-beta-t3877255",
-        "maintainer": "Akhil Narang"
+        "maintainer": "Akhil Narang",
+        "xda": "https://forum.xda-developers.com/poco-f1/development/rom-aosip-pie-beta-t3877255"
     },
     {
         "codename": "blueline",
@@ -50,19 +50,19 @@
     {
         "codename": "whyred",
         "device": "Redmi Note 5/AI/Pro",
-        "xda": "https://forum.xda-developers.com/redmi-note-5-pro/development/rom-aosp-pie-t3829052",
-        "maintainer": "Akhil Narang"
+        "maintainer": "Akhil Narang",
+        "xda": "https://forum.xda-developers.com/redmi-note-5-pro/development/rom-aosp-pie-t3829052"
     },
     {
         "codename": "x2",
         "device": "LeEco Le Max 2",
-        "xda": "https://forum.xda-developers.com/le-max-2/development/rom-aosip-t3876870",
-        "maintainer": "Juan Ramírez"
+        "maintainer": "Juan Ramírez",
+        "xda": "https://forum.xda-developers.com/le-max-2/development/rom-aosip-t3876870"
     },
     {
         "codename": "z2_plus",
         "device": "Lenovo ZUK Z2 (Plus)",
-        "xda": "https://forum.xda-developers.com/lenovo-zuk-z2/development/aosip-pie-beta-t3870101",
-        "maintainer": "Subhajeet Muhuri"
+        "maintainer": "Subhajeet Muhuri",
+        "xda": "https://forum.xda-developers.com/lenovo-zuk-z2/development/aosip-pie-beta-t3870101"
     }
 ]
