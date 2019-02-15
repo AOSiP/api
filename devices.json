@@ -1,5 +1,11 @@
 [
     {
+        "codename": "berkeley",
+        "device": "Honor View 10",
+        "maintainer": "Juan Ramírez",
+        "xda": "https://forum.xda-developers.com/honor-view-10/development/rom-android-source-illusion-project-t3900355"
+    },
+    {
         "codename": "beryllium",
         "device": "Poco F1",
         "maintainer": "Akhil Narang",
