@@ -4,22 +4,32 @@
 """
 import json
 import os
-import requests
 
 from flask import Flask, render_template
 
 app = Flask(__name__) # pylint: disable=invalid-name
 
-DEVICE_JSON = 'https://raw.githubusercontent.com/AOSiP/api/master/devices.json'
-
+DEVICE_JSON = 'devices.json'
 DIR = os.getenv('DIR', '/var/www/get.aosiprom.com')
-
 
 def get_date_from_zip(zip_name):
     """
       Helper function to parse a date from a ROM ZIP's name
     """
     return zip_name.split('-')[-1].split('.')[0]
+
+
+def get_devices():
+    """
+      Returns a dictionary with the list of codenames and actual
+      device names
+    """
+    data = open(DEVICE_JSON).read()
+    devices = {}
+    json_data = json.loads(data)
+    for j in json_data:
+        devices[j['codename']] = j['device']
+    return devices
 
 
 def get_zips(directory):
@@ -41,13 +51,12 @@ def get_zips(directory):
     data.sort()
     return data
 
-
 @app.route('/')
 def show_files():
     """
       Render the template with ZIP info
     """
-    return render_template('latest.html', zips=get_zips(DIR))
+    return render_template('latest.html', zips=get_zips(DIR), devices=get_devices())
 
 
 @app.route('/<device>')
@@ -55,10 +64,8 @@ def latest_device(device):
     """
       Show the latest release for the current device
     """
-    data = requests.get(DEVICE_JSON)
-    if data.status_code != 200:
-        return "Unable to get information for {}".format(device)
-    json_data = json.loads(data.text)
+    data = open(DEVICE_JSON).read()
+    json_data = json.loads(data)
     device_in_json = False
     for j in json_data:
         try:
