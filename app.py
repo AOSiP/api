@@ -28,7 +28,10 @@ def get_devices():
     devices = {}
     json_data = json.loads(data)
     for j in json_data:
-        devices[j['codename']] = j['device']
+        if j['device']:
+            devices[j['codename']] = j['device']
+        else:
+            devices[j['codename']] = j['codename']
     return devices
 
 
