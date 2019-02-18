@@ -64,28 +64,23 @@ def latest_device(device):
     """
       Show the latest release for the current device
     """
+    xda_url = phone = maintainers = None
     data = open(DEVICE_JSON).read()
     json_data = json.loads(data)
-    device_in_json = False
     for j in json_data:
         try:
             if j['codename'] == device:
                 xda_url = j['xda']
                 phone = j['device']
                 maintainers = j['maintainer']
-                device_in_json = True
                 break
         except KeyError:
             return "Unable to get information for {}".format(device)
 
     if os.path.isdir(os.path.join(DIR, device)):
-        if device_in_json:
-            return render_template('device.html',
-                                   zip=get_zips(os.path.join(DIR, device))[0],
-                                   device=device, phone=phone, xda=xda_url, maintainer=maintainers)
-        return render_template('device_serveronly.html',
+        return render_template('device.html',
                                zip=get_zips(os.path.join(DIR, device))[0],
-                               device=device)
+                               device=device, phone=phone, xda=xda_url, maintainer=maintainers)
 
     return "There isn't any build for {} available here!".format(device)
 
