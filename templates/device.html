@@ -5,25 +5,25 @@
     <title>AOSiP for {{ phone }}</title>
 </head>
 <body>
-{% set aosip = "http://get.aosiprom.com" %}
-{% set osdn = "https://osdn.net/projects/aosip/storage" %}
-{% set sf =  "https://sourceforge.net/projects/illusionproject/files" %}
-{% set changelog = "https://raw.githubusercontent.com/AOSiP-Devices/Updater-Stuff/master" %}
-{% set paypal = "https://paypal.me/AOSiP" %}
-{% if maintainer %}
-<p>Maintainer: {{ maintainer }}</p>
-{% endif %}
-<p>Latest Build: {{ zip }}</p>
-<p>
-<li><a href={{ aosip }}/{{ device }}/{{ zip }}>Download</a></li>
-{% if xda %}
-<li><a href={{ xda }}>XDA Thread</a></li>
-{% endif %}
-<li><a href={{ changelog }}/{{ device }}/changelog>Changelog</a></li>
-<li><a href={{ paypal }}>Donate</a></li>
-<p>Mirrors (May not be up to date at all times)</p>
-<li><a href={{ sf }}/{{ device }}>SourceForge</a></li>
-<li><a href={{ osdn }}/{{ device }}>OSDN</a></li>
-</ul>
-</p>
+    {% set aosip = "http://get.aosiprom.com" %}
+    {% set osdn = "https://osdn.net/projects/aosip/storage" %}
+    {% set sf =  "https://sourceforge.net/projects/illusionproject/files" %}
+    {% set changelog = "https://raw.githubusercontent.com/AOSiP-Devices/Updater-Stuff/master" %}
+    {% set paypal = "https://paypal.me/AOSiP" %}
+    {% if maintainer %}
+        <p>Maintainer: {{ maintainer }}</p>
+    {% endif %}
+    <p>Latest Build: {{ zip }}</p>
+    <p>
+    <li><a href={{ aosip }}/{{ device }}/{{ zip }}>Download</a></li>
+    {% if xda %}
+        <li><a href={{ xda }}>XDA Thread</a></li>
+    {% endif %}
+    <li><a href={{ changelog }}/{{ device }}/changelog>Changelog</a></li>
+    <li><a href={{ paypal }}>Donate</a></li>
+    <p>Mirrors (May not be up to date at all times)</p>
+    <li><a href={{ sf }}/{{ device }}>SourceForge</a></li>
+    <li><a href={{ osdn }}/{{ device }}>OSDN</a></li>
+    </ul>
+    </p>
 </body>
