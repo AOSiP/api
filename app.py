@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
   Flask app that walks through a given directory to index
   ROM ZIPs and renders web pages using templates.
