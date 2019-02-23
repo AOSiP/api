@@ -1,3 +1,3 @@
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 killall flask
-FLASK_APP=app.py flask run &
+BUILD_ID=Flask FLASK_APP=app.py flask run &
