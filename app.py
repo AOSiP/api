@@ -5,12 +5,19 @@
 import json
 import os
 
-from flask import Flask, render_template
+from collections import OrderedDict
+from datetime import datetime
+
+import requests
+
+from flask import Flask, request, render_template, Response
 
 app = Flask(__name__) # pylint: disable=invalid-name
 
 DEVICE_JSON = 'devices.json'
 DIR = os.getenv('DIR', '/var/www/get.aosiprom.com')
+DATEFORMAT = '%Y-%m-%d'
+
 
 def get_date_from_zip(zip_name):
     """
@@ -83,6 +90,45 @@ def latest_device(device):
                                device=device, phone=phone, xda=xda_url, maintainer=maintainers)
 
     return "There isn't any build for {} available here!".format(device)
+
+
+@app.route('/changelog')
+def get_changelog():
+    """
+    Function to return list of changes between a certain date change from a gerrit instance
+    """
+    gerrit_url = "https://review.aosiprom.com"
+    if 'from' in request.args:
+        try:
+            from_date = datetime.utcfromtimestamp(int(request.args.get('from'))).strftime(
+                DATEFORMAT)
+        except Exception:
+            return 'ERROR: <code>from</code> parameter expected to be a unix timestamp', 400
+    else:
+        return 'ERROR: <code>from</code> parameter has to be specified', 400
+    if 'to' in request.args:
+        try:
+            to_date = datetime.utcfromtimestamp(int(request.args.get('to'))).strftime(DATEFORMAT)
+        except Exception:
+            return 'ERROR: <code>to</code> parameter expected to be a unix timestamp', 400
+    else:
+        to_date = datetime.utcnow().strftime(DATEFORMAT)
+
+    if 'filter' in request.args:
+        projects_filter = request.args.get('filter')
+        url = f'{gerrit_url}/changes/?q=is:merged+projects:{projects_filter}+since:{from_date}+until:{to_date}'
+    else:
+        url = f'{gerrit_url}/changes/?q=is:merged+since:{from_date}+until:{to_date}'
+
+    data = requests.get(url).text[5:-1]  # fuck gerrit xss protection
+    commits = json.loads(data)
+    changelog = []
+    for commit in commits:
+        changelog.append(commit['subject'])
+
+    # Remove duplicate entries
+    changelog = list(OrderedDict.fromkeys(changelog))
+    return Response('\n'.join(changelog), mimetype='text/plain')
 
 
 if __name__ == '__main__':
