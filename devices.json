@@ -66,12 +66,6 @@
         "xda": "https://forum.xda-developers.com/g5-plus/development/rom-android-source-illusion-project-t3873179"
     },
     {
-        "codename": "whyred",
-        "device": "Redmi Note 5/AI/Pro",
-        "maintainer": "Akhil Narang",
-        "xda": "https://forum.xda-developers.com/redmi-note-5-pro/development/rom-aosp-pie-t3829052"
-    },
-    {
         "codename": "x2",
         "device": "LeEco Le Max 2",
         "maintainer": "Juan Ramírez",
