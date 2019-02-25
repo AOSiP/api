@@ -66,6 +66,12 @@
         "xda": "https://forum.xda-developers.com/g5-plus/development/rom-android-source-illusion-project-t3873179"
     },
     {
+        "codename": "sagit",
+        "device": "Mi 6",
+        "maintainer": "Kamil Zarzycki (Hakersky)",
+        "xda": "https://forum.xda-developers.com/mi-6/development/rom-android-source-illusion-project-t3894637"
+    },
+    {
         "codename": "x2",
         "device": "LeEco Le Max 2",
         "maintainer": "Juan Ramírez",
