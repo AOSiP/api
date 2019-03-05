@@ -1,3 +1,3 @@
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-killall flask
+killall flask python3
 ./app.py
