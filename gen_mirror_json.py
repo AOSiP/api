@@ -6,7 +6,7 @@ import json
 import os
 import sys
 
-FILE_BASE = "/home/kronic/get.aosiprom.com"
+FILE_BASE = os.getenv('FILE_BASE', '/mnt/builds')
 builds = {}
 cwd=os.getcwd()
 os.chdir(FILE_BASE)
