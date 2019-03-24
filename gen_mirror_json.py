@@ -4,7 +4,6 @@
 
 from __future__ import print_function
 import hashlib
-import glob
 import json
 import os
 import sys
@@ -41,9 +40,9 @@ for file in [os.path.join(dp, file) for dp, dn, fn in os.walk(FILE_BASE) for fil
     except Exception as e:
         continue
 
-for i in zips.keys():
-    for j in zips[i]:
-        file = zips[i][j]
+for key, value in zips.items():
+    for device in value:
+        file = zips[key][device]
         print(file)
         try:
             filename = file.split('/')[-1]
