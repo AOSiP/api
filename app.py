@@ -117,7 +117,7 @@ def get_build_types(device, romtype, after, version):
     for rom in roms:
         data.append({
             "id": rom['sha256'],
-            "url": '{}{}'.format(DOWNLOAD_BASE_URL, rom['filepath']),
+            "url": '{}{}{}'.format(DOWNLOAD_BASE_URL, rom['filepath'], rom['filename']),
             "romtype": rom['type'],
             "datetime": arrow.get(rom['date']).timestamp,
             "version": rom['version'],

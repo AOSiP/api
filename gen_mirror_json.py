@@ -57,7 +57,7 @@ for key, value in zips.items():
                 'size': os.path.getsize(file),
                 'date': '{}-{}-{}'.format(builddate[0:4], builddate[4:6], builddate[6:8]),
                 'filename': filename,
-                'filepath': file,
+                'filepath': file.replace(filename, '').replace(FILE_BASE, ''),
                 'version': version,
                 'type': buildtype.lower()
             })
