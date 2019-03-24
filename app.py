@@ -63,7 +63,10 @@ def get_zips(directory: str) -> list:
         if file.split('.')[-1] != 'zip':
             continue
         zip_name = file.split('/')[-1]
-        device = zip_name.split('-')[3]
+        try:
+            device = zip_name.split('-')[3]
+        except IndexError:
+            continue
         if device in zips:
             if get_date_from_zip(zips[device]) > get_date_from_zip(zip_name):
                 continue
