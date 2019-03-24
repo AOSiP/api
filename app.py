@@ -4,7 +4,7 @@
   ROM ZIPs and renders web pages using templates.
 """
 
-#pylint: disable=line-too-long,missing-docstring,invalid-name
+#pylint: disable=missing-docstring,invalid-name
 
 import json
 import os
@@ -64,40 +64,6 @@ def get_zips(directory: str) -> list:
     data.sort()
     return data
 
-@app.route('/')
-def show_files():
-    """
-      Render the template with ZIP info
-    """
-    return render_template('latest.html', zips=get_zips(DIR), devices=get_devices())
-
-
-@app.route('/<device>')
-def latest_device(device: str):
-    """
-      Show the latest release for the current device
-    """
-    if device == 'beta':
-        return redirect('https://get.aosiprom.com', code=301)
-    xda_url = phone = maintainers = None
-    data = open(DEVICE_JSON).read()
-    json_data = json.loads(data)
-    for j in json_data:
-        try:
-            if j['codename'] == device:
-                xda_url = j['xda']
-                phone = j['device']
-                maintainers = j['maintainer']
-                break
-        except KeyError:
-            return "Unable to get information for {}".format(device)
-
-    if os.path.isdir(os.path.join(DIR, device)):
-        return render_template('device.html',
-                               zip=get_zips(os.path.join(DIR, device))[0],
-                               device=device, phone=phone, xda=xda_url, maintainer=maintainers)
-
-    return "There isn't any build for {} available here!".format(device)
 
 @cache.memoize(timeout=3600)
 def get_builds():
@@ -155,8 +121,52 @@ def get_device_version(device):
 ##########################
 # API
 ##########################
+@app.route('/')
+def show_files():
+    """
+      Render the template with ZIP info
+    """
+    return render_template('latest.html', zips=get_zips(DIR), devices=get_devices())
 
-@app.route('/api/v1/<string:device>/<string:romtype>')
+
+@app.route('/<string:device>')
+def latest_device(device: str):
+    """
+      Show the latest release for the current device
+    """
+    if device == 'beta':
+        return redirect('https://get.aosiprom.com', code=301)
+    xda_url = phone = maintainers = None
+    data = open(DEVICE_JSON).read()
+    json_data = json.loads(data)
+    for j in json_data:
+        try:
+            if j['codename'] == device:
+                xda_url = j['xda']
+                phone = j['device']
+                maintainers = j['maintainer']
+                break
+        except KeyError:
+            return "Unable to get information for {}".format(device)
+
+    if os.path.isdir(os.path.join(DIR, device)):
+        return render_template('device.html',
+                               zip=get_zips(os.path.join(DIR, device))[0],
+                               device=device, phone=phone, xda=xda_url, maintainer=maintainers)
+
+    return "There isn't any build for {} available here!".format(device)
+
+
+@app.route('/<string:device>/latest')
+def latest_device_url(device: str):
+    """
+        Redirect to the latest build the device has
+    """
+
+    data = json.loads(requests.get(f'{request.host_url}{device}/official').text)
+    return redirect(data['response'][0]['url'])
+
+@app.route('/<string:device>/<string:romtype>')
 #cached via memoize on get_build_types
 def index(device, romtype):
     #pylint: disable=unused-argument
@@ -165,7 +175,7 @@ def index(device, romtype):
 
     return get_build_types(device, romtype, after, version)
 
-@app.route('/api/v1/types/<string:device>/')
+@app.route('/types/<string:device>/')
 @cache.cached(timeout=3600)
 def get_types(device):
     data = get_device(device)
@@ -174,7 +184,7 @@ def get_types(device):
         types.add(build['type'])
     return jsonify({'response': list(types)})
 
-@app.route('/api/v1/devices')
+@app.route('/devices')
 @cache.cached(timeout=3600)
 def api_v1_devices():
     data = get_builds()
