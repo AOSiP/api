@@ -19,7 +19,7 @@ for file in [os.path.join(dp, file) for dp, dn, fn in os.walk(FILE_BASE) for fil
     try:
         if file.split('.')[-1] != 'zip':
             continue
-        zip_name = file.replace(FILE_BASE, '')
+        zip_name = file.replace(FILE_BASE, '')[1:]
         device = get_device_from_zip(zip_name)
         builddate = get_date_from_zip(zip_name)
         buildtype = get_type_from_zip(zip_name)
