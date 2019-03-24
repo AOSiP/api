@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #pylint: disable=missing-docstring,invalid-name,broad-except,cell-var-from-loop
 
