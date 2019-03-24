@@ -27,9 +27,23 @@ DOWNLOAD_BASE_URL = os.environ.get('DOWNLOAD_BASE_URL', 'https://get.aosip.dev')
 
 def get_date_from_zip(zip_name: str) -> str:
     """
-      Helper function to parse a date from a ROM ZIP's name
+      Helper function to parse a date from a ROM zip's name
     """
     return zip_name.split('-')[-1].split('.')[0]
+
+
+def get_device_from_zip(zip_name: str) -> str:
+    """
+      Helper function to parse a device's codename from a ROM zip's name
+    """
+    return zip_name.split('-')[3]
+
+
+def get_type_from_zip(zip_name: str) -> str:
+    """
+    Helper function to parse the buildtype from a ROM zip's name
+    """
+    return zip_name.split('-')[2]
 
 
 def get_devices() -> dict:
@@ -160,7 +174,7 @@ def latest_device(device: str):
 @app.route('/<string:device>/latest')
 def latest_device_url(device: str):
     """
-      Redirect to the latest build the device has
+      Redirect to the official latest build the device has
     """
 
     data = json.loads(requests.get(f'{request.host_url}{device}/official').text)

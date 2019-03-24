@@ -26,8 +26,7 @@
                 <img src="{{ url_for(endpoint='static', filename='generic-phone-image.jpg') }}" class="img-responsive" alt="Device Image">
             </div>
             <div class="col-md-6">
-                {% set aosip = "http://get.aosiprom.com" %}
-                {% set osdn = "https://osdn.net/projects/aosip/storage" %}
+                {% set aosip = "http://get.aosip.dev" %}
                 {% set sf =  "https://sourceforge.net/projects/illusionproject/files" %}
                 {% set changelog = "https://raw.githubusercontent.com/AOSiP-Devices/Updater-Stuff/master" %}
                 {% set paypal = "https://paypal.me/AOSiP" %}
@@ -42,7 +41,6 @@
                 <a href={{ aosip }}/{{ device }}/{{ zip }} class="badge badge-dark">AOSiP Server</a>
                 <p>Mirrors (May not be up to date at all times):</p>
                 <a href={{ sf }}/{{ device }} class="badge badge-success">SourceForge</a>
-                <a href={{ osdn }}/{{ device }} class="badge badge-dark">OSDN</a>
                 <br><br>
                 {% if xda %}
                     <a href={{ xda }} class="badge badge-warning">XDA Thread</a>
