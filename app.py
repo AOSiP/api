@@ -3,15 +3,27 @@
   Flask app that walks through a given directory to index
   ROM ZIPs and renders web pages using templates.
 """
+
+#pylint: disable=line-too-long,missing-docstring,invalid-name
+
 import json
 import os
 
-from flask import Flask, redirect, render_template
+import arrow
+import requests
+from flask import Flask, jsonify, redirect, request, render_template
+from flask_caching import Cache
+from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 
-app = Flask(__name__) # pylint: disable=invalid-name
+app = Flask(__name__)
+
+cache = Cache(app)
 
 DEVICE_JSON = 'devices.json'
 DIR = os.getenv('DIR', '/var/www/get.aosiprom.com')
+
+UPSTREAM_URL = os.environ.get('UPSTREAM_URL', 'https://aosip.dev/builds.json')
+DOWNLOAD_BASE_URL = os.environ.get('DOWNLOAD_BASE_URL', 'https://get.aosip.dev')
 
 def get_date_from_zip(zip_name: str) -> str:
     """
@@ -86,6 +98,94 @@ def latest_device(device: str):
                                device=device, phone=phone, xda=xda_url, maintainer=maintainers)
 
     return "There isn't any build for {} available here!".format(device)
+
+@cache.memoize(timeout=3600)
+def get_builds():
+    try:
+        req = requests.get(UPSTREAM_URL)
+        if req.status_code != 200:
+            raise UpstreamApiException('Unable to contact upstream API')
+        return json.loads(req.text)
+    except Exception as e:
+        print(e)
+        raise UpstreamApiException('Unable to contact upstream API')
+
+def get_device_list():
+    return get_builds().keys()
+
+def get_device(device):
+    builds = get_builds()
+    if device not in builds:
+        raise DeviceNotFoundException("This device has no available builds."
+                                      "Please select another device.")
+    return builds[device]
+
+@cache.memoize(timeout=3600)
+def get_build_types(device, romtype, after, version):
+    roms = get_device(device)
+    roms = [x for x in roms if x['type'] == romtype]
+    for rom in roms:
+        rom['date'] = arrow.get(rom['date']).datetime
+    if after:
+        after = arrow.get(after).datetime
+        roms = [x for x in roms if x['date'] > after]
+    if version:
+        roms = [x for x in roms if x['version'] == version]
+
+    data = []
+
+    for rom in roms:
+        data.append({
+            "id": rom['sha256'],
+            "url": '{}{}'.format(DOWNLOAD_BASE_URL, rom['filepath']),
+            "romtype": rom['type'],
+            "datetime": arrow.get(rom['date']).timestamp,
+            "version": rom['version'],
+            "filename": rom['filename'],
+            "size": rom['size'],
+        })
+    return jsonify({'response': data})
+
+@cache.memoize(timeout=3600)
+def get_device_version(device):
+    if device == 'all':
+        return None
+    return get_device(device)[-1]['version']
+
+##########################
+# API
+##########################
+
+@app.route('/api/v1/<string:device>/<string:romtype>')
+#cached via memoize on get_build_types
+def index(device, romtype):
+    #pylint: disable=unused-argument
+    after = request.args.get("after")
+    version = request.args.get("version")
+
+    return get_build_types(device, romtype, after, version)
+
+@app.route('/api/v1/types/<string:device>/')
+@cache.cached(timeout=3600)
+def get_types(device):
+    data = get_device(device)
+    types = set(['official'])
+    for build in data:
+        types.add(build['type'])
+    return jsonify({'response': list(types)})
+
+@app.route('/api/v1/devices')
+@cache.cached(timeout=3600)
+def api_v1_devices():
+    data = get_builds()
+    versions = {}
+    for device in data.keys():
+        for build in data[device]:
+            versions.setdefault(build['version'], set()).add(device)
+    #pylint: disable=consider-iterating-dictionary
+    for version in versions.keys():
+        versions[version] = list(versions[version])
+    return jsonify(versions)
 
 
 if __name__ == '__main__':
