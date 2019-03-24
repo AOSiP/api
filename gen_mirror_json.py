@@ -48,14 +48,24 @@ for key, value in zips.items():
             if file[0] == '/':
                 file = file[1:]
             file = os.path.join(FILE_BASE, file)
+            sha256_file = file.replace('.zip', '.sha256')
             _, version, buildtype, device, builddate = os.path.splitext(file)[0].split('-')
-            print('hashing sha256 for {}'.format(file), file=sys.stderr)
-            sha256 = hashlib.sha256()
-            with open(file, 'rb') as f:
-                for buf in iter(lambda: f.read(128 * 1024), b''):
-                    sha256.update(buf)
+            if os.path.isfile(sha256_file):
+                print(f'SHA256 for {filename} already exists, skipping!')
+            else:
+                print('hashing sha256 for {}'.format(file), file=sys.stderr)
+                sha256 = hashlib.sha256()
+                with open(file, 'rb') as f:
+                    for buf in iter(lambda: f.read(128 * 1024), b''):
+                        sha256.update(buf)
+                f = open(sha256_file, 'w')
+                f.write(sha256.hexdigest())
+                f.close()
+            f = open(sha256_file, 'r')
+            zip_sha256 = f.read()
+            f.close()
             builds.setdefault(device, []).append({
-                'sha256': sha256.hexdigest(),
+                'sha256': zip_sha256,
                 'size': os.path.getsize(file),
                 'date': '{}-{}-{}'.format(builddate[0:4], builddate[4:6], builddate[6:8]),
                 'filename': filename,
