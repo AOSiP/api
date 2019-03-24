@@ -23,7 +23,7 @@ for f in sorted(glob.glob('*')):
             builds.setdefault(device, []).append({
                 'sha256': hashlib.sha256(open(filename).read()).hexdigest(),
                 'size': os.path.getsize(filename),
-                'datetime': '{}{}{}'.format(builddate[0:4], builddate[4:6], builddate[6:8]),
+                'date': '{}-{}-{}'.format(builddate[0:4], builddate[4:6], builddate[6:8]),
                 'filename': filename,
                 'filepath': '/{}/{}'.format(f, filename),
                 'version': version,
