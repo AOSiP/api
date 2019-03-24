@@ -45,6 +45,8 @@ for key, value in zips.items():
         file = zips[key][device]
         try:
             filename = file.split('/')[-1]
+            if file[0] == '/':
+                file = file[1:]
             file = os.path.join(FILE_BASE, file)
             _, version, buildtype, device, builddate = os.path.splitext(file)[0].split('-')
             print('hashing sha256 for {}'.format(file), file=sys.stderr)
