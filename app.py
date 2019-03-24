@@ -6,21 +6,21 @@
 import json
 import os
 
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template
 
 app = Flask(__name__) # pylint: disable=invalid-name
 
 DEVICE_JSON = 'devices.json'
 DIR = os.getenv('DIR', '/var/www/get.aosiprom.com')
 
-def get_date_from_zip(zip_name):
+def get_date_from_zip(zip_name: str) -> str:
     """
       Helper function to parse a date from a ROM ZIP's name
     """
     return zip_name.split('-')[-1].split('.')[0]
 
 
-def get_devices():
+def get_devices() -> dict:
     """
       Returns a dictionary with the list of codenames and actual
       device names
@@ -33,7 +33,7 @@ def get_devices():
     return devices
 
 
-def get_zips(directory):
+def get_zips(directory: str) -> list:
     """
       Return a the ZIP from a specified directory after running
       some sanity checks
@@ -61,10 +61,12 @@ def show_files():
 
 
 @app.route('/<device>')
-def latest_device(device):
+def latest_device(device: str):
     """
       Show the latest release for the current device
     """
+    if device == 'beta':
+        return redirect('https://get.aosiprom.com', code=301)
     xda_url = phone = maintainers = None
     data = open(DEVICE_JSON).read()
     json_data = json.loads(data)
