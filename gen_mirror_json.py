@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#pylint: disable=missing-docstring,invalid-name
+#pylint: disable=missing-docstring,invalid-name,broad-except,cell-var-from-loop
 
 from __future__ import print_function
 import hashlib
@@ -43,7 +43,6 @@ for file in [os.path.join(dp, file) for dp, dn, fn in os.walk(FILE_BASE) for fil
 for key, value in zips.items():
     for device in value:
         file = zips[key][device]
-        print(file)
         try:
             filename = file.split('/')[-1]
             file = os.path.join(FILE_BASE, file)
