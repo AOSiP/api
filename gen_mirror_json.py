@@ -19,7 +19,7 @@ for file in [os.path.join(dp, file) for dp, dn, fn in os.walk(FILE_BASE) for fil
     try:
         if file.split('.')[-1] != 'zip':
             continue
-        zip_name = file.replace(FILE_BASE, '')[1:]
+        zip_name = file.replace(FILE_BASE, '')
         device = get_device_from_zip(zip_name)
         builddate = get_date_from_zip(zip_name)
         buildtype = get_type_from_zip(zip_name)
@@ -46,12 +46,12 @@ for key, value in zips.items():
         try:
             filename = file.split('/')[-1]
             file = os.path.join(FILE_BASE, file)
-            data = open(file)
             _, version, buildtype, device, builddate = os.path.splitext(file)[0].split('-')
             print('hashing sha256 for {}'.format(file), file=sys.stderr)
             sha256 = hashlib.sha256()
-            for buf in iter(lambda: data.read(128 * 1024), b''):
-                sha256.update(buf)
+            with open(file, 'rb') as f:
+                for buf in iter(lambda: f.read(128 * 1024), b''):
+                    sha256.update(buf)
             builds.setdefault(device, []).append({
                 'sha256': sha256.hexdigest(),
                 'size': os.path.getsize(file),
