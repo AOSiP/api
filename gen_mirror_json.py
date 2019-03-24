@@ -8,9 +8,10 @@ import json
 import os
 import sys
 
-from app import get_date_from_zip, get_device_from_zip, get_type_from_zip
+from app import get_date_from_zip, get_metadata_from_zip
 
 ALLOWED_BUILDTYPES = ['Beta', 'CI', 'Official']
+ALLOWED_VERSIONS = ['9.0']
 FILE_BASE: str = os.getenv('FILE_BASE', '/mnt/builds')
 builds: dict = {}
 zips: dict = {}
@@ -20,10 +21,12 @@ for file in [os.path.join(dp, file) for dp, dn, fn in os.walk(FILE_BASE) for fil
         if file.split('.')[-1] != 'zip':
             continue
         zip_name = file.replace(FILE_BASE, '')
-        device = get_device_from_zip(zip_name)
-        builddate = get_date_from_zip(zip_name)
-        buildtype = get_type_from_zip(zip_name)
+        version, buildtype, device, builddate = get_metadata_from_zip(zip_name)
         if buildtype not in ALLOWED_BUILDTYPES:
+            print(f'{zip_name} has a buildtype of {buildtype}, which is not allowed!')
+            continue
+        if version not in ALLOWED_VERSIONS:
+            print(f'{zip_name} has a version of {version}, which is not allowed!')
             continue
         if device in zips:
             for build in zips[device]:
