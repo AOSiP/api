@@ -20,7 +20,7 @@
         {% set build_date = zip.split('-')[4] %}
         <li class="table-row">
             {% if devices[device] %}
-                <div class="col col-1" data-label="Device"><p>{{ devices[device] }}</p></div>
+                <div class="col col-1" data-label="Device"><p>{{device}} ({{ devices[device] }})</p></div>
             {% else %}
                 <div class="col col-1" data-label="Device"><p>{{ device }}</p></div>
             {% endif %}

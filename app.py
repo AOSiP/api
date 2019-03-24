@@ -21,6 +21,8 @@ cache = Cache(app)
 
 DEVICE_JSON = 'devices.json'
 DIR = os.getenv('DIR', '/mnt/builds')
+ALLOWED_BUILDTYPES = ['Beta', 'Official']
+ALLOWED_VERSIONS = ['9.0']
 
 UPSTREAM_URL = os.environ.get('UPSTREAM_URL', 'https://aosip.dev/builds.json')
 DOWNLOAD_BASE_URL = os.environ.get('DOWNLOAD_BASE_URL', 'https://get.aosip.dev')
@@ -63,12 +65,19 @@ def get_zips(directory: str) -> list:
         if file.split('.')[-1] != 'zip':
             continue
         zip_name = file.split('/')[-1]
+
         try:
-            device = zip_name.split('-')[3]
+            version, buildtype, device, builddate = get_metadata_from_zip(zip_name)
         except IndexError:
             continue
+
+        if buildtype not in ALLOWED_BUILDTYPES:
+            continue
+        if version not in ALLOWED_VERSIONS:
+            continue
+
         if device in zips:
-            if get_date_from_zip(zips[device]) > get_date_from_zip(zip_name):
+            if get_date_from_zip(zips[device]) > builddate:
                 continue
         zips[device] = zip_name
     data = list(zips.values())
