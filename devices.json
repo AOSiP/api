@@ -18,6 +18,12 @@
         "xda": "https://forum.xda-developers.com/pixel-3-xl/development/official-aosip-9-0-t3894660"
     },
     {
+        "codename": "bullhead",
+        "device": "LG Nexus 5X",
+        "maintainer": "Anirudh Gupta",
+        "xda": "https://forum.xda-developers.com/nexus-5x/development/rom-android-source-illusion-project-t3763682"
+    },
+    {
         "codename": "crosshatch",
         "device": "Google Pixel 3 XL",
         "maintainer": "Josh Fox",
