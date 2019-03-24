@@ -2,7 +2,6 @@
 
 #pylint: disable=missing-docstring,invalid-name,broad-except,cell-var-from-loop
 
-from __future__ import print_function
 import hashlib
 import json
 import os
@@ -23,10 +22,10 @@ for file in [os.path.join(dp, file) for dp, dn, fn in os.walk(FILE_BASE) for fil
         zip_name = file.replace(FILE_BASE, '')
         version, buildtype, device, builddate = get_metadata_from_zip(zip_name)
         if buildtype not in ALLOWED_BUILDTYPES:
-            print(f'{zip_name} has a buildtype of {buildtype}, which is not allowed!')
+            print(f'{zip_name} has a buildtype of {buildtype}, which is not allowed!', file=sys.stderr)
             continue
         if version not in ALLOWED_VERSIONS:
-            print(f'{zip_name} has a version of {version}, which is not allowed!')
+            print(f'{zip_name} has a version of {version}, which is not allowed!', file=sys.stderr)
             continue
         if device in zips:
             for build in zips[device]:
@@ -54,7 +53,7 @@ for key, value in zips.items():
             sha256_file = file.replace('.zip', '.sha256')
             _, version, buildtype, device, builddate = os.path.splitext(file)[0].split('-')
             if os.path.isfile(sha256_file):
-                print(f'SHA256 for {filename} already exists, skipping!')
+                print(f'SHA256 for {filename} already exists, skipping!', file=sys.stderr)
             else:
                 print('hashing sha256 for {}'.format(file), file=sys.stderr)
                 sha256 = hashlib.sha256()
