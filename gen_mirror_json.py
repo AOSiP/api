@@ -47,10 +47,14 @@ for key, value in zips.items():
         try:
             filename = file.split('/')[-1]
             file = os.path.join(FILE_BASE, file)
+            data = open(file)
             _, version, buildtype, device, builddate = os.path.splitext(file)[0].split('-')
             print('hashing sha256 for {}'.format(file), file=sys.stderr)
+            sha256 = hashlib.sha256()
+            for buf in iter(lambda: data.read(128 * 1024), b''):
+                sha256.update(buf)
             builds.setdefault(device, []).append({
-                'sha256': hashlib.sha256(open(file).read()).hexdigest(),
+                'sha256': sha256.hexdigest(),
                 'size': os.path.getsize(file),
                 'date': '{}-{}-{}'.format(builddate[0:4], builddate[4:6], builddate[6:8]),
                 'filename': filename,
