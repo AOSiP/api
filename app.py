@@ -20,7 +20,7 @@ app = Flask(__name__)
 cache = Cache(app)
 
 DEVICE_JSON = 'devices.json'
-DIR = os.getenv('DIR', '/var/www/get.aosiprom.com')
+DIR = os.getenv('DIR', '/mnt/builds')
 
 UPSTREAM_URL = os.environ.get('UPSTREAM_URL', 'https://aosip.dev/builds.json')
 DOWNLOAD_BASE_URL = os.environ.get('DOWNLOAD_BASE_URL', 'https://get.aosip.dev')
@@ -135,7 +135,7 @@ def latest_device(device: str):
       Show the latest release for the current device
     """
     if device == 'beta':
-        return redirect('https://get.aosiprom.com', code=301)
+        return redirect('https://get.aosip.dev', code=301)
     xda_url = phone = maintainers = None
     data = open(DEVICE_JSON).read()
     json_data = json.loads(data)
@@ -147,20 +147,20 @@ def latest_device(device: str):
                 maintainers = j['maintainer']
                 break
         except KeyError:
-            return "Unable to get information for {}".format(device)
+            return f"Unable to get information for {device}"
 
     if os.path.isdir(os.path.join(DIR, device)):
         return render_template('device.html',
                                zip=get_zips(os.path.join(DIR, device))[0],
                                device=device, phone=phone, xda=xda_url, maintainer=maintainers)
 
-    return "There isn't any build for {} available here!".format(device)
+    return f"There isn't any build for {device} available here!"
 
 
 @app.route('/<string:device>/latest')
 def latest_device_url(device: str):
     """
-        Redirect to the latest build the device has
+      Redirect to the latest build the device has
     """
 
     data = json.loads(requests.get(f'{request.host_url}{device}/official').text)
