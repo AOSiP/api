@@ -16,6 +16,14 @@ if not KRONIC_API_KEY:
 data: str = requests.get('https://raw.githubusercontent.com/AOSiP/api/master/devices.json').text
 device: str = sys.argv[1]
 buildtype: str = sys.argv[2]
+
+if buildtype == 'CI':
+    message = f"New CI build for {device} available!"
+    data = requests.get(f"""https://api.telegram.org/bot{KRONIC_API_KEY}/sendMessage?text={message}
+                        &chat_id=-1001055786180&parse_mode=Markdown""")
+    print(data)
+    exit(0)
+
 device_found: bool = False
 d: dict = ""
 
