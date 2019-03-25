@@ -170,9 +170,12 @@ def latest_device(device: str):
             return f"Unable to get information for {device}"
 
     if os.path.isdir(os.path.join(DIR, device)):
-        return render_template('device.html',
-                               zip=get_zips(os.path.join(DIR, device))[0],
-                               device=device, phone=phone, xda=xda_url, maintainer=maintainers)
+        try:
+            return render_template('device.html',
+                                   zip=get_zips(os.path.join(DIR, device))[0],
+                                   device=device, phone=phone, xda=xda_url, maintainer=maintainers)
+        except IndexError:
+            pass
 
     return f"There isn't any build for {device} available here!"
 
