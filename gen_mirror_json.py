@@ -55,7 +55,7 @@ for key, value in zips.items():
             if os.path.isfile(sha256_file):
                 print(f'SHA256 for {filename} already exists, skipping!', file=sys.stderr)
             else:
-                print('hashing sha256 for {}'.format(file), file=sys.stderr)
+                print(f'hashing sha256 for {filename}!', file=sys.stderr)
                 sha256 = hashlib.sha256()
                 with open(file, 'rb') as f:
                     for buf in iter(lambda: f.read(128 * 1024), b''):
