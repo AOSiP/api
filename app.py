@@ -20,8 +20,9 @@ app = Flask(__name__)
 cache = Cache(app)
 
 DEVICE_JSON = 'devices.json'
+BUILDS_JSON = 'builds.json'
 DIR = os.getenv('DIR', '/mnt/builds')
-ALLOWED_BUILDTYPES = ['Beta', 'Official']
+ALLOWED_BUILDTYPES = ['beta', 'official']
 ALLOWED_VERSIONS = ['9.0']
 
 UPSTREAM_URL = os.environ.get('UPSTREAM_URL', 'https://aosip.dev/builds.json')
@@ -71,7 +72,7 @@ def get_zips(directory: str) -> list:
         except IndexError:
             continue
 
-        if buildtype not in ALLOWED_BUILDTYPES:
+        if buildtype.lower() not in ALLOWED_BUILDTYPES:
             continue
         if version not in ALLOWED_VERSIONS:
             continue
@@ -154,10 +155,13 @@ def latest_device(device: str):
     """
       Show the latest release for the current device
     """
+    zip_name = {}
     if device == 'beta':
         return redirect('https://get.aosip.dev', code=301)
     xda_url = phone = maintainers = None
-    data = open(DEVICE_JSON).read()
+    f = open(DEVICE_JSON, 'r')
+    data = f.read()
+    f.close()
     json_data = json.loads(data)
     for j in json_data:
         try:
@@ -169,13 +173,19 @@ def latest_device(device: str):
         except KeyError:
             return f"Unable to get information for {device}"
 
-    if os.path.isdir(os.path.join(DIR, device)):
-        try:
-            return render_template('device.html',
-                                   zip=get_zips(os.path.join(DIR, device))[0],
-                                   device=device, phone=phone, xda=xda_url, maintainer=maintainers)
-        except IndexError:
-            pass
+    f = open(BUILDS_JSON, 'r')
+    data = f.read()
+    f.close()
+    json_data = json.loads(data)
+    for j in json_data[device]:
+        if j['type'] in ALLOWED_BUILDTYPES:
+            zip_name[j['type']] = j['filename']
+            break
+
+    if zip_name:
+        return render_template('device.html',
+                               zip=zip_name, device=device, phone=phone, xda=xda_url,
+                               maintainer=maintainers)
 
     return f"There isn't any build for {device} available here!"
 
