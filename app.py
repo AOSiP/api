@@ -180,7 +180,6 @@ def latest_device(device: str):
     for j in json_data[device]:
         if j['type'] in ALLOWED_BUILDTYPES:
             zip_name[j['type']] = j['filename']
-            break
 
     if zip_name:
         return render_template('device.html',
