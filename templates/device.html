@@ -36,10 +36,10 @@
                 {% endif %}
                 <br>
                 <p>Latest Official Build: {{ zip['official'] }}</p>
-                <br><br>
                 {% if zip['beta'] %}
-                    <br>
                     <p>Latest Beta Build: {{ zip['beta'] }}</p>
+                    <br><br>
+                {% else %}
                     <br><br>
                 {% endif %}
                 <h6>Downloads:</h6>
