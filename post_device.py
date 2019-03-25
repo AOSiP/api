@@ -33,9 +33,9 @@ for d in json.loads(data):
         break
 
 if device_found:
-    message = f"""New {buildtype} build for [{d['device']}](https://aosip.dev/{2}) available!
-\nMaintainer: {d['maintainer']}\n[XDA]({d['xda']})| [Changelog](https://raw.githubusercontent.com
-/AOSiP-Devices/Updater-Stuff/master/{device}/changelog"""
+    message = f"""New {buildtype} build for [{d['device']}](https://aosip.dev/{device}) available!
+\nMaintainer: {d['maintainer']}\n[XDA]({d['xda']}) | [Changelog](https://raw.githubusercontent.com\
+/AOSiP-Devices/Updater-Stuff/master/{device}/changelog)"""
     data = requests.get(f"""https://api.telegram.org/bot{KRONIC_API_KEY}/sendMessage?text={message}
                         &chat_id=@AOSiP&parse_mode=Markdown&disable_web_page_preview=True""")
     print(data)
