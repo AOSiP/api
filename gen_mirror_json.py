@@ -12,6 +12,7 @@ from app import get_date_from_zip, get_metadata_from_zip
 ALLOWED_BUILDTYPES = ['Beta', 'CI', 'Official']
 ALLOWED_VERSIONS = ['9.0']
 FILE_BASE: str = os.getenv('FILE_BASE', '/mnt/builds')
+DEBUG = False
 builds: dict = {}
 zips: dict = {}
 
@@ -22,10 +23,14 @@ for file in [os.path.join(dp, file) for dp, dn, fn in os.walk(FILE_BASE) for fil
         zip_name = file.replace(FILE_BASE, '')
         version, buildtype, device, builddate = get_metadata_from_zip(zip_name)
         if buildtype not in ALLOWED_BUILDTYPES:
-            print(f'{zip_name} has a buildtype of {buildtype}, which is not allowed!', file=sys.stderr)
+            if DEBUG:
+                print(f'{zip_name} has a buildtype of {buildtype}, which is not allowed!',
+                      file=sys.stderr)
             continue
         if version not in ALLOWED_VERSIONS:
-            print(f'{zip_name} has a version of {version}, which is not allowed!', file=sys.stderr)
+            if DEBUG:
+                print(f'{zip_name} has a version of {version}, which is not allowed!',
+                      file=sys.stderr)
             continue
         if device in zips:
             for build in zips[device]:
@@ -53,9 +58,10 @@ for key, value in zips.items():
             sha256_file = file.replace('.zip', '.sha256')
             _, version, buildtype, device, builddate = os.path.splitext(file)[0].split('-')
             if os.path.isfile(sha256_file):
-                print(f'SHA256 for {filename} already exists, skipping!', file=sys.stderr)
+                if DEBUG:
+                    print(f'SHA256 for {filename} already exists, skipping!', file=sys.stderr)
             else:
-                print(f'hashing sha256 for {filename}!', file=sys.stderr)
+                print(f'Hashing SHA256 for {filename}!', file=sys.stderr)
                 sha256 = hashlib.sha256()
                 with open(file, 'rb') as f:
                     for buf in iter(lambda: f.read(128 * 1024), b''):
