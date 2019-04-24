@@ -22,19 +22,22 @@ host = 'https://build.aosip.dev'
 
 version, buildtype, device, builddate = get_metadata_from_zip(filename)
 
-if path.isfile(buildprop):
-    print('build.prop found, reading ro.build.date.utc', file=sys.stderr)
-    with open(buildprop, 'r') as f:
-        for line in f:
-            if line[0] == '#' or line == '\n':
-                continue
-            k, v = line.rstrip().split('=')
-            if k == 'ro.build.date.utc':
-                builddate = v
-                break
+if sys.argv[2]:
+    builddate = sys.argv[2]
 else:
-    print(f'build.prop not found, using {builddate}', file=sys.stderr)
-    builddate = arrow.get(builddate[0:4] + '-' + builddate[4:6] + '-' + builddate[6:8]).timestamp
+    if path.isfile(buildprop):
+        print('build.prop found, reading ro.build.date.utc', file=sys.stderr)
+        with open(buildprop, 'r') as f:
+            for line in f:
+                if line[0] == '#' or line == '\n':
+                    continue
+                k, v = line.rstrip().split('=')
+                if k == 'ro.build.date.utc':
+                    builddate = v
+                    break
+    else:
+        print(f'build.prop not found, using {builddate}', file=sys.stderr)
+        builddate = arrow.get(builddate[0:4] + '-' + builddate[4:6] + '-' + builddate[6:8]).timestamp
 
 print(f'Hashing SHA256 for {filename}!', file=sys.stderr)
 sha256 = hashlib.sha256()
