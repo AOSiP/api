@@ -6,7 +6,7 @@ import hashlib
 import json
 import os.path as path
 import sys
-import arrow
+from datetime import datetime
 from pathlib import Path
 from utils import get_metadata_from_zip
 
@@ -37,7 +37,7 @@ else:
                     break
     else:
         print(f'build.prop not found, using {builddate}', file=sys.stderr)
-        builddate = arrow.get(builddate[0:4] + '-' + builddate[4:6] + '-' + builddate[6:8]).timestamp
+        builddate = int(datetime.strptime(builddate, '%Y%m%d').strftime("%s"))
 
 print(f'Hashing SHA256 for {filename}!', file=sys.stderr)
 sha256 = hashlib.sha256()
