@@ -17,7 +17,7 @@ if len(sys.argv) < 2:
 file = sys.argv[1]
 filename = file.split('/')[-1]
 out_dir = Path(file).parent
-buildprop = path.join(out_dir, 'build.prop')
+buildprop = path.join(out_dir, 'system/build.prop')
 host = 'https://build.aosip.dev'
 
 version, buildtype, device, builddate = get_metadata_from_zip(filename)
