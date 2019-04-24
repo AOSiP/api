@@ -22,7 +22,7 @@ host = 'https://build.aosip.dev'
 
 version, buildtype, device, builddate = get_metadata_from_zip(filename)
 
-if sys.argv[2]:
+if len(sys.argv) == 3:
     builddate = sys.argv[2]
 else:
     if path.isfile(buildprop):
