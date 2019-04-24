@@ -14,6 +14,7 @@ import requests
 from flask import Flask, jsonify, redirect, request, render_template
 from flask_caching import Cache
 from custom_exceptions import DeviceNotFoundException, UpstreamApiException
+from utils import get_date_from_zip, get_metadata_from_zip
 
 app = Flask(__name__)
 
@@ -27,21 +28,6 @@ ALLOWED_VERSIONS = ['9.0']
 
 UPSTREAM_URL = os.environ.get('UPSTREAM_URL', 'https://aosip.dev/builds.json')
 DOWNLOAD_BASE_URL = os.environ.get('DOWNLOAD_BASE_URL', 'https://get.aosip.dev')
-
-def get_date_from_zip(zip_name: str) -> str:
-    """
-      Helper function to parse a date from a ROM zip's name
-    """
-    return zip_name.split('-')[-1].split('.')[0]
-
-
-def get_metadata_from_zip(zip_name: str) -> (str, str, str, str):
-    """
-      Helper function to parse some data from ROM zip's name
-    """
-    data = zip_name.replace('.zip', '').split('-')
-    return data[1], data[2], data[3], data[4]
-
 
 def get_devices() -> dict:
     """

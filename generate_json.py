@@ -8,7 +8,7 @@ import os.path as path
 import sys
 import arrow
 from pathlib import Path
-from app import get_metadata_from_zip
+from utils import get_metadata_from_zip
 
 if len(sys.argv) < 2:
     print('Please specify the zip you want the JSON to be generated for!')

@@ -7,7 +7,7 @@ import json
 import os
 import sys
 
-from app import get_date_from_zip, get_metadata_from_zip
+from utils import get_date_from_zip, get_metadata_from_zip
 
 ALLOWED_BUILDTYPES = ['Beta', 'Official']
 ALLOWED_VERSIONS = ['9.0']
