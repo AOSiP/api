@@ -1,5 +1,11 @@
 [
     {
+        "codename": "platina",
+        "device": "Mi 8 Lite",
+        "maintainer": "nysadev (Jago Gardiner)",
+        "xda": "https://forum.xda-developers.com/mi-8-Lite/development/9-0-aosip-t3927749/"
+    },
+    {
         "codename": "berkeley",
         "device": "Honor View 10",
         "maintainer": "Juan Ramírez",
