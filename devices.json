@@ -60,6 +60,12 @@
         "xda": "https://forum.xda-developers.com/essential-phone/development/aosip-8-1-official-t3735143"
     },
     {
+        "codename": "mido",
+        "device": "Redmi Note 4",
+        "maintainer": "Adesh Ikhar",
+        "xda": "https://forum.xda-developers.com/redmi-note-4/xiaomi-redmi-note-4-snapdragon-roms-kernels-recoveries--other-development/rom-android-source-illusion-project-t3929008"
+    },
+    {
         "codename": "oneplus3",
         "device": "OnePlus 3/3T",
         "maintainer": "Ujwal P",
