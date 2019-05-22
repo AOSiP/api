@@ -24,7 +24,7 @@
                 <center>
                     <h5>Device: {{ phone }}</h5>
                     <br />
-                    <img src="{{ images }}/devices/{{ device }}.png" class="img-responsive" alt="Device Image">
+                    <img src="{{ images }}/devices/{{ device }}.png" data-failover="/static/generic-phone-image.jpg" class="img-fluid" style="width: 250px" alt="Device Image">
                     <br /><br />
                     <small><i>&copy; LineageOS Wiki, CC BY-SA 3.0</i></small>
                 </center>                
@@ -64,5 +64,14 @@
             </div>
         </div>
     </div>
+    <script>
+        // https://stackoverflow.com/a/18407205
+        $('img[data-failover]').error(function(){
+            var failover = $(this).data('failover');
+            if (this.src != failover){
+                this.src = failover;
+            }
+        });
+    </script>
 </body>
 <html>
