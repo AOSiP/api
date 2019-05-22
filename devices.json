@@ -24,6 +24,12 @@
         "xda": "https://forum.xda-developers.com/nexus-5x/development/rom-android-source-illusion-project-t3763682"
     },
     {
+        "codename": "cheeseburger",
+        "device": "OnePlus 5",
+        "maintainer": "David Sn",
+        "xda": "https://forum.xda-developers.com/oneplus-5/development/rom-android-source-illusion-project-t3932485"
+    },
+    {
         "codename": "crosshatch",
         "device": "Google Pixel 3 XL",
         "maintainer": "Josh Fox",
@@ -34,6 +40,12 @@
         "device": "MI 8",
         "maintainer": "Arseniy Graur",
         "xda": "https://forum.xda-developers.com/mi-8/development/rom-android-source-illusion-project-t3858987"
+    },
+    {
+        "codename": "dumpling",
+        "device": "OnePlus 5T",
+        "maintainer": "David Sn",
+        "xda": "https://forum.xda-developers.com/oneplus-5t/development/rom-android-source-illusion-project-t3932474"
     },
     {
         "codename": "enchilada",
