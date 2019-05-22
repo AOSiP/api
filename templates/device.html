@@ -20,10 +20,14 @@
         </nav>
         <div class="row">
             <div class="col-md-6">
+                {% set images = "https://wiki.lineageos.org/images" }
                 <center>
                     <h5>Device: {{ phone }}</h5>
-                </center>
-                <img src="{{ url_for(endpoint='static', filename='generic-phone-image.jpg') }}" class="img-responsive" alt="Device Image">
+                    <br />
+                    <img src="{{ images }}/devices/{{ device }}.png" class="img-responsive" alt="Device Image">
+                    <br /><br />
+                    <small><i>&copy; LineageOS Wiki, CC BY-SA 3.0</i></small>
+                </center>                
             </div>
             <div class="col-md-6">
                 {% set aosip = "http://get.aosip.dev" %}
