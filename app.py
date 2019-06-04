@@ -4,7 +4,7 @@
   ROM ZIPs and renders web pages using templates.
 """
 
-#pylint: disable=missing-docstring,invalid-name
+# pylint: disable=missing-docstring,invalid-name
 
 import json
 import os
@@ -28,6 +28,7 @@ ALLOWED_VERSIONS = ['9.0']
 
 UPSTREAM_URL = os.environ.get('UPSTREAM_URL', 'https://aosip.dev/builds.json')
 DOWNLOAD_BASE_URL = os.environ.get('DOWNLOAD_BASE_URL', 'https://get.aosip.dev')
+
 
 def get_devices() -> dict:
     """
@@ -83,8 +84,10 @@ def get_builds():
         print(e)
         raise UpstreamApiException('Unable to contact upstream API')
 
+
 def get_device_list():
     return get_builds().keys()
+
 
 def get_device(device):
     builds = get_builds()
@@ -92,6 +95,7 @@ def get_device(device):
         raise DeviceNotFoundException("This device has no available builds."
                                       "Please select another device.")
     return builds[device]
+
 
 @cache.memoize(timeout=3600)
 def get_build_types(device, romtype, after, version):
@@ -118,6 +122,7 @@ def get_build_types(device, romtype, after, version):
             "size": rom['size'],
         })
     return jsonify({'response': data})
+
 
 @cache.memoize(timeout=3600)
 def get_device_version(device):
@@ -184,14 +189,15 @@ def latest_device_url(device: str):
     data = json.loads(requests.get(f'{request.host_url}{device}/official').text)
     return redirect(data['response'][0]['url'])
 
+
 @app.route('/<string:device>/<string:romtype>')
-#cached via memoize on get_build_types
+# cached via memoize on get_build_types
 def index(device, romtype):
-    #pylint: disable=unused-argument
     after = request.args.get("after")
     version = request.args.get("version")
 
     return get_build_types(device, romtype, after, version)
+
 
 @app.route('/types/<string:device>/')
 @cache.cached(timeout=3600)
@@ -202,6 +208,7 @@ def get_types(device):
         types.add(build['type'])
     return jsonify({'response': list(types)})
 
+
 @app.route('/devices')
 @cache.cached(timeout=3600)
 def api_v1_devices():
@@ -210,7 +217,7 @@ def api_v1_devices():
     for device in data.keys():
         for build in data[device]:
             versions.setdefault(build['version'], set()).add(device)
-    #pylint: disable=consider-iterating-dictionary
+    # pylint: disable=consider-iterating-dictionary
     for version in versions.keys():
         versions[version] = list(versions[version])
     return jsonify(versions)
