@@ -24,6 +24,12 @@
         "xda": "https://forum.xda-developers.com/nexus-5x/development/rom-android-source-illusion-project-t3763682"
     },
     {
+        "codename": "charlotte",
+        "device": "Huawei P20 Pro",
+        "maintainer": "Juan Ramírez",
+        "xda": "https://forum.xda-developers.com/huawei-p20-pro/development/rom-android-source-illusion-project-t3941944"
+    },
+    {
         "codename": "cheeseburger",
         "device": "OnePlus 5",
         "maintainer": "David Sn",
