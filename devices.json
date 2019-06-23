@@ -66,6 +66,12 @@
         "xda": "https://forum.xda-developers.com/oneplus-6t/development/rom-android-source-illusion-project-t3878204"
     },
     {
+        "codename": "guacamole",
+        "device": "OnePlus 7 Pro",
+        "maintainer": "Josh Fox",
+        "xda": "https://forum.xda-developers.com/oneplus-7-pro/development/rom-aosip-9-0-t3942361"
+    },
+    {
         "codename": "kiwi",
         "device": "Honor 5x",
         "maintainer": "Joel Hans",
