@@ -37,5 +37,5 @@ if device_found:
 \nMaintainer: {d['maintainer']}\n[XDA]({d['xda']}) | [Changelog](https://raw.githubusercontent.com\
 /AOSiP-Devices/Updater-Stuff/master/{device}/changelog)"""
     data = requests.get(f"""https://api.telegram.org/bot{KRONIC_API_KEY}/sendMessage?text={message}
-                        &chat_id=@AOSiP&parse_mode=Markdown&disable_web_page_preview=True""")
+                        &chat_id=@aosipreleases&parse_mode=Markdown&disable_web_page_preview=True""")
     print(data)
