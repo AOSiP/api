@@ -72,6 +72,12 @@
         "xda": "https://forum.xda-developers.com/oneplus-7-pro/development/rom-aosip-9-0-t3942361"
     },
     {
+        "codename": "jasmine_sprout",
+        "device": "Xiaomi Mi A2",
+        "maintainer": "Subhajeet Muhuri",
+        "xda": "https://forum.xda-developers.com/mi-a2/development/aosip-pie-t3951643"
+    },
+    {
         "codename": "kiwi",
         "device": "Honor 5x",
         "maintainer": "Joel Hans",
