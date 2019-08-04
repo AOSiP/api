@@ -12,12 +12,6 @@
         "xda": "https://forum.xda-developers.com/poco-f1/development/rom-aosip-pie-beta-t3877255"
     },
     {
-        "codename": "blueline",
-        "device": "Google Pixel 3",
-        "maintainer": "Josh Fox",
-        "xda": "https://forum.xda-developers.com/pixel-3-xl/development/official-aosip-9-0-t3894660"
-    },
-    {
         "codename": "bullhead",
         "device": "LG Nexus 5X",
         "maintainer": "Anirudh Gupta",
@@ -34,12 +28,6 @@
         "device": "OnePlus 5",
         "maintainer": "David Sn",
         "xda": "https://forum.xda-developers.com/oneplus-5/development/rom-android-source-illusion-project-t3932485"
-    },
-    {
-        "codename": "crosshatch",
-        "device": "Google Pixel 3 XL",
-        "maintainer": "Josh Fox",
-        "xda": "https://forum.xda-developers.com/pixel-3-xl/development/official-aosip-9-0-t3894660"
     },
     {
         "codename": "dipper",
