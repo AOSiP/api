@@ -37,7 +37,7 @@
                     <img src="{{ images }}/devices/{{ device }}.png" data-failover="/static/generic-phone-image.jpg"
                         class="img-fluid" style="width: 250px" alt="Device Image">
                     <br /><br />
-                    <small><i>&copy; LineageOS Wiki, CC BY-SA 3.0</i></small>
+                    <small id="img-copyright"><i>&copy; LineageOS Wiki, CC BY-SA 3.0</i></small>
                 </center>
             </div>
             <div class="col-md-6">
@@ -82,6 +82,8 @@
             if (this.src != failover) {
                 this.src = failover;
             }
+            
+            $("#img-copyright").remove();
         });
     </script>
 </body>
