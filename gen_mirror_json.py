@@ -9,8 +9,8 @@ import sys
 
 from utils import get_date_from_zip, get_metadata_from_zip
 
-ALLOWED_BUILDTYPES = ['Beta', 'Official']
-ALLOWED_VERSIONS = ['9.0']
+ALLOWED_BUILDTYPES = ['Alpha', 'Beta', 'Official']
+ALLOWED_VERSIONS = ['9.0', '10']
 FILE_BASE: str = os.getenv('FILE_BASE', '/mnt/builds')
 DEBUG = False
 builds: dict = {}

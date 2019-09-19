@@ -23,8 +23,8 @@ cache = Cache(app)
 DEVICE_JSON = 'devices.json'
 BUILDS_JSON = 'builds.json'
 DIR = os.getenv('DIR', '/mnt/builds')
-ALLOWED_BUILDTYPES = ['beta', 'official']
-ALLOWED_VERSIONS = ['9.0']
+ALLOWED_BUILDTYPES = ['alpha', 'beta', 'official']
+ALLOWED_VERSIONS = ['9.0', '10']
 
 UPSTREAM_URL = os.environ.get('UPSTREAM_URL', 'https://aosip.dev/builds.json')
 DOWNLOAD_BASE_URL = os.environ.get('DOWNLOAD_BASE_URL', 'https://get.aosip.dev')
