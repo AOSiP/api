@@ -39,7 +39,7 @@ else:
         print("build.prop not found, using {}.format(builddate)", file=sys.stderr)
         builddate = int(datetime.strptime(builddate, "%Y%m%d").strftime("%s"))
 
-print("Hashing SHA256 for {}.format(filename)!", file=sys.stderr)
+print("Hashing SHA256 for {}!".format(filename), file=sys.stderr)
 sha256 = hashlib.sha256()
 with open(file, "rb") as f:
     for buf in iter(lambda: f.read(128 * 1024), b""):
