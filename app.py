@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-  Flask app that walks through a given directory to index
-  ROM ZIPs and renders web pages using templates.
+Flask app that walks through a given directory to index
+ROM ZIPs and renders web pages using templates.
 """
 
 # pylint: disable=missing-docstring,invalid-name
@@ -32,8 +32,8 @@ DOWNLOAD_BASE_URL = os.environ.get("DOWNLOAD_BASE_URL", "https://get.aosip.dev")
 
 def get_devices() -> dict:
     """
-      Returns a dictionary with the list of codenames and actual
-      device names
+    Returns a dictionary with the list of codenames and actual
+    device names
     """
     data = open(DEVICE_JSON).read()
     devices = {}
@@ -45,8 +45,8 @@ def get_devices() -> dict:
 
 def get_zips(directory: str) -> list:
     """
-      Return a the ZIP from a specified directory after running
-      some sanity checks
+    Return a the ZIP from a specified directory after running
+    some sanity checks
     """
     zips = {}
     for file in [
@@ -144,7 +144,7 @@ def get_device_version(device):
 @app.route("/")
 def show_files():
     """
-      Render the template with ZIP info
+    Render the template with ZIP info
     """
     return render_template("latest.html", zips=get_zips(DIR), devices=get_devices())
 
@@ -152,7 +152,7 @@ def show_files():
 @app.route("/<string:device>")
 def latest_device(device: str):
     """
-      Show the latest release for the current device
+    Show the latest release for the current device
     """
     zip_name = {}
     if device == "beta":
@@ -196,7 +196,7 @@ def latest_device(device: str):
 @app.route("/<string:device>/latest")
 def latest_device_url(device: str):
     """
-      Redirect to the official latest build the device has
+    Redirect to the official latest build the device has
     """
 
     data = json.loads(requests.get(f"{request.host_url}{device}/official").text)

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-#pylint: disable=missing-docstring
+# pylint: disable=missing-docstring
+
 
 class DeviceNotFoundException(Exception):
     status_code = 404
@@ -9,7 +10,8 @@ class DeviceNotFoundException(Exception):
         self.message = message
 
     def to_dict(self):
-        return {'message': self.message}
+        return {"message": self.message}
+
 
 class UpstreamApiException(Exception):
     status_code = 502
@@ -19,4 +21,4 @@ class UpstreamApiException(Exception):
         self.message = message
 
     def to_dict(self):
-        return {'message': self.message}
+        return {"message": self.message}
