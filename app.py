@@ -11,7 +11,14 @@ import os
 
 import arrow
 import requests
-from flask import Flask, jsonify, redirect, request, render_template
+from flask import (
+    Flask,
+    jsonify,
+    redirect,
+    request,
+    render_template,
+    send_from_directory,
+)
 from flask_caching import Cache
 from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 from utils import get_date_from_zip, get_metadata_from_zip
@@ -141,6 +148,15 @@ def get_device_version(device):
 ##########################
 # API
 ##########################
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(
+        os.path.join(app.root_path, "static"),
+        "favicon.ico",
+        mimetype="image/vnd.microsoft.icon",
+    )
+
+
 @app.route("/")
 def show_files():
     """
