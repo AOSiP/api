@@ -50,21 +50,31 @@
                 <h5>Maintainer: {{ maintainer }}</h5>
                 {% endif %}
                 <br>
-                <p>Latest Official Build: {{ zip['official'] }}</p>
-                {% if zip['alpha'] %}
-                <p>Latest Alpha Build: {{ zip['alpha'] }}</p>
-                {% endif %}
-                {% if zip['beta'] %}
-                <p>Latest Beta Build: {{ zip['beta'] }}</p>
-                {% endif %}
-                <h6>Downloads:</h6>
-                <a href={{ aosip }}/{{ device }}/{{ zip['official'] }} class="badge badge-dark">Official</a>
-                {% if zip['beta'] %}
-                <a href={{ aosip }}/{{ device }}/{{ zip['beta'] }} class="badge badge-dark">Beta</a>
-                {% endif %}
-                {% if zip['alpha'] %}
-                <a href={{ aosip }}/{{ device }}/{{ zip['alpha'] }} class="badge badge-dark">Alpha</a>
-                {% endif %}
+                <table class="table-bordered">
+                    <th style="padding:10px">Buildtype</th>
+                    <th style="padding:10px">Link</th>
+                    <th style="padding:10px">Checksum</th>
+                    <tr>
+                        <td style="padding:10px">Official</td>
+                        <td style="padding:10px"><a href={{ aosip }}/{{ device }}/{{ zip['official'] }} class="badge badge-dark">{{ zip['official'] }}</a></td>
+                        <td style="padding:10px"><a href={{ aosip }}/{{ device }}/{{ zip['official'] }}.md5sum class="badge badge-dark">{{ zip['official'] }}.md5sum</a></td>
+                    </tr>
+                    {% if zip['beta'] %}
+                    <tr>
+                        <td style="padding:10px">Beta</td>
+                        <td style="padding:10px"><a href={{ aosip }}/{{ device }}/{{ zip['beta'] }} class="badge badge-dark">{{ zip['beta'] }}</a></td>
+                        <td style="padding:10px"><a href={{ aosip }}/{{ device }}/{{ zip['beta'] }}.md5sum class="badge badge-dark">{{ zip['beta'] }}.md5sum</a></td>
+                    </tr>
+                    {% endif %}
+                    {% if zip['alpha'] %}
+                    <tr>
+                        <td style="padding:10px">Alpha</td>
+                        <td style="padding:10px"><a href={{ aosip }}/{{ device }}/{{ zip['alpha'] }} class="badge badge-dark">{{ zip['alpha'] }}</a></td>
+                        <td style="padding:10px"><a href={{ aosip }}/{{ device }}/{{ zip['alpha'] }}.md5sum class="badge badge-dark">{{ zip['alpha'] }}.md5sum</a></td>
+                    </tr>
+                    {% endif %}
+                </table>
+                <br>
                 <p>Mirrors (May not be up to date at all times):</p>
                 <a href={{ sf }}/{{ device }} class="badge badge-success">SourceForge</a>
                 <br><br>
@@ -85,7 +95,6 @@
             if (this.src != failover) {
                 this.src = failover;
             }
-            
             $("#img-copyright").remove();
         });
     </script>
