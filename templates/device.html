@@ -51,16 +51,19 @@
                 {% endif %}
                 <br>
                 <p>Latest Official Build: {{ zip['official'] }}</p>
+                {% if zip['alpha'] %}
+                <p>Latest Alpha Build: {{ zip['alpha'] }}</p>
+                {% endif %}
                 {% if zip['beta'] %}
                 <p>Latest Beta Build: {{ zip['beta'] }}</p>
-                <br><br>
-                {% else %}
-                <br><br>
                 {% endif %}
                 <h6>Downloads:</h6>
                 <a href={{ aosip }}/{{ device }}/{{ zip['official'] }} class="badge badge-dark">Official</a>
                 {% if zip['beta'] %}
                 <a href={{ aosip }}/{{ device }}/{{ zip['beta'] }} class="badge badge-dark">Beta</a>
+                {% endif %}
+                {% if zip['alpha'] %}
+                <a href={{ aosip }}/{{ device }}/{{ zip['alpha'] }} class="badge badge-dark">Alpha</a>
                 {% endif %}
                 <p>Mirrors (May not be up to date at all times):</p>
                 <a href={{ sf }}/{{ device }} class="badge badge-success">SourceForge</a>
