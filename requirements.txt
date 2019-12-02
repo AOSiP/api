@@ -16,7 +16,7 @@ pylint==2.3.1
 python-dateutil==2.8.0
 requests==2.21.0
 six==1.12.0
-typed-ast==1.3.1
+typed-ast==1.3.2
 urllib3==1.24.2
 Werkzeug==0.15.3
 wrapt==1.11.1
