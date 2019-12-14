@@ -55,6 +55,7 @@
                 <h5>Maintainer: {{ maintainer }}</h5>
                 {% endif %}
                 <br>
+                {% if zip['official'] %}
                 <h5>Official</h5>
                 <table>
                     <tr>
@@ -70,6 +71,7 @@
                         </td>
                     </tr>
                 </table>
+                {% endif %}
                 <br>
                 {% if zip['beta'] %}
                 <h5>Beta</h5>

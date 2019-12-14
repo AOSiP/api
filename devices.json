@@ -60,6 +60,12 @@
         "xda": "https://forum.xda-developers.com/oneplus-7-pro/development/rom-aosip-9-0-t3942361"
     },
     {
+        "codename": "hotdogb",
+        "device": "OnePlus 7T",
+        "maintainer": "Anirudh Gupta",
+        "xda": "https://forum.xda-developers.com/oneplus-7t/development/rom-android-source-illusion-project-t4019581"
+    },
+    {
         "codename": "jasmine_sprout",
         "device": "Xiaomi Mi A2",
         "maintainer": "Subhajeet Muhuri",
