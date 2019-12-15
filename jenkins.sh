@@ -5,4 +5,4 @@ PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 source venv/bin/activate
 python3.8 -m pip install -r requirements.txt
 echo "Starting up!"
-gunicorn app:app --workers=$(nproc)
+gunicorn app:app --workers=$(nproc) -b :5000
