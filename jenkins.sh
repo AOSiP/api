@@ -5,4 +5,4 @@ PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 source venv/bin/activate
 python3 -m pip install -r requirements.txt
 echo "Starting up!"
-./app.py
+gunicorn app:app --workers=$(nproc)
