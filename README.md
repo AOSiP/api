@@ -6,7 +6,7 @@ Copyright (c) 2018-2019 AOSiP<br>
 Adding a new device
 ---
 1. Add your device to devices.json, sorted alphanumerically by codename. Fields are documented below.
-2. Submit your change to [gerrit](https://review.aosiprom.com)
+2. Submit your changes as a pull request.
 
 ### devices.json
 devices.json is an array of objects, each with several fields:
