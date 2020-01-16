@@ -108,6 +108,12 @@
         "xda": "https://forum.xda-developers.com/g5-plus/development/rom-android-source-illusion-project-t3873179"
     },
     {
+        "codename": "raphael",
+        "device": "Xiaomi Redmi K20 Pro / Mi 9T Pro",
+        "maintainer": "Akhil Narang, Abdulwahab Isam",
+        "xda": "https://forum.xda-developers.com/k20-pro/development/rom-aosip-t4035755"
+    },
+    {
         "codename": "wayne",
         "device": "Xiaomi Mi 6X",
         "maintainer": "Subhajeet Muhuri",
