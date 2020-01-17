@@ -1,5 +1,5 @@
 appdirs==1.4.3
-arrow==0.15.4
+arrow==0.15.5
 astroid==2.3.3
 attrs==19.3.0
 black==19.10b0
@@ -16,14 +16,14 @@ Jinja2==2.10.3
 lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 mccabe==0.6.1
-pathspec==0.6.0
+pathspec==0.7.0
 pylint==2.4.4
 python-dateutil==2.8.1
-regex==2019.12.9
+regex==2020.1.8
 requests==2.22.0
-six==1.13.0
+six==1.14.0
 toml==0.10.0
-typed-ast==1.4.0
+typed-ast==1.4.1
 urllib3==1.25.7
 Werkzeug==0.16.0
 wrapt==1.11.2
