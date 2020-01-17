@@ -36,14 +36,14 @@
     <div class="row">
         <div class="col-md-6">
             {% set images = "https://wiki.lineageos.org/images" %}
-            <center>
+            <div style="text-align: center;">
                 <h5>Device: {{ phone }}</h5>
                 <br/>
                 <img src="{{ images }}/devices/{{ device }}.png" data-failover="/static/generic-phone-image.jpg"
                      class="img-fluid" style="width: 250px" alt="Device Image">
                 <br/><br/>
                 <small id="img-copyright"><i>&copy; LineageOS Wiki, CC BY-SA 3.0</i></small>
-            </center>
+            </div>
         </div>
         <div class="col-md-6">
             {% set aosip = "http://get.aosip.dev" %}
