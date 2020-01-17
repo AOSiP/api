@@ -1,21 +1,21 @@
 {% if not phone %}
-{% set phone = device %}
-{% endif%}
+    {% set phone = device %}
+{% endif %}
 <html>
 
 <head>
     <link rel="stylesheet" href="{{ url_for(endpoint='static', filename='bootstrap.min.css') }}"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ url_for(endpoint='static', filename='tables.scss') }}" rel="stylesheet">
     <script src="{{ url_for(endpoint='static', filename='jquery-3.2.1.slim.min.js') }}"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
     <script src="{{ url_for(endpoint='static', filename='popper.min.js') }}"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
     <script src="{{ url_for(endpoint='static', filename='bootstrap.min.js') }}"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
     <title>AOSiP for {{ phone }}</title>
     <style>
         tr {
@@ -25,114 +25,114 @@
 </head>
 
 <body>
-    <div class="container">
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="/">
-                <img src="{{ url_for(endpoint='static', filename='logo.png') }}" width="30" height="30"
-                    alt="AOSiP-Logo">
-                AOSiP
-            </a>
-        </nav>
-        <div class="row">
-            <div class="col-md-6">
-                {% set images = "https://wiki.lineageos.org/images" %}
-                <center>
-                    <h5>Device: {{ phone }}</h5>
-                    <br />
-                    <img src="{{ images }}/devices/{{ device }}.png" data-failover="/static/generic-phone-image.jpg"
-                        class="img-fluid" style="width: 250px" alt="Device Image">
-                    <br /><br />
-                    <small id="img-copyright"><i>&copy; LineageOS Wiki, CC BY-SA 3.0</i></small>
-                </center>
-            </div>
-            <div class="col-md-6">
-                {% set aosip = "http://get.aosip.dev" %}
-                {% set sf =  "https://sourceforge.net/projects/illusionproject/files" %}
-                {% set changelog = "https://raw.githubusercontent.com/AOSiP-Devices/Updater-Stuff/master" %}
-                {% set paypal = "https://paypal.me/AOSiP" %}
-                <br><br>
-                {% if maintainer %}
+<div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            <img src="{{ url_for(endpoint='static', filename='logo.png') }}" width="30" height="30"
+                 alt="AOSiP-Logo">
+            AOSiP
+        </a>
+    </nav>
+    <div class="row">
+        <div class="col-md-6">
+            {% set images = "https://wiki.lineageos.org/images" %}
+            <center>
+                <h5>Device: {{ phone }}</h5>
+                <br/>
+                <img src="{{ images }}/devices/{{ device }}.png" data-failover="/static/generic-phone-image.jpg"
+                     class="img-fluid" style="width: 250px" alt="Device Image">
+                <br/><br/>
+                <small id="img-copyright"><i>&copy; LineageOS Wiki, CC BY-SA 3.0</i></small>
+            </center>
+        </div>
+        <div class="col-md-6">
+            {% set aosip = "http://get.aosip.dev" %}
+            {% set sf =  "https://sourceforge.net/projects/illusionproject/files" %}
+            {% set changelog = "https://raw.githubusercontent.com/AOSiP-Devices/Updater-Stuff/master" %}
+            {% set paypal = "https://paypal.me/AOSiP" %}
+            <br><br>
+            {% if maintainer %}
                 <h5>Maintainer: {{ maintainer }}</h5>
-                {% endif %}
-                <br>
-                {% if zip['official'] %}
+            {% endif %}
+            <br>
+            {% if zip['official'] %}
                 <h5>Official</h5>
                 <table>
                     <tr>
                         <td>
                             <a href={{ aosip }}/{{ device }}/{{ zip['official'] }}
-                                class="badge badge-dark">{{ zip['official'] }}</a>
+ class="badge badge-dark">{{ zip['official'] }}</a>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <a href={{ aosip }}/{{ device }}/{{ zip['official'] }}.md5sum
-                                class="badge badge-dark">{{ zip['official'] }}.md5sum</a>
+                               class="badge badge-dark">{{ zip['official'] }}.md5sum</a>
                         </td>
                     </tr>
                 </table>
-                {% endif %}
-                <br>
-                {% if zip['beta'] %}
+            {% endif %}
+            <br>
+            {% if zip['beta'] %}
                 <h5>Beta</h5>
                 <table>
                     <tr>
                         <td>
                             <a href={{ aosip }}/{{ device }}/{{ zip['beta'] }}
-                                class="badge badge-dark">{{ zip['beta'] }}</a>
+ class="badge badge-dark">{{ zip['beta'] }}</a>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <a href={{ aosip }}/{{ device }}/{{ zip['beta'] }}.md5sum
-                                class="badge badge-dark">{{ zip['beta'] }}.md5sum</a>
+                               class="badge badge-dark">{{ zip['beta'] }}.md5sum</a>
                         </td>
                     </tr>
                 </table>
-                {% endif %}
-                <br>
-                {% if zip['alpha'] %}
+            {% endif %}
+            <br>
+            {% if zip['alpha'] %}
                 <h5>Alpha</h5>
                 <table>
                     <tr>
                         <td>
                             <a href={{ aosip }}/{{ device }}/{{ zip['alpha'] }}
-                                class="badge badge-dark">{{ zip['alpha'] }}</a>
+ class="badge badge-dark">{{ zip['alpha'] }}</a>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <a href={{ aosip }}/{{ device }}/{{ zip['alpha'] }}.md5sum
-                                class="badge badge-dark">{{ zip['alpha'] }}.md5sum</a>
+                               class="badge badge-dark">{{ zip['alpha'] }}.md5sum</a>
                         </td>
                     </tr>
                 </table>
-                {% endif %}
-                <br>
-                <br>
-                <p>Mirrors (May not be up to date at all times):</p>
-                <a href={{ sf }}/{{ device }} class="badge badge-success">SourceForge</a>
-                <br><br>
-                {% if xda %}
+            {% endif %}
+            <br>
+            <br>
+            <p>Mirrors (May not be up to date at all times):</p>
+            <a href={{ sf }}/{{ device }} class="badge badge-success">SourceForge</a>
+            <br><br>
+            {% if xda %}
                 <a href={{ xda }} class="badge badge-warning">XDA Thread</a>
-                {% endif %}
-                <a href={{ changelog }}/{{ device }}/changelog class="badge badge-danger">Changelog</a>
-                <br><br>
-                <p>Donate</p>
-                <a href={{ paypal }} class="badge badge-primary">PayPal</a>
-            </div>
+            {% endif %}
+            <a href={{ changelog }}/{{ device }}/changelog class="badge badge-danger">Changelog</a>
+            <br><br>
+            <p>Donate</p>
+            <a href={{ paypal }} class="badge badge-primary">PayPal</a>
         </div>
     </div>
-    <script>
-        // https://stackoverflow.com/a/18407205
-        $('img[data-failover]').on("error", function () {
-            var failover = $(this).data('failover');
-            if (this.src != failover) {
-                this.src = failover;
-            }
-            $("#img-copyright").remove();
-        });
-    </script>
+</div>
+<script>
+    // https://stackoverflow.com/a/18407205
+    $('img[data-failover]').on("error", function () {
+        var failover = $(this).data('failover');
+        if (this.src != failover) {
+            this.src = failover;
+        }
+        $("#img-copyright").remove();
+    });
+</script>
 </body>
 
 </html>

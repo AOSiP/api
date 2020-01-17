@@ -6,7 +6,7 @@
 <body>
 <div class="container">
     <center>
-      <img src="{{ url_for(endpoint='static', filename='logo.png') }}" alt="AOSiP Logo" class="responsive-img" />
+        <img src="{{ url_for(endpoint='static', filename='logo.png') }}" alt="AOSiP Logo" class="responsive-img"/>
     </center>
     <ul class="responsive-table">
         <li class="table-header">
@@ -15,22 +15,23 @@
             <div class="col col-3">Build date</div>
         </li>
         {% for zip in zips %}
-        {% set zip = zip[:-4] %}
-        {% set device = zip.split('-')[3] %}
-        {% set build_date = zip.split('-')[4] %}
-        <li class="table-row">
-            {% if devices[device] %}
-                <div class="col col-1" data-label="Device"><p>{{device}} ({{ devices[device] }})</p></div>
-            {% else %}
-                <div class="col col-1" data-label="Device"><p>{{ device }}</p></div>
-            {% endif %}
-            <div class="col col-2" data-label="Link"><a href="{{ device }}">{{ zip }}</a></div>
-            <div class="col col-3" data-label="Build date"><p>{{ build_date[:4] }}-{{ build_date[4:6] }}-{{ build_date[6:] }}</p></div>
-        </li>
+            {% set zip = zip[:-4] %}
+            {% set device = zip.split('-')[3] %}
+            {% set build_date = zip.split('-')[4] %}
+            <li class="table-row">
+                {% if devices[device] %}
+                    <div class="col col-1" data-label="Device"><p>{{ device }} ({{ devices[device] }})</p></div>
+                {% else %}
+                    <div class="col col-1" data-label="Device"><p>{{ device }}</p></div>
+                {% endif %}
+                <div class="col col-2" data-label="Link"><a href="{{ device }}">{{ zip }}</a></div>
+                <div class="col col-3" data-label="Build date">
+                    <p>{{ build_date[:4] }}-{{ build_date[4:6] }}-{{ build_date[6:] }}</p></div>
+            </li>
         {% endfor %}
     </ul>
     <center>
-    Hosted on <br /> <a href="https://www.packet.com/"><img src="/static/packet.png" alt=""></a>
+        Hosted on <br/> <a href="https://www.packet.com/"><img src="/static/packet.png" alt=""></a>
     </center>
-</div> 
+</div>
 </body>
