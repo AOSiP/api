@@ -18,7 +18,7 @@ file = sys.argv[1]
 filename = file.split("/")[-1]
 out_dir = Path(file).parent
 buildprop = path.join(out_dir, "system/build.prop")
-host = "https://illusion.aosip.dev"
+host = "https://aosip.dev/direct"
 
 version, buildtype, device, builddate = get_metadata_from_zip(filename)
 
