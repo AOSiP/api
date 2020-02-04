@@ -185,9 +185,14 @@ def latest_device(device: str):
     data = f.read()
     f.close()
     json_data = json.loads(data)
-    for j in json_data[device]:
-        if j["type"] in ALLOWED_BUILDTYPES:
-            zip_name[j["type"]] = j["filename"]
+    try:
+        for j in json_data[device]:
+            if j["type"] in ALLOWED_BUILDTYPES:
+                zip_name[j["type"]] = j["filename"]
+    except KeyError:
+        return (
+            f"There isn't any build for {device} available yet!<br/>Come back shortly!"
+        )
 
     if zip_name:
         return render_template(
