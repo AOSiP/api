@@ -12,6 +12,12 @@
         "xda": "https://forum.xda-developers.com/poco-f1/development/rom-aosip-pie-beta-t3877255"
     },
     {
+        "codename": "bonito",
+        "device": "Google Pixel 3a XL",
+        "maintainer": "Rhyse Simpson (Skittles9823)",
+        "xda": "https://forum.xda-developers.com/pixel-3a-xl/development/rom-android-source-illusion-project-t4045337"
+    },
+    {
         "codename": "bullhead",
         "device": "LG Nexus 5X",
         "maintainer": "Anirudh Gupta",
