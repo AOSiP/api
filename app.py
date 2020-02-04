@@ -17,9 +17,9 @@ from flask import (
     redirect,
     request,
     render_template,
-    send_from_directory,
 )
 from flask_caching import Cache
+
 from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 from utils import get_date_from_zip, get_metadata_from_zip
 
@@ -164,12 +164,9 @@ def latest_device(device: str):
     Show the latest release for the current device
     """
     zip_name = {}
-    if device == "beta":
-        return redirect("https://get.aosip.dev", code=301)
     xda_url = phone = maintainers = None
-    f = open(DEVICE_JSON, "r")
-    data = f.read()
-    f.close()
+    with open(DEVICE_JSON, "r") as f:
+        data = f.read()
     json_data = json.loads(data)
     for j in json_data:
         try:
@@ -180,10 +177,11 @@ def latest_device(device: str):
                 break
         except KeyError:
             return f"Unable to get information for {device}"
+    else:
+        return f"There isn't any build for {device} available here!"
 
-    f = open(BUILDS_JSON, "r")
-    data = f.read()
-    f.close()
+    with open(BUILDS_JSON, "r") as f:
+        data = f.read()
     json_data = json.loads(data)
     try:
         for j in json_data[device]:
