@@ -5,6 +5,7 @@
 import hashlib
 import json
 import os.path as path
+from os import environ
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -18,7 +19,7 @@ file = sys.argv[1]
 filename = file.split("/")[-1]
 out_dir = Path(file).parent
 buildprop = path.join(out_dir, "system/build.prop")
-host = "https://aosip.dev/direct"
+host = f"https://aosip.dev/dl/{environ['BUILD_NUMBER']}"
 
 version, buildtype, device, builddate = get_metadata_from_zip(filename)
 
