@@ -36,6 +36,12 @@
         "xda": "https://forum.xda-developers.com/oneplus-5/development/rom-android-source-illusion-project-t3932485"
     },
     {
+        "codename": "coral",
+        "device": "Google Pixel 4 XL",
+        "maintainer": "Josh Fox (xlxfoxxlx)",
+        "xda": "https://forum.xda-developers.com/pixel-4-xl/development/rom-android-source-illusion-project-t4050135"
+    },
+    {
         "codename": "dipper",
         "device": "MI 8",
         "maintainer": "Arseniy Graur",
