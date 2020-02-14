@@ -126,6 +126,12 @@
         "xda": "https://forum.xda-developers.com/k20-pro/development/rom-aosip-t4035755"
     },
     {
+        "codename": "taimen",
+        "device": "Google Pixel 2 XL",
+        "maintainer": "Eamon Powell (Eamo5)",
+        "xda": "https://forum.xda-developers.com/pixel-2-xl/development/rom-aosip-10-0-t4040545"
+    },
+    {
         "codename": "wayne",
         "device": "Xiaomi Mi 6X",
         "maintainer": "Subhajeet Muhuri",
