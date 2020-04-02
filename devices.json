@@ -114,6 +114,12 @@
         "xda": "https://forum.xda-developers.com/oneplus-3/oneplus-3--3t-cross-device-development/rom-aosip-pie-t3850374"
     },
     {
+        "codename": "phoenix",
+        "device": "Redmi K30 / POCO X2",
+        "maintainer": "Akhil Narang",
+        "xda": "https://forum.xda-developers.com/poco-x2/development/rom-aosip-10-t4076125"
+    },
+    {
         "codename": "platina",
         "device": "Mi 8 Lite",
         "maintainer": "nysadev (Jago Gardiner)",
