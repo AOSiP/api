@@ -16,7 +16,7 @@ if len(sys.argv) < 2:
 
 file = sys.argv[1]
 filename = file.split("/")[-1]
-buildprop = "system/build.prop"
+buildprop = "build.prop"
 host = f"https://aosip.dev/dl/{environ['PARAM_BUILD_NUMBER']}"
 
 version, buildtype, device, builddate = get_metadata_from_zip(filename)
@@ -35,7 +35,7 @@ else:
                     builddate = v
                     break
     else:
-        print("build.prop not found, using {}.format(builddate)", file=sys.stderr)
+        print("build.prop not found, using {}".format(builddate), file=sys.stderr)
         builddate = int(datetime.strptime(builddate, "%Y%m%d").strftime("%s"))
 
 print("Hashing SHA256 for {}!".format(filename), file=sys.stderr)
