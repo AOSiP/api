@@ -109,6 +109,23 @@
                     </tr>
                 </table>
             {% endif %}
+            {% if zip['gapps'] %}
+                <h5>Alpha</h5>
+                <table>
+                    <tr>
+                        <td>
+                            <a href={{ aosip }}/{{ device }}/{{ zip['gapps'] }}
+ class="badge badge-dark">{{ zip['gapps'] }}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href={{ aosip }}/{{ device }}/{{ zip['gapps'] }}.md5sum
+                               class="badge badge-dark">{{ zip['gapps'] }}.md5sum</a>
+                        </td>
+                    </tr>
+                </table>
+            {% endif %}
             <br>
             <br>
             <p>Mirrors (May not be up to date at all times):</p>
