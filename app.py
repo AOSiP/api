@@ -264,7 +264,7 @@ def changelog(device: str):
 
     changelog += '\n' + response.text
 
-    return changelog
+    return changelog.replace('\n', '<br>')
 
 
 if __name__ == "__main__":
