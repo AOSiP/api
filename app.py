@@ -248,5 +248,24 @@ def api_v1_devices():
     return jsonify(versions)
 
 
+@app.route("/changelog/<string:device>")
+def changelog(device: str):
+    changelog_base_url = (
+        'https://raw.githubusercontent.com/AOSiP-Devices/Updater-Stuff/master'
+    )
+    changelog_url = os.path.join(changelog_base_url, 'changelog')
+    device_changelog_url = os.path.join(changelog_base_url, device, 'changelog')
+
+    changelog = requests.get(changelog_url).text
+
+    response = requests.get(device_changelog_url)
+    if response.status_code != 200:
+        return f"Fetching changelog for {device} failed!"
+
+    changelog += '\n' + response.text
+
+    return changelog
+
+
 if __name__ == "__main__":
     app.run()
