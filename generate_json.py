@@ -3,11 +3,11 @@
 # pylint: disable=missing-docstring,invalid-name,broad-except,cell-var-from-loop
 
 import hashlib
-import json
 import os.path as path
-from os import environ
 import sys
 from datetime import datetime
+from os import environ
+
 from utils import get_metadata_from_zip
 
 if len(sys.argv) < 2:

@@ -228,7 +228,7 @@ def index(device, romtype):
 @cache.cached(timeout=3600)
 def get_types(device):
     data = get_device(device)
-    types = set(["official"])
+    types = {"official"}
     for build in data:
         types.add(build["type"])
     return jsonify({"response": list(types)})
