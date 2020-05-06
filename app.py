@@ -121,7 +121,7 @@ def show_files():
     devices = get_devices()
     build_dates = {}
     for zip in zips:
-        zip = zip.split('.')[0]
+        zip = os.path.splitext(zip)[0]
         device = zip.split('-')[3]
         if device not in devices:
             devices[device] = device
