@@ -62,7 +62,7 @@ def get_zips(directory: str) -> list:
         if file.split(".")[-1] != "zip":
             continue
         zip_name = file.split("/")[-1]
-        if file.split(".")[-1].split("-")[-1] == "img":
+        if zip_name.split(".")[0].split("-")[-1] == "img":
             continue
         try:
             version, buildtype, device, builddate = get_metadata_from_zip(zip_name)
