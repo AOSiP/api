@@ -25,9 +25,8 @@
                 {% else %}
                     <div class="col col-1" data-label="Device"><p>{{ device }}</p></div>
                 {% endif %}
-                <div class="col col-2" data-label="Link"><a href="{{ device }}">{{ zip }}</a></div>
-                <div class="col col-3" data-label="Build date">
-                    <p>{{ build_date[:4] }}-{{ build_date[4:6] }}-{{ build_date[6:] }}</p></div>
+                <div class="col col-2" data-label="Link"><a
+                        href="{{ device }}">{{ build_date[:4] }}-{{ build_date[4:6] }}-{{ build_date[6:] }}</a></div>
             </li>
         {% endfor %}
     </ul>
