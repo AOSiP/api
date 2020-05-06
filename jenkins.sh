@@ -1,8 +1,6 @@
-PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-[[ -n $(pidof flask) ]] && killall flask
-[[ -n $(pidof python3) ]] && killall python3
+#!/usr/bin/env bash
+
 [[ -d "venv" ]] || python3.8 -m venv ./venv
 source venv/bin/activate
-python3.8 -m pip install -r requirements.txt
-echo "Starting up!"
+pip install -U -r requirements.txt
 gunicorn app:app --workers=$(nproc) -b :5000
