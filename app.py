@@ -14,13 +14,10 @@ import requests
 from flask import (
     Flask,
     jsonify,
-    redirect,
-    request,
     render_template,
 )
 from flask_caching import Cache
 
-from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 from utils import get_date_from_zip, get_metadata_from_zip
 
 app = Flask(__name__)
@@ -29,7 +26,7 @@ cache = Cache(app)
 
 DEVICE_JSON = "devices.json"
 BUILDS_JSON = "builds.json"
-DIR = os.getenv("DIR", "/mnt/builds")
+DIR = os.getenv("BUILDS_DIRECTORY", "/mnt/builds")
 ALLOWED_BUILDTYPES = ["alpha", "beta", "official", "gapps"]
 ALLOWED_VERSIONS = ["9.0", "10"]
 
@@ -84,66 +81,34 @@ def get_zips(directory: str) -> list:
 
 
 @cache.memoize(timeout=3600)
-def get_builds():
-    try:
-        req = requests.get(UPSTREAM_URL)
-        if req.status_code != 200:
-            raise UpstreamApiException("Unable to contact upstream API")
-        return json.loads(req.text)
-    except Exception as e:
-        print(e)
-        raise UpstreamApiException("Unable to contact upstream API")
+def get_builds() -> dict:
+    with open('builds.json', 'r') as builds:
+        return json.loads(builds.read())
 
 
-def get_device_list():
-    return get_builds().keys()
-
-
-def get_device(device):
-    builds = get_builds()
-    if device not in builds:
-        raise DeviceNotFoundException(
-            "This device has no available builds." "Please select another device."
-        )
-    return builds[device]
+def get_device(device: str) -> list:
+    if device not in get_devices().keys():
+        return []
+    return get_builds()[device]
 
 
 @cache.memoize(timeout=3600)
-def get_build_types(device, romtype, after, version):
+def get_build_types(device: str, romtype: str) -> dict:
     roms = get_device(device)
     roms = [x for x in roms if x["type"] == romtype]
-    for rom in roms:
-        rom["date"] = arrow.get(rom["date"]).datetime
-    if after:
-        after = arrow.get(after).datetime
-        roms = [x for x in roms if x["date"] > after]
-    if version:
-        roms = [x for x in roms if x["version"] == version]
+    if len(roms) == 0:
+        return {}
+    rom = roms[0]
 
-    data = []
-
-    for rom in roms:
-        data.append(
-            {
-                "id": rom["sha256"],
-                "url": "{}{}{}".format(
-                    DOWNLOAD_BASE_URL, rom["filepath"], rom["filename"]
-                ),
-                "romtype": rom["type"],
-                "datetime": arrow.get(rom["date"]).timestamp,
-                "version": rom["version"],
-                "filename": rom["filename"],
-                "size": rom["size"],
-            }
-        )
-    return jsonify({"response": data})
-
-
-@cache.memoize(timeout=3600)
-def get_device_version(device):
-    if device == "all":
-        return None
-    return get_device(device)[-1]["version"]
+    return {
+        "id": rom["sha256"],
+        "url": "{}{}{}".format(DOWNLOAD_BASE_URL, rom["filepath"], rom["filename"]),
+        "romtype": rom["type"],
+        "datetime": arrow.get(rom["date"]).timestamp,
+        "version": rom["version"],
+        "filename": rom["filename"],
+        "size": rom["size"],
+    }
 
 
 ##########################
@@ -159,46 +124,35 @@ def show_files():
     return render_template("latest.html", zips=get_zips(DIR), devices=get_devices())
 
 
-@app.route("/<string:device>")
-def latest_device(device: str):
+@app.route("/<string:target_device>")
+def latest_device(target_device: str):
     """
     Show the latest release for the current device
     """
     zip_name = {}
-    xda_url = phone = maintainers = None
     with open(DEVICE_JSON, "r") as f:
-        data = f.read()
-    json_data = json.loads(data)
-    for j in json_data:
-        try:
-            if j["codename"] == device:
-                xda_url = j["xda"]
-                phone = j["device"]
-                maintainers = j["maintainer"]
-                break
-        except KeyError:
-            return f"Unable to get information for {device}"
+        json_data = json.loads(f.read())
+    for device in json_data:
+        if device['codename'] == target_device:
+            xda_url = device.get('xda')
+            model = device.get('device')
+            maintainers = device.get('maintainer')
+            break
     else:
-        return f"There isn't any build for {device} available here!"
+        return f"There isn't any build for {target_device} available here!"
 
     with open(BUILDS_JSON, "r") as f:
-        data = f.read()
-    json_data = json.loads(data)
-    try:
-        for j in json_data[device]:
-            if j["type"] in ALLOWED_BUILDTYPES:
-                zip_name[j["type"]] = j["filename"]
-    except KeyError:
-        return (
-            f"There isn't any build for {device} available yet!<br/>Come back shortly!"
-        )
+        json_data = json.loads(f.read())
+    for build in json_data[target_device]:
+        if build.get("type") in ALLOWED_BUILDTYPES:
+            zip_name[build.get("type")] = build.get("filename")
 
     if zip_name:
         return render_template(
             "device.html",
             zip=zip_name,
-            device=device,
-            phone=phone,
+            device=target_device,
+            model=model,
             xda=xda_url,
             maintainer=maintainers,
         )
@@ -206,47 +160,10 @@ def latest_device(device: str):
     return f"There isn't any build for {device} available here!"
 
 
-@app.route("/<string:device>/latest")
-def latest_device_url(device: str):
-    """
-    Redirect to the official latest build the device has
-    """
-
-    data = json.loads(requests.get(f"{request.host_url}{device}/official").text)
-    return redirect(data["response"][0]["url"])
-
-
 @app.route("/<string:device>/<string:romtype>")
 # cached via memoize on get_build_types
-def index(device, romtype):
-    after = request.args.get("after")
-    version = request.args.get("version")
-
-    return get_build_types(device, romtype, after, version)
-
-
-@app.route("/types/<string:device>/")
-@cache.cached(timeout=3600)
-def get_types(device):
-    data = get_device(device)
-    types = {"official"}
-    for build in data:
-        types.add(build["type"])
-    return jsonify({"response": list(types)})
-
-
-@app.route("/devices")
-@cache.cached(timeout=3600)
-def api_v1_devices():
-    data = get_builds()
-    versions = {}
-    for device in data.keys():
-        for build in data[device]:
-            versions.setdefault(build["version"], set()).add(device)
-    # pylint: disable=consider-iterating-dictionary
-    for version in versions.keys():
-        versions[version] = list(versions[version])
-    return jsonify(versions)
+def ota(device: str, romtype: str):
+    return jsonify({'response': get_build_types(device, romtype)})
 
 
 @app.route("/changelog/<string:device>")
