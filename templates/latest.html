@@ -12,20 +12,13 @@
     <ul class="responsive-table">
         <li class="table-header">
             <div class="col col-1">Device</div>
-            <div class="col col-2">Link</div>
+            <div class="col col-2">Latest Build Date</div>
         </li>
-        {% for zip in zips %}
-            {% set zip = zip[:-4] %}
-            {% set device = zip.split('-')[3] %}
-            {% set build_date = zip.split('-')[4] %}
+        {% for device in devices %}
             <a href="{{ device }}">
                 <li class="table-row">
-                    {% if devices[device] %}
-                        <div class="col col-1" data-label="Device"><p>{{ device }} ({{ devices[device] }})</p></div>
-                    {% else %}
-                        <div class="col col-1" data-label="Device"><p>{{ device }}</p></div>
-                    {% endif %}
-                    <div class="col col-2" data-label="Link">{{ build_date[:4] }}-{{ build_date[4:6] }}-{{ build_date[6:] }}</div>
+                    <div class="col col-1" data-label="Device"><p>{{ device }} ({{ devices[device] }})</p></div>
+                    <div class="col col-2" data-label="Link">{{ build_dates[device] }}</div>
                 </li>
             </a>
         {% endfor %}

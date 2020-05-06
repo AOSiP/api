@@ -4,10 +4,9 @@ Flask app that walks through a given directory to index
 ROM ZIPs and renders web pages using templates.
 """
 
-# pylint: disable=missing-docstring,invalid-name
-
 import json
 import os
+from datetime import datetime
 
 import arrow
 import requests
@@ -19,6 +18,8 @@ from flask import (
 from flask_caching import Cache
 
 from utils import get_date_from_zip, get_metadata_from_zip
+
+# pylint: disable=missing-docstring,invalid-name
 
 app = Flask(__name__)
 
@@ -121,7 +122,24 @@ def show_files():
     """
     Render the template with ZIP info
     """
-    return render_template("latest.html", zips=get_zips(DIR), devices=get_devices())
+    zips = get_zips(DIR)
+    devices = get_devices()
+    build_dates = {}
+    for zip in zips:
+        zip = zip.split('.')[0]
+        device = zip.split('-')[3]
+        if device not in devices:
+            devices[device] = device
+        build_date = zip.split('-')[4]
+        if device not in build_dates or build_date > build_dates[device]:
+            build_dates[device] = build_date
+
+    for date in build_dates:
+        build_dates[date] = datetime.strftime(
+            datetime.strptime(build_dates[date], '%Y%m%d'), '%A, %d %B - %Y'
+        )
+
+    return render_template("latest.html", devices=devices, build_dates=build_dates)
 
 
 @app.route("/<string:target_device>")
