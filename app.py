@@ -89,22 +89,24 @@ def get_device(device: str) -> list:
     return get_builds()[device]
 
 
-def get_build_types(device: str, romtype: str) -> dict:
+def get_build_types(device: str, romtype: str) -> list:
     roms = get_device(device)
     roms = [x for x in roms if x["type"] == romtype]
     if len(roms) == 0:
         return {}
     rom = roms[0]
 
-    return {
-        "id": rom["sha256"],
-        "url": "{}{}{}".format(DOWNLOAD_BASE_URL, rom["filepath"], rom["filename"]),
-        "romtype": rom["type"],
-        "datetime": arrow.get(rom["date"]).timestamp,
-        "version": rom["version"],
-        "filename": rom["filename"],
-        "size": rom["size"],
-    }
+    return [
+        {
+            "id": rom["sha256"],
+            "url": "{}{}{}".format(DOWNLOAD_BASE_URL, rom["filepath"], rom["filename"]),
+            "romtype": rom["type"],
+            "datetime": arrow.get(rom["date"]).timestamp,
+            "version": rom["version"],
+            "filename": rom["filename"],
+            "size": rom["size"],
+        }
+    ]
 
 
 ##########################
