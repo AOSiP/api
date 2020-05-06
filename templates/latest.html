@@ -18,15 +18,16 @@
             {% set zip = zip[:-4] %}
             {% set device = zip.split('-')[3] %}
             {% set build_date = zip.split('-')[4] %}
-            <li class="table-row">
-                {% if devices[device] %}
-                    <div class="col col-1" data-label="Device"><p>{{ device }} ({{ devices[device] }})</p></div>
-                {% else %}
-                    <div class="col col-1" data-label="Device"><p>{{ device }}</p></div>
-                {% endif %}
-                <div class="col col-2" data-label="Link"><a
-                        href="{{ device }}">{{ build_date[:4] }}-{{ build_date[4:6] }}-{{ build_date[6:] }}</a></div>
-            </li>
+            <a href="{{ device }}">
+                <li class="table-row">
+                    {% if devices[device] %}
+                        <div class="col col-1" data-label="Device"><p>{{ device }} ({{ devices[device] }})</p></div>
+                    {% else %}
+                        <div class="col col-1" data-label="Device"><p>{{ device }}</p></div>
+                    {% endif %}
+                    <div class="col col-2" data-label="Link">{{ build_date[:4] }}-{{ build_date[4:6] }}-{{ build_date[6:] }}</div>
+                </li>
+            </a>
         {% endfor %}
     </ul>
     <div style="text-align: center;">
