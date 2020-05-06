@@ -23,6 +23,8 @@ for file in [
         if file.split(".")[-1] != "zip":
             continue
         zip_name = file.replace(FILE_BASE, "")
+        if zip_name.split(".")[0].split("-")[-1] == "img":
+            continue
         version, buildtype, device, builddate = get_metadata_from_zip(zip_name)
         if buildtype not in ALLOWED_BUILDTYPES:
             if DEBUG:
