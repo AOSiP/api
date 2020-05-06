@@ -15,15 +15,12 @@ from flask import (
     jsonify,
     render_template,
 )
-from flask_caching import Cache
 
 from utils import get_date_from_zip, get_metadata_from_zip
 
 # pylint: disable=missing-docstring,invalid-name
 
 app = Flask(__name__)
-
-cache = Cache(app)
 
 DEVICE_JSON = "devices.json"
 BUILDS_JSON = "builds.json"
@@ -81,7 +78,6 @@ def get_zips(directory: str) -> list:
     return data
 
 
-@cache.memoize(timeout=3600)
 def get_builds() -> dict:
     with open('builds.json', 'r') as builds:
         return json.loads(builds.read())
@@ -93,7 +89,6 @@ def get_device(device: str) -> list:
     return get_builds()[device]
 
 
-@cache.memoize(timeout=3600)
 def get_build_types(device: str, romtype: str) -> dict:
     roms = get_device(device)
     roms = [x for x in roms if x["type"] == romtype]
@@ -179,7 +174,6 @@ def latest_device(target_device: str):
 
 
 @app.route("/<string:device>/<string:romtype>")
-# cached via memoize on get_build_types
 def ota(device: str, romtype: str):
     return jsonify({'response': get_build_types(device, romtype)})
 
