@@ -17,7 +17,7 @@
         {% for device in devices %}
             <a href="{{ device }}">
                 <li class="table-row">
-                    <div class="col col-1" data-label="Device"><p>{{ device }} ({{ devices[device] }})</p></div>
+                    <div class="col col-1" data-label="Device"><p>{{ device }} {% if devices[device] != device %}({{ devices[device] }}){% endif %}</p></div>
                     <div class="col col-2" data-label="Link">{{ build_dates[device] }}</div>
                 </li>
             </a>
