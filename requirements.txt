@@ -1,11 +1,11 @@
 appdirs==1.4.3
-arrow==0.15.5
-astroid==2.3.3
+arrow==0.15.6
+astroid==2.4.1
 attrs==19.3.0
 black==19.10b0
 certifi==2020.4.5.1
 chardet==3.0.4
-click==7.1.1
+click==7.1.2
 Flask==1.1.2
 gunicorn==20.0.4
 idna==2.9
@@ -16,7 +16,7 @@ lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 mccabe==0.6.1
 pathspec==0.8.0
-pylint==2.4.4
+pylint==2.5.2
 python-dateutil==2.8.1
 regex==2020.4.4
 requests==2.23.0
