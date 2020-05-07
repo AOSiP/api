@@ -53,8 +53,8 @@
             <br><br>
             {% if maintainer %}
                 <h5>Maintainer: {{ maintainer }}</h5>
+                <br>
             {% endif %}
-            <br>
             {% if zip['official'] %}
                 <h5>Official</h5>
                 <table>
@@ -71,8 +71,8 @@
                         </td>
                     </tr>
                 </table>
+                <br>
             {% endif %}
-            <br>
             {% if zip['beta'] %}
                 <h5>Beta</h5>
                 <table>
@@ -89,8 +89,8 @@
                         </td>
                     </tr>
                 </table>
+                <br>
             {% endif %}
-            <br>
             {% if zip['alpha'] %}
                 <h5>Alpha</h5>
                 <table>
@@ -107,8 +107,8 @@
                         </td>
                     </tr>
                 </table>
+                <br>
             {% endif %}
-            <br>
             {% if zip['gapps'] %}
                 <h5>Gapps</h5>
                 <table>
@@ -125,18 +125,16 @@
                         </td>
                     </tr>
                 </table>
+                <br>
             {% endif %}
-            <br>
-            <br>
-            <p>Mirrors (May not be up to date at all times):</p>
-            <a href={{ sf }}/{{ device }} class="badge badge-success">SourceForge</a>
-            <br><br>
             {% if xda %}
                 <a href={{ xda }} class="badge badge-warning">XDA Thread</a>
+                <br><br>
             {% endif %}
+            <a href={{ sf }}/{{ device }} class="badge badge-success">SourceForge (mirror)</a>
+            <br><br>
             <a href="/changelog/{{ device }}" class="badge badge-danger">Changelog</a>
             <br><br>
-            <p>Donate</p>
             <a href={{ paypal }} class="badge badge-primary">PayPal</a>
         </div>
     </div>

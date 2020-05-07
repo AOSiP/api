@@ -145,6 +145,16 @@ def latest_device(target_device: str):
     Show the latest release for the current device
     """
     zip_name = {}
+    with open(BUILDS_JSON, "r") as f:
+        json_data = json.loads(f.read())
+
+    if target_device not in json_data:
+        return f"There isn't any build for {target_device} available here!"
+
+    for build in json_data[target_device]:
+        if build.get("type") in ALLOWED_BUILDTYPES:
+            zip_name[build.get("type")] = build.get("filename")
+
     with open(DEVICE_JSON, "r") as f:
         json_data = json.loads(f.read())
     for device in json_data:
@@ -154,13 +164,9 @@ def latest_device(target_device: str):
             maintainers = device.get('maintainer')
             break
     else:
-        return f"There isn't any build for {target_device} available here!"
-
-    with open(BUILDS_JSON, "r") as f:
-        json_data = json.loads(f.read())
-    for build in json_data[target_device]:
-        if build.get("type") in ALLOWED_BUILDTYPES:
-            zip_name[build.get("type")] = build.get("filename")
+        model = target_device
+        xda_url = None
+        maintainers = None
 
     if zip_name:
         return render_template(
@@ -171,8 +177,6 @@ def latest_device(target_device: str):
             xda=xda_url,
             maintainer=maintainers,
         )
-
-    return f"There isn't any build for {device} available here!"
 
 
 @app.route("/<string:device>/<string:romtype>")
