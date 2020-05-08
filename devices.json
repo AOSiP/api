@@ -114,6 +114,12 @@
         "xda": "https://forum.xda-developers.com/oneplus-3/oneplus-3--3t-cross-device-development/rom-aosip-pie-t3850374"
     },
     {
+        "codename": "perseus",
+        "device": "Xiaomi Mi Mix 3",
+        "maintainer": "Matt Evangelisti",
+        "xda": "https://forum.xda-developers.com/mi-mix-3/development/rom-android-source-illusion-project-t4096503"
+    },
+    {
         "codename": "phoenix",
         "device": "Redmi K30 / POCO X2",
         "maintainer": "Akhil Narang",
