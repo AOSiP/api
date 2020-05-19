@@ -63,10 +63,10 @@ for key, value in zips.items():
             if file[0] == "/":
                 file = file[1:]
             file = os.path.join(FILE_BASE, file)
+            img_file = os.path.isfile(file.replace('.zip', '-img.zip'))
+            boot_img = os.path.isfile(file.replace('.zip', '-boot.img'))
             sha256_file = file.replace(".zip", ".sha256")
-            _, version, buildtype, device, builddate = os.path.splitext(file)[0].split(
-                "-"
-            )
+            version, buildtype, device, builddate = get_metadata_from_zip(file)
             if os.path.isfile(sha256_file):
                 if DEBUG:
                     print(
@@ -96,6 +96,8 @@ for key, value in zips.items():
                     "filepath": file.replace(filename, "").replace(FILE_BASE, ""),
                     "version": version,
                     "type": buildtype.lower(),
+                    "fastboot_images": img_file,
+                    "boot_image": boot_img,
                 }
             )
         except IndexError:

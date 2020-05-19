@@ -26,7 +26,7 @@ DEVICE_JSON = "devices.json"
 BUILDS_JSON = "builds.json"
 DIR = os.getenv("BUILDS_DIRECTORY", "/mnt/builds")
 ALLOWED_BUILDTYPES = ["alpha", "beta", "official", "gapps"]
-ALLOWED_VERSIONS = ["9.0", "10"]
+ALLOWED_VERSIONS = ("9.0", "10")
 
 UPSTREAM_URL = os.environ.get("UPSTREAM_URL", "https://aosip.dev/builds.json")
 DOWNLOAD_BASE_URL = os.environ.get("DOWNLOAD_BASE_URL", "https://get.aosip.dev")
@@ -144,7 +144,8 @@ def latest_device(target_device: str):
     """
     Show the latest release for the current device
     """
-    zip_name = {}
+    available_files = {}
+    available_buildtypes = set()
     with open(BUILDS_JSON, "r") as f:
         json_data = json.loads(f.read())
 
@@ -152,8 +153,18 @@ def latest_device(target_device: str):
         return f"There isn't any build for {target_device} available here!"
 
     for build in json_data[target_device]:
-        if build.get("type") in ALLOWED_BUILDTYPES:
-            zip_name[build.get("type")] = build.get("filename")
+        buildtype = build.get('type')
+        available_buildtypes.add(buildtype)
+        if buildtype in ALLOWED_BUILDTYPES:
+            available_files[buildtype] = build.get('filename')
+            if build.get('fastboot_images'):
+                available_files[buildtype + '-img'] = build.get('filename').replace(
+                    '.zip', '-img.zip'
+                )
+            if build.get('boot_image'):
+                available_files[buildtype + '-boot'] = build.get('filename').replace(
+                    '.zip', '-boot.img'
+                )
 
     with open(DEVICE_JSON, "r") as f:
         json_data = json.loads(f.read())
@@ -168,10 +179,10 @@ def latest_device(target_device: str):
         xda_url = None
         maintainers = None
 
-    if zip_name:
+    if available_files:
         return render_template(
             "device.html",
-            zip=zip_name,
+            available_files=available_files,
             device=target_device,
             model=model,
             xda=xda_url,

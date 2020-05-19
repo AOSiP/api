@@ -55,78 +55,43 @@
                 <h5>Maintainer: {{ maintainer }}</h5>
                 <br>
             {% endif %}
-            {% if zip['official'] %}
-                <h5>Official</h5>
-                <table>
-                    <tr>
-                        <td>
-                            <a href={{ aosip }}/{{ device }}/{{ zip['official'] }}
- class="badge badge-dark">{{ zip['official'] }}</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href={{ aosip }}/{{ device }}/{{ zip['official'] }}.md5sum
-                               class="badge badge-dark">{{ zip['official'] }}.md5sum</a>
-                        </td>
-                    </tr>
-                </table>
-                <br>
-            {% endif %}
-            {% if zip['beta'] %}
-                <h5>Beta</h5>
-                <table>
-                    <tr>
-                        <td>
-                            <a href={{ aosip }}/{{ device }}/{{ zip['beta'] }}
- class="badge badge-dark">{{ zip['beta'] }}</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href={{ aosip }}/{{ device }}/{{ zip['beta'] }}.md5sum
-                               class="badge badge-dark">{{ zip['beta'] }}.md5sum</a>
-                        </td>
-                    </tr>
-                </table>
-                <br>
-            {% endif %}
-            {% if zip['alpha'] %}
-                <h5>Alpha</h5>
-                <table>
-                    <tr>
-                        <td>
-                            <a href={{ aosip }}/{{ device }}/{{ zip['alpha'] }}
- class="badge badge-dark">{{ zip['alpha'] }}</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href={{ aosip }}/{{ device }}/{{ zip['alpha'] }}.md5sum
-                               class="badge badge-dark">{{ zip['alpha'] }}.md5sum</a>
-                        </td>
-                    </tr>
-                </table>
-                <br>
-            {% endif %}
-            {% if zip['gapps'] %}
-                <h5>Gapps</h5>
-                <table>
-                    <tr>
-                        <td>
-                            <a href={{ aosip }}/{{ device }}/{{ zip['gapps'] }}
- class="badge badge-dark">{{ zip['gapps'] }}</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href={{ aosip }}/{{ device }}/{{ zip['gapps'] }}.md5sum
-                               class="badge badge-dark">{{ zip['gapps'] }}.md5sum</a>
-                        </td>
-                    </tr>
-                </table>
-                <br>
-            {% endif %}
+            {% set buildtypes = ['official', 'gapps', 'beta', 'alpha'] %}
+            {% for buildtype in buildtypes %}
+                {% if available_files[buildtype] %}
+                    <h5>{{ buildtype.capitalize() }}</h5>
+                    <table>
+                        <tr>
+                            <td>
+                                <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype] }}
+     class="badge badge-dark">{{ available_files[buildtype] }}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype] }}.md5sum
+                                   class="badge badge-dark">{{ available_files[buildtype] }}.md5sum</a>
+                            </td>
+                        </tr>
+                        {% if available_files[buildtype + '-img'] %}
+                        <tr>
+                            <td>
+                                <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype].replace('.zip', '-img.zip') }}
+                                   class="badge badge-dark">Fastboot Images</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% if available_files[buildtype + '-boot'] %}
+                        <tr>
+                            <td>
+                                <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype].replace('.zip', '-boot.img') }}
+                                   class="badge badge-dark">Boot Image</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                    <br>
+                {% endif %}
+            {% endfor %}
             {% if xda %}
                 <a href={{ xda }} class="badge badge-warning">XDA Thread</a>
                 <br><br>
