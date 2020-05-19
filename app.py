@@ -145,7 +145,6 @@ def latest_device(target_device: str):
     Show the latest release for the current device
     """
     available_files = {}
-    available_buildtypes = set()
     with open(BUILDS_JSON, "r") as f:
         json_data = json.loads(f.read())
 
@@ -154,7 +153,6 @@ def latest_device(target_device: str):
 
     for build in json_data[target_device]:
         buildtype = build.get('type')
-        available_buildtypes.add(buildtype)
         if buildtype in ALLOWED_BUILDTYPES:
             available_files[buildtype] = build.get('filename')
             if build.get('fastboot_images'):
