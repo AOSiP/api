@@ -7,8 +7,13 @@ import os
 import sys
 import requests
 
+KEY_PATH = os.path.join(os.getenv("HOME"), ".kronickey")
 
-KRONIC_API_KEY: str = os.getenv("KRONIC_API_KEY")
+if os.path.isfile(KEY_PATH):
+    with open(KEY_PATH, "r") as f:
+        KRONIC_API_KEY = f.read()
+else:
+    KRONIC_API_KEY: str = os.getenv("KRONIC_API_KEY")
 
 if not KRONIC_API_KEY:
     exit(1)
