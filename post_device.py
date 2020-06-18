@@ -11,7 +11,7 @@ KEY_PATH = os.path.join(os.getenv("HOME"), ".kronickey")
 
 if os.path.isfile(KEY_PATH):
     with open(KEY_PATH, "r") as f:
-        KRONIC_API_KEY = f.read()
+        KRONIC_API_KEY = f.read().strip()
 else:
     KRONIC_API_KEY: str = os.getenv("KRONIC_API_KEY")
 
@@ -23,15 +23,6 @@ data: str = requests.get(
 ).text
 device: str = sys.argv[1]
 buildtype: str = sys.argv[2]
-
-if buildtype == "CI":
-    message = f"New CI build for {device} available!"
-    data = requests.get(
-        f"""https://api.telegram.org/bot{KRONIC_API_KEY}/sendMessage?text={message}
-                        &chat_id=-1001055786180&parse_mode=Markdown"""
-    )
-    print(data)
-    exit(0)
 
 device_found: bool = False
 d: dict = ""
