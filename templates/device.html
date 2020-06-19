@@ -55,7 +55,7 @@
                 <h5>Maintainer: {{ maintainer }}</h5>
                 <br>
             {% endif %}
-            {% set buildtypes = ['official', 'gapps', 'beta', 'alpha'] %}
+            {% set buildtypes = ['official', 'gapps'] %}
             {% for buildtype in buildtypes %}
                 {% if available_files[buildtype] %}
                     <h5>{{ buildtype.capitalize() }}</h5>
