@@ -193,6 +193,18 @@ def ota(device: str, romtype: str):
     return jsonify({'response': get_build_types(device, romtype)})
 
 
+@app.route("/changelog")
+def changelog():
+    changelog_url = (
+        'https://raw.githubusercontent.com/AOSiP-Devices/Updater-Stuff/master/changelog'
+    )
+
+    response = requests.get(changelog_url)
+    if response.status_code != 200:
+        return f'Fetching changelog failed!'
+    return response.text.replace('\n', '<br>')
+
+
 @app.route("/changelog/<string:device>")
 def changelog(device: str):
     changelog_base_url = (
