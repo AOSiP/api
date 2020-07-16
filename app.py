@@ -206,7 +206,7 @@ def changelog():
 
 
 @app.route("/changelog/<string:device>")
-def changelog(device: str):
+def changelog_device(device: str):
     changelog_base_url = (
         'https://raw.githubusercontent.com/AOSiP-Devices/Updater-Stuff/master'
     )
