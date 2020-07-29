@@ -22,7 +22,6 @@ app = Flask(__name__)
 
 DEVICE_JSON = "devices.json"
 BUILDS_JSON = "builds.json"
-DIR = os.getenv("BUILDS_DIRECTORY", "/mnt/builds")
 ALLOWED_BUILDTYPES = ["official", "gapps"]
 ALLOWED_VERSIONS = ("9.0", "10")
 
