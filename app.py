@@ -25,7 +25,7 @@ BUILDS_JSON = "builds.json"
 ALLOWED_BUILDTYPES = ["official", "gapps"]
 ALLOWED_VERSIONS = ("9.0", "10")
 
-DOWNLOAD_BASE_URL = os.environ.get("DOWNLOAD_BASE_URL", "https://get.aosip.dev")
+DOWNLOAD_BASE_URL = os.environ.get("DOWNLOAD_BASE_URL", "https://aosip.dev/dl")
 
 
 def get_devices() -> dict:
@@ -83,10 +83,16 @@ def show_files():
         if device not in build_dates or build_date > build_dates[device]:
             build_dates[device] = build_date
 
-    for date in build_dates:
-        build_dates[date] = datetime.strftime(
-            datetime.strptime(build_dates[date], '%Y%m%d'), '%A, %d %B - %Y'
+    for device in build_dates:
+        build_dates[device] = datetime.strftime(
+            datetime.strptime(build_dates[device], '%Y%m%d'), '%A, %d %B - %Y'
         )
+
+    devices = {
+        device: device_name
+        for device, device_name in devices.items()
+        if device in build_dates
+    }
 
     return render_template("latest.html", devices=devices, build_dates=build_dates)
 
