@@ -16,8 +16,6 @@ from flask import (
     render_template,
 )
 
-from utils import get_date_from_zip, get_metadata_from_zip
-
 # pylint: disable=missing-docstring,invalid-name
 
 app = Flask(__name__)
@@ -28,7 +26,6 @@ DIR = os.getenv("BUILDS_DIRECTORY", "/mnt/builds")
 ALLOWED_BUILDTYPES = ["official", "gapps"]
 ALLOWED_VERSIONS = ("9.0", "10")
 
-UPSTREAM_URL = os.environ.get("UPSTREAM_URL", "https://aosip.dev/builds.json")
 DOWNLOAD_BASE_URL = os.environ.get("DOWNLOAD_BASE_URL", "https://get.aosip.dev")
 
 
@@ -37,76 +34,32 @@ def get_devices() -> dict:
     Returns a dictionary with the list of codenames and actual
     device names
     """
-    data = open(DEVICE_JSON).read()
-    devices = {}
-    json_data = json.loads(data)
-    for j in json_data:
-        devices[j["codename"]] = j["device"]
-    return devices
+    with open(DEVICE_JSON, 'r') as f:
+        data = json.loads(f.read())
+    return {d['codename']: d['device'] for d in data}
 
 
-def get_zips(directory: str) -> list:
+def get_zips() -> list:
     """
-    Return a the ZIP from a specified directory after running
-    some sanity checks
+    Returns list of available builds after reading the builds.json
     """
-    zips = {}
-    for file in [
-        os.path.join(dp, file) for dp, dn, fn in os.walk(directory) for file in fn
-    ]:
-        if file.split(".")[-1] != "zip":
-            continue
-        zip_name = file.split("/")[-1]
-        if zip_name.split(".")[0].split("-")[-1] == "img":
-            continue
-        try:
-            version, buildtype, device, builddate = get_metadata_from_zip(zip_name)
-        except IndexError:
-            continue
+    with open(BUILDS_JSON, 'r') as f:
+        builds = json.loads(f.read())
 
-        if buildtype.lower() not in ALLOWED_BUILDTYPES:
-            continue
-        if version not in ALLOWED_VERSIONS:
-            continue
-
-        if device in zips:
-            if get_date_from_zip(zips[device]) > builddate:
-                continue
-        zips[device] = zip_name
-    data = list(zips.values())
-    data.sort()
-    return data
+    return [build['filename'] for device in builds for build in builds[device]]
 
 
-def get_builds() -> dict:
-    with open('builds.json', 'r') as builds:
-        return json.loads(builds.read())
-
-
-def get_device(device: str) -> list:
+def get_latest(device: str, romtype: str) -> dict:
     if device not in get_devices().keys():
-        return []
-    return get_builds()[device]
-
-
-def get_build_types(device: str, romtype: str) -> list:
-    roms = get_device(device)
-    roms = [x for x in roms if x["type"] == romtype]
-    if len(roms) == 0:
         return {}
-    rom = roms[0]
+    with open('builds.json', 'r') as builds:
+        builds = json.loads(builds.read())[device]
 
-    return [
-        {
-            "id": rom["sha256"],
-            "url": "{}{}{}".format(DOWNLOAD_BASE_URL, rom["filepath"], rom["filename"]),
-            "romtype": rom["type"],
-            "datetime": arrow.get(rom["date"]).timestamp,
-            "version": rom["version"],
-            "filename": rom["filename"],
-            "size": rom["size"],
-        }
-    ]
+    for build in builds:
+        if build['type'] == romtype:
+            return build
+
+    return {}
 
 
 ##########################
@@ -119,7 +72,7 @@ def show_files():
     """
     Render the template with ZIP info
     """
-    zips = get_zips(DIR)
+    zips = get_zips()
     devices = get_devices()
     build_dates = {}
     for zip in zips:
@@ -190,7 +143,24 @@ def latest_device(target_device: str):
 
 @app.route("/<string:device>/<string:romtype>")
 def ota(device: str, romtype: str):
-    return jsonify({'response': get_build_types(device, romtype)})
+    rom = get_latest(device, romtype)
+    if not rom:
+        data = []
+    else:
+        data = [
+            {
+                "id": rom["sha256"],
+                "url": "{}{}{}".format(
+                    DOWNLOAD_BASE_URL, rom["filepath"], rom["filename"]
+                ),
+                "romtype": rom["type"],
+                "datetime": arrow.get(rom["date"]).timestamp,
+                "version": rom["version"],
+                "filename": rom["filename"],
+                "size": rom["size"],
+            }
+        ]
+    return jsonify({'response': data})
 
 
 @app.route("/changelog")
