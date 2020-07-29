@@ -74,12 +74,12 @@ def show_files():
     zips = get_zips()
     devices = get_devices()
     build_dates = {}
-    for zip in zips:
-        zip = os.path.splitext(zip)[0]
-        device = zip.split('-')[3]
+    for zip_file in zips:
+        zip_file = os.path.splitext(zip_file)[0]
+        device = zip_file.split('-')[3]
         if device not in devices:
             devices[device] = device
-        build_date = zip.split('-')[4]
+        build_date = zip_file.split('-')[4]
         if device not in build_dates or build_date > build_dates[device]:
             build_dates[device] = build_date
 
@@ -170,7 +170,7 @@ def changelog():
 
     response = requests.get(changelog_url)
     if response.status_code != 200:
-        return f'Fetching changelog failed!'
+        return 'Fetching changelog failed!'
     return response.text.replace('\n', '<br>')
 
 
@@ -182,15 +182,15 @@ def changelog_device(device: str):
     changelog_url = os.path.join(changelog_base_url, 'changelog')
     device_changelog_url = os.path.join(changelog_base_url, device, 'changelog')
 
-    changelog = requests.get(changelog_url).text
+    changelog_text = requests.get(changelog_url).text
 
     response = requests.get(device_changelog_url)
     if response.status_code != 200:
         return f"Fetching changelog for {device} failed!"
 
-    changelog += '\n' + response.text
+    changelog_text += '\n' + response.text
 
-    return changelog.replace('\n', '<br>')
+    return changelog_text.replace('\n', '<br>')
 
 
 if __name__ == "__main__":
