@@ -17,7 +17,7 @@ if len(sys.argv) < 2:
 file = sys.argv[1]
 filename = file.split("/")[-1]
 buildprop = "build.prop"
-host = f"https://aosip.dev/dl/{environ['BUILD_NUMBER']}"
+host = f"https://drive.aosip.dev/{environ['BUILD_NUMBER']}"
 
 version, buildtype, device, builddate = get_metadata_from_zip(filename)
 
