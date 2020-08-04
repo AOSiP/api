@@ -194,7 +194,7 @@ def changelog_device(device: str):
     if response.status_code != 200:
         return f"Fetching changelog for {device} failed!"
 
-    changelog_text += '\n' + response.text
+    changelog_text += '\n' * 5 + response.text
 
     return changelog_text.replace('\n', '<br>')
 
