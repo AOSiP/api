@@ -42,6 +42,12 @@
         "xda": "https://forum.xda-developers.com/pixel-4-xl/development/rom-android-source-illusion-project-t4050135"
     },
     {
+        "codename": "curtana",
+        "device": "Redmi Note 9S, Redmi Note 9 Pro (India), POCO M2 Pro",
+        "maintainer": "Subhajeet Muhuri",
+        "xda": "https://forum.xda-developers.com/redmi-note-9-pro/development/rom-android-source-illusion-project-t4146513"
+    },
+    {
         "codename": "dipper",
         "device": "MI 8",
         "maintainer": "Arseniy Graur",
