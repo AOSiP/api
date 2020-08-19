@@ -52,7 +52,7 @@ def get_latest(device: str, romtype: str) -> dict:
     if device not in get_devices().keys():
         return {}
     with open('builds.json', 'r') as builds:
-        builds = json.loads(builds.read())[device]
+        builds = json.loads(builds.read()).get(device, [])
 
     for build in builds:
         if build['type'] == romtype:
