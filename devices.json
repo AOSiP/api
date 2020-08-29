@@ -72,6 +72,12 @@
         "xda": "https://forum.xda-developers.com/oneplus-6t/development/rom-android-source-illusion-project-t3878204"
     },
     {
+        "codename": "flame",
+        "device": "Google Pixel 4",
+        "maintainer": "Josh Fox (xlxfoxxlx)",
+        "xda": "https://forum.xda-developers.com/pixel-4-xl/development/rom-android-source-illusion-project-t4050135"
+    },
+    {
         "codename": "guacamole",
         "device": "OnePlus 7 Pro",
         "maintainer": "Josh Fox",
