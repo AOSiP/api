@@ -10,7 +10,7 @@ import sys
 from utils import get_date_from_zip, get_metadata_from_zip
 
 ALLOWED_BUILDTYPES = ["Official", "Gapps"]
-ALLOWED_VERSIONS = ["9.0", "10"]
+ALLOWED_VERSIONS = ["9.0", "10", "11"]
 FILE_BASE: str = os.getenv("FILE_BASE", "/home/kronic/builds")
 DEBUG = False
 builds: dict = {}

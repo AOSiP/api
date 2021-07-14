@@ -23,7 +23,7 @@ app = Flask(__name__)
 DEVICE_JSON = "devices.json"
 BUILDS_JSON = "builds.json"
 ALLOWED_BUILDTYPES = ["official", "gapps"]
-ALLOWED_VERSIONS = ("9.0", "10")
+ALLOWED_VERSIONS = ("9.0", "10", "11")
 
 DOWNLOAD_BASE_URL = os.environ.get("DOWNLOAD_BASE_URL", "https://aosip.dev/dl")
 
