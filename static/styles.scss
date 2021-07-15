@@ -1,0 +1,143 @@
+html,
+body {
+  background-color: #191919;
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+}
+
+.navbar {
+  padding: 1rem;
+}
+
+.navbar-brand {
+  color: #ffffff;
+  font-size: 25px;
+}
+
+.navbar-brand:hover {
+  color: #1bd1ff;
+}
+
+i {
+  color: #8b8b8b;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #000000;
+  text-decoration: none !important;
+  transition: all 500ms;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+}
+
+img#brand-logo {
+  width: auto;
+  height: 50;
+}
+
+img#device-img {
+  width: 250px
+}
+
+tr {
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h2 {
+  font-size: 26px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+h2 small {
+  font-size: 0.5em;
+}
+
+.badge {
+  font-family: "Rubik", "Montserrat", sans-serif;
+  font-weight: 200;
+  padding: 5px;
+}
+
+.responsive-img {
+  max-width: 25%;
+  height: auto;
+}
+
+.responsive-table li {
+  border-radius: 3px;
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.responsive-table .table-header {
+  background-color: rgb(40 40 40);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+}
+
+.responsive-table .table-row {
+  background-color: rgb(30 29 29);
+  color: #adadad;
+  font-family: "Rubik", sans-serif;
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-out;
+}
+
+.table-row:hover {
+  box-shadow: 9px 9px 9px 0px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.responsive-table .col-1 {
+  flex-basis: 70%;
+}
+.responsive-table .col-2 {
+  flex-basis: 30%;
+}
+
+.col-md-6 {
+  margin-top: 5%;
+}
+
+@media all and (max-width: 767px) {
+  .responsive-table .table-header {
+    display: none;
+  }
+  .responsive-table li {
+    display: block;
+  }
+  .responsive-table .col {
+    flex-basis: 100%;
+  }
+  .responsive-table .col {
+    display: flex;
+    padding: 10px 0;
+  }
+  .responsive-table .col:before {
+    color: #6c7a89;
+    padding-right: 10px;
+    content: attr(data-label);
+    flex-basis: 50%;
+    text-align: right;
+  }
+}
