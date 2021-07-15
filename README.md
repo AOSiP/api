@@ -1,7 +1,8 @@
 # AOSiP Updater Backend
 
 Copyright (c) 2017 The LineageOS Project
-Copyright (c) 2018-2019 AOSiP
+
+Copyright (c) 2018-2021 AOSiP
 
 ## Adding a new device
 
