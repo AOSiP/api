@@ -52,19 +52,19 @@ for file in [
         else:
             zips[device] = {}
             zips[device][buildtype] = zip_name
-    except Exception as e:
+    except Exception:
         continue
 
 for key, value in zips.items():
     for device in value:
-        file = zips[key][device]
+        file = value[device]
         try:
             filename = file.split("/")[-1]
             if file[0] == "/":
                 file = file[1:]
             file = os.path.join(FILE_BASE, file)
-            img_file = os.path.isfile(file.replace('.zip', '-img.zip'))
-            boot_img = os.path.isfile(file.replace('.zip', '-boot.img'))
+            img_file = os.path.isfile(file.replace(".zip", "-img.zip"))
+            boot_img = os.path.isfile(file.replace(".zip", "-boot.img"))
             sha256_file = file.replace(".zip", ".sha256")
             version, buildtype, device, builddate = get_metadata_from_zip(file)
             if os.path.isfile(sha256_file):
@@ -79,12 +79,11 @@ for key, value in zips.items():
                 with open(file, "rb") as f:
                     for buf in iter(lambda: f.read(128 * 1024), b""):
                         sha256.update(buf)
-                f = open(sha256_file, "w")
-                f.write(sha256.hexdigest())
-                f.close()
-            f = open(sha256_file, "r")
-            zip_sha256 = f.read()
-            f.close()
+                with open(sha256_file, "w") as f:
+                    f.write(sha256.hexdigest())
+
+            with open(sha256_file, "r") as f:
+                zip_sha256 = f.read()
             builds.setdefault(device, []).append(
                 {
                     "sha256": zip_sha256,

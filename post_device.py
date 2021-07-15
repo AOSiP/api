@@ -2,9 +2,9 @@
 
 # pylint: disable=missing-docstring,invalid-name
 
-import json
 import os
 import sys
+
 import requests
 
 KEY_PATH = os.path.join(os.getenv("HOME"), ".kronickey")
@@ -20,14 +20,14 @@ if not KRONIC_API_KEY:
 
 data: str = requests.get(
     "https://raw.githubusercontent.com/AOSiP/api/master/devices.json"
-).text
+).json()
 device: str = sys.argv[1]
 buildtype: str = sys.argv[2]
 
 device_found: bool = False
 d: dict = ""
 
-for d in json.loads(data):
+for d in data:
     if d["codename"] == device:
         device_found = True
         break

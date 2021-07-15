@@ -9,12 +9,7 @@ import os
 from datetime import datetime
 
 import arrow
-import requests
-from flask import (
-    Flask,
-    jsonify,
-    render_template,
-)
+from flask import Flask, jsonify, render_template
 
 # pylint: disable=missing-docstring,invalid-name
 
@@ -33,29 +28,29 @@ def get_devices() -> dict:
     Returns a dictionary with the list of codenames and actual
     device names
     """
-    with open(DEVICE_JSON, 'r') as f:
+    with open(DEVICE_JSON, "r") as f:
         data = json.loads(f.read())
-    return {d['codename']: d['device'] for d in data}
+    return {d["codename"]: d["device"] for d in data}
 
 
 def get_zips() -> list:
     """
     Returns list of available builds after reading the builds.json
     """
-    with open(BUILDS_JSON, 'r') as f:
+    with open(BUILDS_JSON, "r") as f:
         builds = json.loads(f.read())
 
-    return [build['filename'] for device in builds for build in builds[device]]
+    return [build["filename"] for device in builds for build in builds[device]]
 
 
 def get_latest(device: str, romtype: str) -> dict:
     if device not in get_devices().keys():
         return {}
-    with open('builds.json', 'r') as builds:
+    with open("builds.json", "r") as builds:
         builds = json.loads(builds.read()).get(device, [])
 
     for build in builds:
-        if build['type'] == romtype:
+        if build["type"] == romtype:
             return build
 
     return {}
@@ -76,16 +71,16 @@ def show_files():
     build_dates = {}
     for zip_file in zips:
         zip_file = os.path.splitext(zip_file)[0]
-        device = zip_file.split('-')[3]
+        device = zip_file.split("-")[3]
         if device not in devices:
             devices[device] = device
-        build_date = zip_file.split('-')[4]
+        build_date = zip_file.split("-")[4]
         if device not in build_dates or build_date > build_dates[device]:
             build_dates[device] = build_date
 
     for device in build_dates:
         build_dates[device] = datetime.strftime(
-            datetime.strptime(build_dates[device], '%Y%m%d'), '%A, %d %B - %Y'
+            datetime.strptime(build_dates[device], "%Y%m%d"), "%A, %d %B - %Y"
         )
 
     devices = {
@@ -98,7 +93,7 @@ def show_files():
 
 
 @app.route("/<string:target_device>")
-def latest_device(target_device: str):
+def latest_device(target_device: str) -> str:
     """
     Show the latest release for the current device
     """
@@ -110,25 +105,25 @@ def latest_device(target_device: str):
         return f"There isn't any build for {target_device} available here!"
 
     for build in json_data[target_device]:
-        buildtype = build.get('type')
+        buildtype = build.get("type")
         if buildtype in ALLOWED_BUILDTYPES:
-            available_files[buildtype] = build.get('filename')
-            if build.get('fastboot_images'):
-                available_files[buildtype + '-img'] = build.get('filename').replace(
-                    '.zip', '-img.zip'
+            available_files[buildtype] = build.get("filename")
+            if build.get("fastboot_images"):
+                available_files[buildtype + "-img"] = build.get("filename").replace(
+                    ".zip", "-img.zip"
                 )
-            if build.get('boot_image'):
-                available_files[buildtype + '-boot'] = build.get('filename').replace(
-                    '.zip', '-boot.img'
+            if build.get("boot_image"):
+                available_files[buildtype + "-boot"] = build.get("filename").replace(
+                    ".zip", "-boot.img"
                 )
 
     with open(DEVICE_JSON, "r") as f:
         json_data = json.loads(f.read())
     for device in json_data:
-        if device['codename'] == target_device:
-            xda_url = device.get('xda')
-            model = device.get('device')
-            maintainers = device.get('maintainer')
+        if device["codename"] == target_device:
+            xda_url = device.get("xda")
+            model = device.get("device")
+            maintainers = device.get("maintainer")
             break
     else:
         model = target_device
@@ -165,7 +160,7 @@ def ota(device: str, romtype: str):
                 "size": rom["size"],
             }
         ]
-    return jsonify({'response': data})
+    return jsonify({"response": data})
 
 
 if __name__ == "__main__":
