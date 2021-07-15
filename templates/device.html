@@ -4,6 +4,9 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="{{ url_for(endpoint='static', filename='bootstrap.min.css') }}"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ url_for(endpoint='static', filename='styles.scss') }}" rel="stylesheet">
@@ -36,7 +39,7 @@
                     <h5>Device: {{ model }}</h5>
                     <br />
                     <img id="device-img" src="{{ images }}/devices/{{ device }}.png"
-                        data-failover="/static/generic-phone-image.jpg" class="img-fluid" alt="Device Image">
+                        data-failover="/static/generic-phone-image.png" class="img-fluid" alt="Device Image">
                     <br /><br />
                     <small id="img-copyright"><i>&copy; LineageOS Wiki, CC BY-SA 3.0</i></small>
                 </div>
