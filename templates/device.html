@@ -25,13 +25,15 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <header>
         <nav class="navbar">
             <a class="navbar-brand" href="/">
                 <img id="brand-logo" src="{{ url_for(endpoint='static', filename='logo-light.png') }}" alt="AOSiP-Logo">
                 AOSiP
             </a>
         </nav>
+    </header>
+    <div class="container-fluid">
         <div class="row">
             <div id="device-image-div" class="col-md-6">
                 {% set images = "https://wiki.lineageos.org/images" %}
