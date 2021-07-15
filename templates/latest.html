@@ -1,27 +1,30 @@
 <head>
-    <link href="{{ url_for(endpoint='static', filename='tables.scss') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ url_for(endpoint='static', filename='favicon.ico') }}"/>
+    <link href="{{ url_for(endpoint='static', filename='styles.scss') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for(endpoint='static', filename='favicon.ico') }}" />
     <title>Latest AOSiP Builds</title>
 </head>
+
 <body>
-<div class="container">
-    <div style="text-align: center;">
-        <img src="{{ url_for(endpoint='static', filename='logo.png') }}" alt="AOSiP Logo" class="responsive-img"/>
-    </div>
-    <ul class="responsive-table">
-        <li class="table-header">
-            <div class="col col-1">Device</div>
-            <div class="col col-2">Latest Build Date</div>
-        </li>
-        {% for device in devices %}
+    <div class="container">
+        <div style="text-align: center;">
+            <img src="{{ url_for(endpoint='static', filename='logo.png') }}" alt="AOSiP Logo" class="responsive-img" />
+        </div>
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col-1">Device</div>
+                <div class="col col-2">Latest Build Date</div>
+            </li>
+            {% for device in devices %}
             <a href="{{ device }}">
                 <li class="table-row">
-                    <div class="col col-1" data-label="Device"><p>{{ device }} {% if devices[device] != device %}({{ devices[device] }}){% endif %}</p></div>
+                    <div class="col col-1" data-label="Device">
+                        <p>{{ device }} {% if devices[device] != device %}({{ devices[device] }}){% endif %}</p>
+                    </div>
                     <div class="col col-2" data-label="Link">{{ build_dates[device] }}</div>
                 </li>
             </a>
-        {% endfor %}
-    </ul>
-</div>
+            {% endfor %}
+        </ul>
+    </div>
 </body>

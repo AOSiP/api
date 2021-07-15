@@ -1,119 +1,114 @@
 {% if not model %}
-    {% set model = device %}
+{% set model = device %}
 {% endif %}
 <html>
 
 <head>
     <link rel="stylesheet" href="{{ url_for(endpoint='static', filename='bootstrap.min.css') }}"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{{ url_for(endpoint='static', filename='tables.scss') }}" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ url_for(endpoint='static', filename='favicon.ico') }}"/>
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{{ url_for(endpoint='static', filename='styles.scss') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for(endpoint='static', filename='favicon.ico') }}" />
     <script src="{{ url_for(endpoint='static', filename='jquery-3.2.1.slim.min.js') }}"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
     <script src="{{ url_for(endpoint='static', filename='popper.min.js') }}"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
     <script src="{{ url_for(endpoint='static', filename='bootstrap.min.js') }}"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <title>AOSiP for {{ model }}</title>
-    <style>
-        tr {
-            padding: 20px;
-        }
-    </style>
 </head>
 
 <body>
-<div class="container">
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/">
-            <img src="{{ url_for(endpoint='static', filename='logo.png') }}" width="30" height="30"
-                 alt="AOSiP-Logo">
-            AOSiP
-        </a>
-    </nav>
-    <div class="row">
-        <div class="col-md-6">
-            {% set images = "https://wiki.lineageos.org/images" %}
-            <div style="text-align: center;">
-                <h5>Device: {{ model }}</h5>
-                <br/>
-                <img src="{{ images }}/devices/{{ device }}.png" data-failover="/static/generic-phone-image.jpg"
-                     class="img-fluid" style="width: 250px" alt="Device Image">
-                <br/><br/>
-                <small id="img-copyright"><i>&copy; LineageOS Wiki, CC BY-SA 3.0</i></small>
+    <div class="container">
+        <nav class="navbar">
+            <a class="navbar-brand" href="/">
+                <img id="brand-logo" src="{{ url_for(endpoint='static', filename='logo-light.png') }}" alt="AOSiP-Logo">
+                AOSiP
+            </a>
+        </nav>
+        <div class="row">
+            <div class="col-md-6">
+                {% set images = "https://wiki.lineageos.org/images" %}
+                <div style="text-align: center;">
+                    <h5>Device: {{ model }}</h5>
+                    <br />
+                    <img id="device-img" src="{{ images }}/devices/{{ device }}.png"
+                        data-failover="/static/generic-phone-image.jpg" class="img-fluid" alt="Device Image">
+                    <br /><br />
+                    <small id="img-copyright"><i>&copy; LineageOS Wiki, CC BY-SA 3.0</i></small>
+                </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            {% set aosip = "http://aosip.dev/dl" %}
-            {% set sf =  "https://sourceforge.net/projects/illusionproject/files" %}
-            {% set paypal = "https://paypal.me/AOSiP" %}
-            <br><br>
-            {% if maintainer %}
+            <div class="col-md-6">
+                {% set aosip = "http://aosip.dev/dl" %}
+                {% set sf = "https://sourceforge.net/projects/illusionproject/files" %}
+                {% set paypal = "https://paypal.me/AOSiP" %}
+                <br><br>
+                {% if maintainer %}
                 <h5>Maintainer: {{ maintainer }}</h5>
                 <br>
-            {% endif %}
-            {% set buildtypes = ['official', 'gapps'] %}
-            {% for buildtype in buildtypes %}
-                {% if available_files[buildtype] %}
-                    <h5>{{ buildtype.capitalize() }}</h5>
-                    <table>
-                        <tr>
-                            <td>
-                                <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype] }}
-     class="badge badge-dark">{{ available_files[buildtype] }}</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype] }}.md5sum
-                                   class="badge badge-dark">{{ available_files[buildtype] }}.md5sum</a>
-                            </td>
-                        </tr>
-                        {% if available_files[buildtype + '-img'] %}
-                        <tr>
-                            <td>
-                                <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype].replace('.zip', '-img.zip') }}
-                                   class="badge badge-dark">Fastboot Images</a>
-                            </td>
-                        </tr>
-                        {% endif %}
-                        {% if available_files[buildtype + '-boot'] %}
-                        <tr>
-                            <td>
-                                <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype].replace('.zip', '-boot.img') }}
-                                   class="badge badge-dark">Boot Image</a>
-                            </td>
-                        </tr>
-                        {% endif %}
-                    </table>
-                    <br>
                 {% endif %}
-            {% endfor %}
-            {% if xda %}
+                {% set buildtypes = ['official', 'gapps'] %}
+                {% for buildtype in buildtypes %}
+                {% if available_files[buildtype] %}
+                <h5>{{ buildtype.capitalize() }}</h5>
+                <table>
+                    <tr>
+                        <td>
+                            <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype] }}
+                                class="badge badge-dark">{{ available_files[buildtype] }}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype] }}.md5sum
+                                class="badge badge-dark">{{ available_files[buildtype] }}.md5sum</a>
+                        </td>
+                    </tr>
+                    {% if available_files[buildtype + '-img'] %}
+                    <tr>
+                        <td>
+                            <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype].replace('.zip', '-img.zip' )
+                                }} class="badge badge-dark">Fastboot Images</a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if available_files[buildtype + '-boot'] %}
+                    <tr>
+                        <td>
+                            <a href={{ aosip }}/{{ device }}/{{ available_files[buildtype].replace('.zip', '-boot.img' )
+                                }} class="badge badge-dark">Boot Image</a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+                <br>
+                {% endif %}
+                {% endfor %}
+                {% if xda %}
                 <a href={{ xda }} class="badge badge-warning">XDA Thread</a>
                 <br><br>
-            {% endif %}
-            <a href={{ sf }}/{{ device }} class="badge badge-success">SourceForge (mirror)</a>
-            <br><br>
-            <a href="/changelog/{{ device }}" class="badge badge-danger">Changelog</a>
-            <br><br>
-            <a href={{ paypal }} class="badge badge-primary">PayPal</a>
+                {% endif %}
+                <a href={{ sf }}/{{ device }} class="badge badge-success">SourceForge (mirror)</a>
+                <br><br>
+                <a href="/changelog/{{ device }}" class="badge badge-danger">Changelog</a>
+                <br><br>
+                <a href={{ paypal }} class="badge badge-primary">PayPal</a>
+            </div>
         </div>
     </div>
-</div>
-<script>
-    // https://stackoverflow.com/a/18407205
-    $('img[data-failover]').on("error", function () {
-        var failover = $(this).data('failover');
-        if (this.src !== failover) {
-            this.src = failover;
-        }
-        $("#img-copyright").remove();
-    });
-</script>
+    <script>
+        // https://stackoverflow.com/a/18407205
+        $('img[data-failover]').on("error", function () {
+            var failover = $(this).data('failover');
+            if (this.src !== failover) {
+                this.src = failover;
+            }
+            $("#img-copyright").remove();
+        });
+    </script>
 </body>
 
 </html>
