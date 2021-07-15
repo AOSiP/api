@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <nav class="navbar">
             <a class="navbar-brand" href="/">
                 <img id="brand-logo" src="{{ url_for(endpoint='static', filename='logo-light.png') }}" alt="AOSiP-Logo">
@@ -33,13 +33,13 @@
             </a>
         </nav>
         <div class="row">
-            <div class="col-md-6">
+            <div id="device-image-div" class="col-md-6">
                 {% set images = "https://wiki.lineageos.org/images" %}
                 <div style="text-align: center;">
                     <h5>Device: {{ model }}</h5>
                     <br />
                     <img id="device-img" src="{{ images }}/devices/{{ device }}.png"
-                        data-failover="/static/generic-phone-image.png" class="img-fluid" alt="Device Image">
+                        data-failover="/static/generic-phone-image.jpg" class="img-fluid" alt="Device Image">
                     <br /><br />
                     <small id="img-copyright"><i>&copy; LineageOS Wiki, CC BY-SA 3.0</i></small>
                 </div>
@@ -90,15 +90,20 @@
                 <br>
                 {% endif %}
                 {% endfor %}
-                {% if xda %}
-                <a href={{ xda }} class="badge badge-warning">XDA Thread</a>
-                <br><br>
-                {% endif %}
-                <a href={{ sf }}/{{ device }} class="badge badge-success">SourceForge (mirror)</a>
-                <br><br>
-                <a href="/changelog/{{ device }}" class="badge badge-danger">Changelog</a>
-                <br><br>
-                <a href={{ paypal }} class="badge badge-primary">PayPal</a>
+                <ul>
+                    <li id="button-list">
+                        {% if xda %}
+                        <a href={{ xda }} class="badge badge-warning">XDA Thread</a>
+                        <br><br>
+                        {% endif %}
+                        <a href={{ sf }}/{{ device }} class="badge badge-success">SourceForge (mirror)</a>
+                        <br><br>
+                        <a href="/changelog/{{ device }}" class="badge badge-danger">Changelog</a>
+                        <br><br>
+                        <a href={{ paypal }} class="badge badge-primary">PayPal</a>
+                    </li>
+                </ul>
+                <br />
             </div>
         </div>
     </div>

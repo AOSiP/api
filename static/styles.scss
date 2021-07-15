@@ -5,10 +5,6 @@ body {
   color: #ffffff;
 }
 
-.navbar {
-  padding: 1rem;
-}
-
 .navbar-brand {
   color: #ffffff;
   font-size: 25px;
@@ -122,12 +118,50 @@ h2 small {
   flex-basis: 50%;
 }
 
-.col-md-6 {
-  margin-top: 5%;
+.container-fluid {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.col-md-6 ul {
+  display: contents;
+}
+
+li#button-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: space-around;
+  justify-content: flex-start;
+}
+
+li#button-list a {
+  margin-right: 10px;
 }
 
 @media all and (max-width: 767px) {
   .responsive-img {
     max-width: 50%;
+  }
+  div#device-image-div.col-md-6 {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+  }
+  .col-md-6 {
+    text-align: center;
+  }
+
+  .col-md-6 table {
+    width: 100%;
+    text-align: center;
+  }
+
+  li#button-list {
+    justify-content: center;
   }
 }
