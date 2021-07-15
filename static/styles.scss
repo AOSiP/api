@@ -5,10 +5,6 @@ body {
   color: #ffffff;
 }
 
-.navbar {
-  padding: 1rem;
-}
-
 .navbar-brand {
   color: #ffffff;
   font-size: 25px;
@@ -43,7 +39,7 @@ img#brand-logo {
 }
 
 img#device-img {
-  width: 250px
+  width: 250px;
 }
 
 tr {
@@ -79,6 +75,10 @@ h2 small {
   height: auto;
 }
 
+.responsive-table {
+  padding: 0px;
+}
+
 .responsive-table li {
   border-radius: 3px;
   padding: 25px 30px;
@@ -101,6 +101,8 @@ h2 small {
   font-family: "Rubik", sans-serif;
   box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease-out;
+  display: flex;
+  align-items: center;
 }
 
 .table-row:hover {
@@ -109,35 +111,57 @@ h2 small {
 }
 
 .responsive-table .col-1 {
-  flex-basis: 70%;
+  flex-basis: 50%;
+  margin-right: 20px;
 }
 .responsive-table .col-2 {
-  flex-basis: 30%;
+  flex-basis: 50%;
 }
 
-.col-md-6 {
-  margin-top: 5%;
+.container-fluid {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.col-md-6 ul {
+  display: contents;
+}
+
+li#button-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: space-around;
+  justify-content: flex-start;
+}
+
+li#button-list a {
+  margin-right: 10px;
 }
 
 @media all and (max-width: 767px) {
-  .responsive-table .table-header {
-    display: none;
+  .responsive-img {
+    max-width: 50%;
   }
-  .responsive-table li {
-    display: block;
-  }
-  .responsive-table .col {
-    flex-basis: 100%;
-  }
-  .responsive-table .col {
+  div#device-image-div.col-md-6 {
+    margin-top: 5%;
     display: flex;
-    padding: 10px 0;
+    justify-content: center;
   }
-  .responsive-table .col:before {
-    color: #6c7a89;
-    padding-right: 10px;
-    content: attr(data-label);
-    flex-basis: 50%;
-    text-align: right;
+  .col-md-6 {
+    text-align: center;
+  }
+
+  .col-md-6 table {
+    width: 100%;
+    text-align: center;
+  }
+
+  li#button-list {
+    justify-content: center;
   }
 }
