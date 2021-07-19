@@ -150,6 +150,12 @@
         "xda": "https://forum.xda-developers.com/k20-pro/development/rom-aosip-t4035755"
     },
     {
+        "codename": "surya",
+        "device": "POCO X3 (NFC)",
+        "maintainer": "Nick van Bokhorst (GtrCraft)",
+        "xda": "https://forum.xda-developers.com/t/rom-11-android-open-source-illusion-project-surya-unified.4307397/"
+    },
+    {
         "codename": "taimen",
         "device": "Google Pixel 2 XL",
         "maintainer": "Eamon Powell (Eamo5)",
