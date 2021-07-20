@@ -114,6 +114,7 @@ h2 small {
   flex-basis: 50%;
   margin-right: 20px;
 }
+
 .responsive-table .col-2 {
   flex-basis: 50%;
 }
@@ -124,6 +125,10 @@ h2 small {
 
 .col-md-6 ul {
   display: contents;
+}
+
+div#device-image-div {
+  align-self: center;
 }
 
 li#button-list {
@@ -144,11 +149,13 @@ li#button-list a {
   .responsive-img {
     max-width: 50%;
   }
+
   div#device-image-div.col-md-6 {
     margin-top: 5%;
     display: flex;
     justify-content: center;
   }
+
   .col-md-6 {
     text-align: center;
   }
