@@ -1,5 +1,11 @@
 [
     {
+        "codename": "alioth",
+        "device": "POCO F3 / Redmi K40 / Mi 11X",
+        "maintainer": "Nick van Bokhorst (GtrCraft)",
+        "xda": "https://forum.xda-developers.com/t/rom-11-android-open-source-illusion-project-alioth-unified.4308097/"
+    },
+    {
         "codename": "berkeley",
         "device": "Honor View 10",
         "maintainer": "Juan Ramírez",
