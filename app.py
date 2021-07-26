@@ -143,24 +143,25 @@ def latest_device(target_device: str) -> str:
 
 @app.route("/<string:device>/<string:romtype>")
 def ota(device: str, romtype: str):
-    rom = get_latest(device, romtype)
-    if not rom:
-        data = []
-    else:
-        data = [
+    if rom := get_latest(device, romtype):
+        return jsonify(
             {
-                "id": rom["sha256"],
-                "url": "{}{}{}".format(
-                    DOWNLOAD_BASE_URL, rom["filepath"], rom["filename"]
-                ),
-                "romtype": rom["type"],
-                "datetime": arrow.get(rom["date"]).timestamp,
-                "version": rom["version"],
-                "filename": rom["filename"],
-                "size": rom["size"],
+                "response": [
+                    {
+                        "id": rom["sha256"],
+                        "url": "{}{}{}".format(
+                            DOWNLOAD_BASE_URL, rom["filepath"], rom["filename"]
+                        ),
+                        "romtype": rom["type"],
+                        "datetime": int(arrow.get(rom["date"]).timestamp()),
+                        "version": rom["version"],
+                        "filename": rom["filename"],
+                        "size": rom["size"],
+                    }
+                ]
             }
-        ]
-    return jsonify({"response": data})
+        )
+    return []
 
 
 if __name__ == "__main__":
