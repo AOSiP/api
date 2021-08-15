@@ -161,7 +161,7 @@ def ota(device: str, romtype: str):
                 ]
             }
         )
-    return []
+    return jsonify([])
 
 
 if __name__ == "__main__":
