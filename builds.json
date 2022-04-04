@@ -1,0 +1,758 @@
+{
+    "alioth": [
+        {
+            "boot_image": true,
+            "date": "2021-08-08",
+            "fastboot_images": true,
+            "filename": "AOSiP-11-Gapps-alioth-20210808.zip",
+            "filepath": "/alioth/",
+            "sha256": "62cd558816d2c9c7f3118cec7c7cdd7dd27b6db2ed26fd58915f0c79ca48c1ea",
+            "size": 1441512717,
+            "type": "gapps",
+            "version": "11"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-08-08",
+            "fastboot_images": true,
+            "filename": "AOSiP-11-Official-alioth-20210808.zip",
+            "filepath": "/alioth/",
+            "sha256": "e530b38bb1f41a01487fac896b2def3affbb7ff60c75c6bec10570ef871e22b2",
+            "size": 1021004503,
+            "type": "official",
+            "version": "11"
+        }
+    ],
+    "berkeley": [
+        {
+            "boot_image": false,
+            "date": "2019-08-18",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-berkeley-20190818.zip",
+            "filepath": "/berkeley/",
+            "sha256": "4e131df330df276dc1c7163a3542988ac8bf97ad8fca8c4f687f72f37b091910",
+            "size": 520026205,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "beryllium": [
+        {
+            "boot_image": true,
+            "date": "2021-08-08",
+            "fastboot_images": true,
+            "filename": "AOSiP-11-Gapps-beryllium-20210808.zip",
+            "filepath": "/beryllium/",
+            "sha256": "f6d5b6854937f7282c8a3cc90a5a13730d33f187fac9215e07e8952df528e61e",
+            "size": 1353946490,
+            "type": "gapps",
+            "version": "11"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-08-08",
+            "fastboot_images": true,
+            "filename": "AOSiP-11-Official-beryllium-20210808.zip",
+            "filepath": "/beryllium/",
+            "sha256": "e675183e554e2bdcca58a67ac2b59c5a9307119ab2284a923852791044a91370",
+            "size": 862172047,
+            "type": "official",
+            "version": "11"
+        }
+    ],
+    "blueline": [
+        {
+            "boot_image": false,
+            "date": "2019-07-22",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-blueline-20190722.zip",
+            "filepath": "/blueline/",
+            "sha256": "395dd96b1973d6cae42f7f2f03179539f13f23b0a61fe63897d5cf77026e95f5",
+            "size": 1032892424,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "bonito": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-bonito-20210621.zip",
+            "filepath": "/bonito/",
+            "sha256": "e0294b38911c5855b033140d1c14361a87c060c76f610686f2a61ac478c74282",
+            "size": 1131958828,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-bonito-20210621.zip",
+            "filepath": "/bonito/",
+            "sha256": "15e5f5af89c14c9bc1376e884684d6612dc205202e9884b4ed993baabbc3e370",
+            "size": 750244900,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "bullhead": [
+        {
+            "boot_image": false,
+            "date": "2020-07-25",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-bullhead-20200725.zip",
+            "filepath": "/bullhead/",
+            "sha256": "2abbd00bb725a27130e0c7851bc962877ad2491566e235f7f14d68b9b0dd84ab",
+            "size": 535566892,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "charlotte": [
+        {
+            "boot_image": false,
+            "date": "2019-08-18",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-charlotte-20190818.zip",
+            "filepath": "/charlotte/",
+            "sha256": "9fb79d1fbe83d005c837c7192a4724345ba005df3a64e87e811260871da691a7",
+            "size": 520178710,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "cheeseburger": [
+        {
+            "boot_image": true,
+            "date": "2021-03-16",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-cheeseburger-20210316.zip",
+            "filepath": "/cheeseburger/",
+            "sha256": "ac84579e8396609100cac2d0b0b3ae15358633f6520bf689cdb4d63923192142",
+            "size": 1170897651,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-03-16",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-cheeseburger-20210316.zip",
+            "filepath": "/cheeseburger/",
+            "sha256": "e65feb0805290e600acb04f5cb4ef7ad9758e4118443acce4ab549f93b724ad9",
+            "size": 772209864,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "coral": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-coral-20210621.zip",
+            "filepath": "/coral/",
+            "sha256": "2b3284177e997a990df1ab1e96923144f3aaae3db2415f2be559f26ccebe3b67",
+            "size": 1424588544,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-coral-20210621.zip",
+            "filepath": "/coral/",
+            "sha256": "8d96600023a9eba63b0b6353e74beebc5901fa4ffa71892485a9e7aad06d7750",
+            "size": 906688376,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "crosshatch": [
+        {
+            "boot_image": false,
+            "date": "2019-07-22",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-crosshatch-20190722.zip",
+            "filepath": "/crosshatch/",
+            "sha256": "dc62619d084f1893858dab60b7f1f852b718750986869355c2c7f86b850a9563",
+            "size": 1034238313,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "curtana": [
+        {
+            "boot_image": true,
+            "date": "2021-03-16",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-curtana-20210316.zip",
+            "filepath": "/curtana/",
+            "sha256": "eb0d2974024fc868a3af0e7977655b356ec21001d7f09a4be22880c0bd33a7e5",
+            "size": 1385024118,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-03-16",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-curtana-20210316.zip",
+            "filepath": "/curtana/",
+            "sha256": "1e648cfabe800e85dd25df5d739c78d85b342adb3185d3002a102d3355fd1551",
+            "size": 981598621,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "dipper": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-dipper-20210621.zip",
+            "filepath": "/dipper/",
+            "sha256": "3c424dc9b6ff8e4138b58dbfd48624f408ca7c97602e3608fc02aeb5e7ee4981",
+            "size": 1184532051,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-dipper-20210621.zip",
+            "filepath": "/dipper/",
+            "sha256": "d09746ec7c44da6bb5b5b4d3b98493f67fb4e554ff47df8c01f602c9c1e983d6",
+            "size": 802290700,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "dumpling": [
+        {
+            "boot_image": true,
+            "date": "2021-03-16",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-dumpling-20210316.zip",
+            "filepath": "/dumpling/",
+            "sha256": "b145efd3329d10799f185ccd9bad9713c6981e7c8aeef16673162a02d07233e0",
+            "size": 1171225361,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-03-16",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-dumpling-20210316.zip",
+            "filepath": "/dumpling/",
+            "sha256": "7850b2d336bc7d7bc1dae9ebc8ac4756559bfff8b0dc8c6ef5b28527ef27bb46",
+            "size": 772515018,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "enchilada": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-enchilada-20210621.zip",
+            "filepath": "/enchilada/",
+            "sha256": "6bbc0fc2513ca00dd15997527a30a0c7f295025bf547dff255457a1a32753d36",
+            "size": 860018054,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-22",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-enchilada-20210622.zip",
+            "filepath": "/enchilada/",
+            "sha256": "af45acc3d9b788137607f954dec551e64444e7a72c7718b18861c554ecd49311",
+            "size": 516656151,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "fajita": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-fajita-20210621.zip",
+            "filepath": "/fajita/",
+            "sha256": "f52289b4fae29d5ae0b1fe4afb7791ae22fef6a3d815a1c94e6534a7cceea588",
+            "size": 860151288,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-fajita-20210621.zip",
+            "filepath": "/fajita/",
+            "sha256": "3e49082e6194060381e9dde7fa3714ca7eb19deb048e2b21e254bd28e06c9f73",
+            "size": 517335517,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "flame": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-flame-20210621.zip",
+            "filepath": "/flame/",
+            "sha256": "a6e5fa6f4e04628a5677d855bfd70a4ebfcd579b3fe9042adcb00fb73ba438a8",
+            "size": 1427524044,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-flame-20210621.zip",
+            "filepath": "/flame/",
+            "sha256": "01cb06abbec056e7d8cf7358a2d1b5d4b95524325fc7075e54205e1951c4c8f1",
+            "size": 908545506,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "guacamole": [
+        {
+            "boot_image": false,
+            "date": "2020-07-25",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-guacamole-20200725.zip",
+            "filepath": "/guacamole/",
+            "sha256": "621355398f82fa68e921e93e3179313b6a9437710b1ac4431511fc7c338a3059",
+            "size": 694448345,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "guacamoleb": [
+        {
+            "boot_image": true,
+            "date": "2020-05-27",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-guacamoleb-20200527.zip",
+            "filepath": "/guacamoleb/",
+            "sha256": "535fbb84f68989861b795ac77aa6722633ec6647b65e14793393fc684491b239",
+            "size": 1055156000,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2020-05-27",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-guacamoleb-20200527.zip",
+            "filepath": "/guacamoleb/",
+            "sha256": "c8b7e3dcc4e67596e4eb8ace81a89cdef2c9fce362eeded840b3792ed19fd4c0",
+            "size": 730862279,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "hotdogb": [
+        {
+            "boot_image": true,
+            "date": "2021-03-16",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-hotdogb-20210316.zip",
+            "filepath": "/hotdogb/",
+            "sha256": "3f42fd3e0598e6ebafaa41188d6f79838f51b5ae828275ebe3b0a09e286d5a2f",
+            "size": 797116594,
+            "type": "official",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-hotdogb-20210621.zip",
+            "filepath": "/hotdogb/",
+            "sha256": "999326419c19ee87e4046e481f3216a93fdb771430ef1debb95bf74864ec2df7",
+            "size": 1113895203,
+            "type": "gapps",
+            "version": "10"
+        }
+    ],
+    "jasmine_sprout": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-jasmine_sprout-20210621.zip",
+            "filepath": "/jasmine_sprout/",
+            "sha256": "767cab8af8af46e785ffc902c9d7237283cf54c169d0dbb708bb0954883f27bc",
+            "size": 1035623896,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-jasmine_sprout-20210621.zip",
+            "filepath": "/jasmine_sprout/",
+            "sha256": "1083a184d75636b6e2e419a49162d9a7983451fba39b81594a37ffb6137b60d6",
+            "size": 690350439,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "kiwi": [
+        {
+            "boot_image": false,
+            "date": "2019-08-18",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-kiwi-20190818.zip",
+            "filepath": "/kiwi/",
+            "sha256": "56ef9512a15a6b2e23014f28604ccbe65f0ada0e4e6ce142d3907952385ead80",
+            "size": 488202434,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "mata": [
+        {
+            "boot_image": false,
+            "date": "2020-07-25",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-mata-20200725.zip",
+            "filepath": "/mata/",
+            "sha256": "7d0220a540157c84f3bccca9d72e6e46b307d187de2d095d175d79210c4d14dd",
+            "size": 635575154,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "mido": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-mido-20210621.zip",
+            "filepath": "/mido/",
+            "sha256": "865aa83276a545c9fa59e0dc0a08e02e43f5a4f467095a1c7999ef5db396e6f5",
+            "size": 1010509571,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-mido-20210621.zip",
+            "filepath": "/mido/",
+            "sha256": "bc63cdf5d3f9e5da77992acfe7f4fe722227ffeeb708d21969caf837e93b1fa3",
+            "size": 622088085,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "oneplus3": [
+        {
+            "boot_image": false,
+            "date": "2020-07-25",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-oneplus3-20200725.zip",
+            "filepath": "/oneplus3/",
+            "sha256": "f853225ff4a8568dd47a5602de8d5d925c73959c89d6aa9f564d7ea41d0a590b",
+            "size": 584325593,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "perseus": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-perseus-20210621.zip",
+            "filepath": "/perseus/",
+            "sha256": "50f1c71000c0d4c3f0d88831e8e86bb667eec1c06ce550a190f0916a6a9ac620",
+            "size": 1312991706,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-perseus-20210621.zip",
+            "filepath": "/perseus/",
+            "sha256": "bd8445404105de6caa3d354f8a88b032efa2b9a6154f047ed7e4191a3c69e323",
+            "size": 925850632,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "phoenix": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-phoenix-20210621.zip",
+            "filepath": "/phoenix/",
+            "sha256": "690746df174347e0d70033018ddfbf2c2d9cf0673d6cbfa22d6e0e9f4f62d197",
+            "size": 984599274,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-phoenix-20210621.zip",
+            "filepath": "/phoenix/",
+            "sha256": "e522b0d5a0fc034bf5f5ce94f9de77e56c78eb84e00e63c5677a793878a6bfa7",
+            "size": 591833328,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "platina": [
+        {
+            "boot_image": false,
+            "date": "2019-09-13",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-platina-20190913.zip",
+            "filepath": "/platina/",
+            "sha256": "ace2bcabec23eb996536975656321ca4a2a0221c3caba9768d2c65b354112b96",
+            "size": 694319448,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "potter": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-potter-20210621.zip",
+            "filepath": "/potter/",
+            "sha256": "044a4b8fd11d9f382744df522f17715569c83082139fc209aafaf28d6ffddf78",
+            "size": 1052617708,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-potter-20210621.zip",
+            "filepath": "/potter/",
+            "sha256": "8c12e99a0d3606162a4865d95bc00240f6487d0f301cc21c03bf9c39769a9a0d",
+            "size": 664242884,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "raphael": [
+        {
+            "boot_image": true,
+            "date": "2021-08-08",
+            "fastboot_images": true,
+            "filename": "AOSiP-11-Gapps-raphael-20210808.zip",
+            "filepath": "/raphael/",
+            "sha256": "e4b644f589672c23d87e1b5ff62f98372b09c9c3d07bf7cb51d82a0a7d9fae49",
+            "size": 1124579456,
+            "type": "gapps",
+            "version": "11"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-08-08",
+            "fastboot_images": true,
+            "filename": "AOSiP-11-Official-raphael-20210808.zip",
+            "filepath": "/raphael/",
+            "sha256": "73d3063f39cff072afac3a9531712dc9a98af8a398fd4d5608ec06b443f2dee0",
+            "size": 631116538,
+            "type": "official",
+            "version": "11"
+        }
+    ],
+    "surya": [
+        {
+            "boot_image": true,
+            "date": "2021-08-08",
+            "fastboot_images": true,
+            "filename": "AOSiP-11-Gapps-surya-20210808.zip",
+            "filepath": "/surya/",
+            "sha256": "9544fa3eb8cdecad5a9c52d362c4177e7aadf3fd96faba6719d2b37fbb3e56fd",
+            "size": 1484393026,
+            "type": "gapps",
+            "version": "11"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-08-08",
+            "fastboot_images": true,
+            "filename": "AOSiP-11-Official-surya-20210808.zip",
+            "filepath": "/surya/",
+            "sha256": "c0a74fe19bb038a5ee2841e38ce23f6f74e5a48adb804bca205fdb0f1b7abd7d",
+            "size": 987459021,
+            "type": "official",
+            "version": "11"
+        }
+    ],
+    "taimen": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-taimen-20210621.zip",
+            "filepath": "/taimen/",
+            "sha256": "cdef30f1871a0dd2a026ce2008fad85c1793d051f71ac06626d89df7e8479483",
+            "size": 1080606454,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-taimen-20210621.zip",
+            "filepath": "/taimen/",
+            "sha256": "c4a2af5ea10a39368051a7a03525fa1d20161e194f802363b5142f113f91febd",
+            "size": 705544069,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "walleye": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-walleye-20210621.zip",
+            "filepath": "/walleye/",
+            "sha256": "8b638cc4ba8d3876963887a0ffebbc73cc366c8724d2a5ce7309824217bbcbd0",
+            "size": 1037412406,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-walleye-20210621.zip",
+            "filepath": "/walleye/",
+            "sha256": "245539df50d9cbb07b2bc6ec599f088fd4158863b2a55c7771860d0d661d12b6",
+            "size": 705018341,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "wayne": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-wayne-20210621.zip",
+            "filepath": "/wayne/",
+            "sha256": "009bc3580b97c9e832ec19f41016d142852e9e8e8ed1540100753baad77511cb",
+            "size": 1092233733,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-wayne-20210621.zip",
+            "filepath": "/wayne/",
+            "sha256": "1d976e8f24e0de07ef09669773a27a8fd1388b48f8d97945fd14bee2fe5dd397",
+            "size": 703926883,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "whyred": [
+        {
+            "boot_image": false,
+            "date": "2020-03-10",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-whyred-20200310.zip",
+            "filepath": "/whyred/",
+            "sha256": "7fb558d78a2a39146e7e2accefe6180cfc6fef9843dffc7a2fb755ad0118ff2f",
+            "size": 657128695,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "x2": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-x2-20210621.zip",
+            "filepath": "/x2/",
+            "sha256": "e1dfcf82bbc8d2ec362d887e07892686bee562074407605c957c43016ce293ea",
+            "size": 1039669119,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-x2-20210621.zip",
+            "filepath": "/x2/",
+            "sha256": "bd919374824bac7bb85b3e257d143b7995d902b2ca04d5d0fec68595caee1c24",
+            "size": 647409924,
+            "type": "official",
+            "version": "10"
+        }
+    ],
+    "z2_plus": [
+        {
+            "boot_image": false,
+            "date": "2019-09-13",
+            "fastboot_images": false,
+            "filename": "AOSiP-9.0-Official-z2_plus-20190913.zip",
+            "filepath": "/z2_plus/",
+            "sha256": "8934c17976237a1992c09a640b21195990d1161b81944bd8af2cbafcafc964b5",
+            "size": 591868829,
+            "type": "official",
+            "version": "9.0"
+        }
+    ],
+    "zl1": [
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Gapps-zl1-20210621.zip",
+            "filepath": "/zl1/",
+            "sha256": "2981ccad58731c591fd1ad926aa804ebe217dee29461fd81cc3c10de7ab0de0e",
+            "size": 1040068021,
+            "type": "gapps",
+            "version": "10"
+        },
+        {
+            "boot_image": true,
+            "date": "2021-06-21",
+            "fastboot_images": true,
+            "filename": "AOSiP-10-Official-zl1-20210621.zip",
+            "filepath": "/zl1/",
+            "sha256": "b37c4decd389695127441dd0c63f962cdf8c1ce2fc6bef41ea5cd336f4fa74cf",
+            "size": 648056240,
+            "type": "official",
+            "version": "10"
+        }
+    ]
+}
